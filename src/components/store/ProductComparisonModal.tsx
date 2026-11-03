@@ -282,3 +282,4 @@ export const ProductComparisonModal: React.FC = () => {
     </AnimatePresence>
   );
 };
+

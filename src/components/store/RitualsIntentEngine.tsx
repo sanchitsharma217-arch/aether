@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles,
@@ -25,24 +25,30 @@ interface Props {
 }
 
 export const RitualsIntentEngine: React.FC<Props> = ({ className = "" }) => {
-  const [activeScenarioId, setActiveScenarioId] = useState<string>("suite-workstation");
+  const [userSelectedScenarioId, setUserSelectedScenarioId] = useState<string | null>(null);
   const [isAssembled, setIsAssembled] = useState(false);
   const { addBundleToCart, searchQuery, setActiveBuyBoxProduct } = useStore();
 
-  // Listen to search query changes from Hero prompt chips
-  useEffect(() => {
-    if (!searchQuery) return;
-    const q = searchQuery.toLowerCase();
-    if (q.includes("tokyo") || q.includes("acoustic") || q.includes("audio") || q.includes("sound")) {
-      setActiveScenarioId("suite-audio");
-    } else if (q.includes("ceramic") || q.includes("morning") || q.includes("culinary") || q.includes("kitchen") || q.includes("pour-over")) {
-      setActiveScenarioId("suite-culinary");
-    } else if (q.includes("edc") || q.includes("commute") || q.includes("watch") || q.includes("leather")) {
-      setActiveScenarioId("suite-commute");
-    } else if (q.includes("work") || q.includes("desk") || q.includes("studio") || q.includes("linen")) {
-      setActiveScenarioId("suite-workstation");
+  // Derive active scenario based on user click or search query
+  const activeScenarioId = useMemo(() => {
+    if (userSelectedScenarioId) return userSelectedScenarioId;
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      if (q.includes("tokyo") || q.includes("acoustic") || q.includes("audio") || q.includes("sound")) {
+        return "suite-audio";
+      }
+      if (q.includes("ceramic") || q.includes("morning") || q.includes("culinary") || q.includes("kitchen") || q.includes("pour-over")) {
+        return "suite-culinary";
+      }
+      if (q.includes("edc") || q.includes("commute") || q.includes("watch") || q.includes("leather")) {
+        return "suite-commute";
+      }
+      if (q.includes("work") || q.includes("desk") || q.includes("studio") || q.includes("linen")) {
+        return "suite-workstation";
+      }
     }
-  }, [searchQuery]);
+    return "suite-workstation";
+  }, [userSelectedScenarioId, searchQuery]);
 
   // Find active scenario
   const currentScenario: RitualScenario =
@@ -109,7 +115,7 @@ export const RitualsIntentEngine: React.FC<Props> = ({ className = "" }) => {
           return (
             <button
               key={scenario.id}
-              onClick={() => setActiveScenarioId(scenario.id)}
+              onClick={() => setUserSelectedScenarioId(scenario.id)}
               className={`px-5 py-2.5 rounded-full text-xs font-sans font-bold tracking-wide transition-all whitespace-nowrap cursor-pointer flex items-center gap-2 ${
                 isActive
                   ? "bg-[#0D0D0D] text-white shadow-md scale-102"

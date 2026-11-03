@@ -119,10 +119,10 @@ export const AsymmetricVault: React.FC = () => {
                   Certified Origin
                 </div>
                 <div className="text-xs font-sans font-black text-[#0A0A0C]">
-                  Sonic Laboratories // Berlin
+                  {prodH01.primaryVendor.name} &bull; {prodH01.primaryVendor.location.split(",")[0]}
                 </div>
                 <div className="text-[10px] font-mono text-emerald-700 font-semibold">
-                  Available from 3 Verified Depots
+                  Available from {prodH01.offers?.length || 1} Verified Depots
                 </div>
               </div>
             </div>
@@ -239,7 +239,7 @@ export const AsymmetricVault: React.FC = () => {
                 Culinary // 03
               </span>
               <span className="text-[10px] text-[#64646E]">
-                Lyon, France
+                {prodOven.primaryVendor.location}
               </span>
             </div>
 
@@ -263,7 +263,7 @@ export const AsymmetricVault: React.FC = () => {
 
               <div className="flex items-center justify-between text-[11px] font-mono text-[#64646E]">
                 <span>Recycled Pig Iron · Enamel</span>
-                <span className="text-emerald-700 font-bold">50-Yr Warranty</span>
+                <span className="text-emerald-700 font-bold">{prodOven.durabilityYears}-Yr Warranty</span>
               </div>
 
               <div className="pt-2 flex items-center gap-2">

@@ -26,14 +26,26 @@ export const HeroBanner: React.FC = () => {
   const [isAdding, setIsAdding] = useState(false);
   const [activeSpecPoint, setActiveSpecPoint] = useState<number | null>(null);
 
-  // Tab definitions with 3 distinct verified vendors each
+  const prodH01 = PRODUCTS.find((p) => p.id === "prod-1") || PRODUCTS[0];
+  const prodWatch = PRODUCTS.find((p) => p.id === "prod-2") || PRODUCTS[3];
+  const prodSantoku = PRODUCTS.find((p) => p.id === "prod-santoku") || PRODUCTS[4];
+
+  const prodDutchOven = PRODUCTS.find((p) => p.id === "prod-dutch-oven") || PRODUCTS[1];
+  const prodBrewer = PRODUCTS.find((p) => p.id === "prod-brewer") || PRODUCTS[7];
+  const prodGrinder = PRODUCTS.find((p) => p.id === "prod-grinder") || PRODUCTS[8];
+
+  const prodFolio = PRODUCTS.find((p) => p.id === "prod-folio") || PRODUCTS[2];
+  const prodDesk = PRODUCTS.find((p) => p.id === "prod-desk-companion") || PRODUCTS[5];
+  const prodIncense = PRODUCTS.find((p) => p.id === "prod-bronze-incense") || PRODUCTS[11];
+
+  // Tab definitions with 3 distinct verified vendors each, dynamically derived from mockProducts
   const suites = {
     audio: {
       name: "ACOUSTIC PURIST MONOLITH",
       tagline: "BERLIN // HI-RES MASTER MONITORING",
       desc: "Reference 10Hz–45kHz studio audio without harmonic coloration or digital compression.",
-      heroProduct: PRODUCTS.find((p) => p.id === "prod-1") || PRODUCTS[0],
-      heroImage: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=1600&auto=format&fit=crop&q=90",
+      heroProduct: prodH01,
+      heroImage: prodH01.image,
       specPoints: [
         { label: "80mm Planar Diaphragm", desc: "0.05% THD reference accuracy", top: "25%", left: "15%" },
         { label: "Black Walnut Resonance", desc: "Hand-turned acoustic chambers", top: "62%", left: "22%" },
@@ -41,116 +53,122 @@ export const HeroBanner: React.FC = () => {
       ],
       items: [
         {
-          id: "h01-monitors",
-          product: PRODUCTS.find((p) => p.id === "prod-1") || PRODUCTS[0],
-          name: "H-01 Open-Back Planar Monitors",
-          vendor: "Sonic Laboratories",
-          location: "Berlin, Germany",
-          price: 340,
-          image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400&auto=format&fit=crop&q=80",
+          id: prodH01.id,
+          product: prodH01,
+          name: prodH01.title,
+          vendor: prodH01.primaryVendor.name,
+          location: prodH01.primaryVendor.location,
+          price: prodH01.price,
+          image: prodH01.image,
         },
         {
-          id: "titanium-watch",
-          product: PRODUCTS.find((p) => p.id === "prod-2") || PRODUCTS[3],
-          name: "Field Horology Titanium Automatic",
-          vendor: "Alpine Precision Studio",
-          location: "Zurich, Switzerland",
-          price: 420,
-          image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=400&auto=format&fit=crop&q=80",
+          id: prodWatch.id,
+          product: prodWatch,
+          name: prodWatch.title,
+          vendor: prodWatch.primaryVendor.name,
+          location: prodWatch.primaryVendor.location,
+          price: prodWatch.price,
+          image: prodWatch.image,
         },
         {
-          id: "aogami-blade",
-          product: PRODUCTS.find((p) => p.id === "prod-santoku") || PRODUCTS[9],
-          name: "Hand-Forged Aogami Santoku",
-          vendor: "Tosa Munemitsu Forge",
-          location: "Kochi, Japan",
-          price: 185,
-          image: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=400&auto=format&fit=crop&q=80",
+          id: prodSantoku.id,
+          product: prodSantoku,
+          name: prodSantoku.title,
+          vendor: prodSantoku.primaryVendor.name,
+          location: prodSantoku.primaryVendor.location,
+          price: prodSantoku.price,
+          image: prodSantoku.image,
         },
       ],
-      total: 945,
+      get total(): number {
+        return this.items.reduce((acc, it) => acc + it.price, 0);
+      },
     },
     kitchen: {
       name: "HEARTH & EXTRACTION SUITE",
       tagline: "TOKONAME // FRENCH FOUNDRY HEIRLOOM",
       desc: "Sand-cast pig iron heat retention and high-reduction iron stoneware extraction.",
-      heroProduct: PRODUCTS.find((p) => p.id === "prod-dutch-oven") || PRODUCTS[1],
-      heroImage: "https://images.unsplash.com/photo-1584990347449-397a6590214a?w=1600&auto=format&fit=crop&q=90",
+      heroProduct: prodDutchOven,
+      heroImage: prodDutchOven.image,
       specPoints: [
         { label: "Vitreous Quartz Enamel", desc: "Triple-fired non-reactive interior", top: "30%", left: "20%" },
         { label: "Self-Basting Spikes", desc: "Even moisture condensation lid", top: "50%", left: "75%" },
       ],
       items: [
         {
-          id: "dutch-oven",
-          product: PRODUCTS.find((p) => p.id === "prod-dutch-oven") || PRODUCTS[1],
-          name: "Cast Enamelled Dutch Oven 5.5qt",
-          vendor: "Atelier de Fonte",
-          location: "Lyon, France",
-          price: 280,
-          image: "https://images.unsplash.com/photo-1584990347449-397a6590214a?w=400&auto=format&fit=crop&q=80",
+          id: prodDutchOven.id,
+          product: prodDutchOven,
+          name: prodDutchOven.title,
+          vendor: prodDutchOven.primaryVendor.name,
+          location: prodDutchOven.primaryVendor.location,
+          price: prodDutchOven.price,
+          image: prodDutchOven.image,
         },
         {
-          id: "tokoname-brewer",
-          product: PRODUCTS.find((p) => p.id === "prod-brewer") || PRODUCTS[4],
-          name: "Tokoname Hand-Turned Brewer",
-          vendor: "Kenjiro Yamada Guild",
-          location: "Tokoname, Japan",
-          price: 98,
-          image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&auto=format&fit=crop&q=80",
+          id: prodBrewer.id,
+          product: prodBrewer,
+          name: prodBrewer.title,
+          vendor: prodBrewer.primaryVendor.name,
+          location: prodBrewer.primaryVendor.location,
+          price: prodBrewer.price,
+          image: prodBrewer.image,
         },
         {
-          id: "conical-mill",
-          product: PRODUCTS.find((p) => p.id === "prod-mill") || PRODUCTS[6],
-          name: "Apex Conical Burr Extraction Mill",
-          vendor: "Apex Zurich Engineering",
-          location: "Zurich, Switzerland",
-          price: 220,
-          image: "https://images.unsplash.com/photo-1518832553480-cd0e625ed3e6?w=400&auto=format&fit=crop&q=80",
+          id: prodGrinder.id,
+          product: prodGrinder,
+          name: prodGrinder.title,
+          vendor: prodGrinder.primaryVendor.name,
+          location: prodGrinder.primaryVendor.location,
+          price: prodGrinder.price,
+          image: prodGrinder.image,
         },
       ],
-      total: 598,
+      get total(): number {
+        return this.items.reduce((acc, it) => acc + it.price, 0);
+      },
     },
     wfh: {
       name: "ARCHITECT TACTILE STUDIO",
       tagline: "CHICAGO // HORWEEN FULL-GRAIN",
       desc: "Sustainably harvested Pennsylvania timber and heavy pull-up steerhide essentials.",
-      heroProduct: PRODUCTS.find((p) => p.id === "prod-folio") || PRODUCTS[2],
-      heroImage: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=1600&auto=format&fit=crop&q=90",
+      heroProduct: prodFolio,
+      heroImage: prodFolio.image,
       specPoints: [
         { label: "Horween Chromexcel", desc: "89-day cold bark pit tannage", top: "28%", left: "20%" },
         { label: "Saddler-Stitched Seams", desc: "Heavy waxed polycord construction", top: "65%", left: "70%" },
       ],
       items: [
         {
-          id: "leather-folio",
-          product: PRODUCTS.find((p) => p.id === "prod-folio") || PRODUCTS[2],
-          name: "Horween Chromexcel Leather Folio",
-          vendor: "Chicago Tanner Guild",
-          location: "Chicago, USA",
-          price: 165,
-          image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&auto=format&fit=crop&q=80",
+          id: prodFolio.id,
+          product: prodFolio,
+          name: prodFolio.title,
+          vendor: prodFolio.primaryVendor.name,
+          location: prodFolio.primaryVendor.location,
+          price: prodFolio.price,
+          image: prodFolio.image,
         },
         {
-          id: "desk-companion",
-          product: PRODUCTS.find((p) => p.id === "prod-desk-companion") || PRODUCTS[7],
-          name: "Solid American Walnut Companion",
-          vendor: "Miller Millwork",
-          location: "Pennsylvania, USA",
-          price: 135,
-          image: "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=400&auto=format&fit=crop&q=80",
+          id: prodDesk.id,
+          product: prodDesk,
+          name: prodDesk.title,
+          vendor: prodDesk.primaryVendor.name,
+          location: prodDesk.primaryVendor.location,
+          price: prodDesk.price,
+          image: prodDesk.image,
         },
         {
-          id: "bronze-vessel",
-          product: PRODUCTS.find((p) => p.id === "prod-incense") || PRODUCTS[10],
-          name: "Yoshino Hinoki Cypress Vessel",
-          vendor: "Takaoka Foundry",
-          location: "Toyama, Japan",
-          price: 88,
-          image: "https://images.unsplash.com/photo-1602928321679-560bb453f190?w=400&auto=format&fit=crop&q=80",
+          id: prodIncense.id,
+          product: prodIncense,
+          name: prodIncense.title,
+          vendor: prodIncense.primaryVendor.name,
+          location: prodIncense.primaryVendor.location,
+          price: prodIncense.price,
+          image: prodIncense.image,
         },
       ],
-      total: 388,
+      get total(): number {
+        return this.items.reduce((acc, it) => acc + it.price, 0);
+      },
     },
   };
 

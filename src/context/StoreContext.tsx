@@ -70,15 +70,19 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   // Load from localStorage on mount
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMounted(true);
     try {
       const savedCart = localStorage.getItem("aether_cart");
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       if (savedCart) setCart(JSON.parse(savedCart));
 
       const savedFavs = localStorage.getItem("aether_favorites");
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       if (savedFavs) setFavorites(JSON.parse(savedFavs));
 
       const savedComp = localStorage.getItem("aether_compared");
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       if (savedComp) setComparedProductIds(JSON.parse(savedComp));
     } catch {
       // ignore
@@ -153,7 +157,7 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const addBundleToCart = (items: { product: Product; quantity?: number; color?: string; offer?: SellerOffer }[]) => {
     setCart((prev) => {
-      let updated = [...prev];
+      const updated = [...prev];
       for (const item of items) {
         const selectedOffer = item.offer || item.product.offers?.[0];
         const existingIdx = updated.findIndex((i) => i.product.id === item.product.id);

@@ -46,7 +46,7 @@ export const Footer: React.FC = () => {
               </span>
               <span className="flex items-center gap-1.5">
                 <ShieldCheck className="h-3.5 w-3.5 text-[#1B5E3C]" />
-                7% Transparent Escrow
+                Direct Merchant Settlement
               </span>
               <span className="flex items-center gap-1.5">
                 <Truck className="h-3.5 w-3.5 text-[#1E3A8A]" />
@@ -103,7 +103,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-stone-400 font-sans">
               <li><Link href="/about" className="hover:text-white transition-colors">Canonical 1-SKU Architecture</Link></li>
               <li><Link href="/about" className="hover:text-white transition-colors">Merit-Ranked Shelf Placement</Link></li>
-              <li><Link href="/about" className="hover:text-white transition-colors">7% Transparent Escrow Ledger</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">Direct Non-Custodial Protocol</Link></li>
               <li><Link href="/about" className="hover:text-white transition-colors">Return Forensics Protocol</Link></li>
               <li><Link href="/about" className="hover:text-white transition-colors">Decentralized 4PL Mesh</Link></li>
             </ul>
@@ -144,26 +144,26 @@ export const Footer: React.FC = () => {
             </h5>
             <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 space-y-2 font-mono text-[11px]">
               <div className="flex items-center justify-between">
-                <span className="text-stone-400">Network Latency</span>
+                <span className="text-stone-400">Environment</span>
                 <span className="text-emerald-400 font-bold flex items-center gap-1">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  24ms
+                  Live Preview Sandbox
                 </span>
               </div>
 
               <div className="flex items-center justify-between">
-                <span className="text-stone-400">Mesh Uptime</span>
-                <span className="text-white font-bold">99.98%</span>
+                <span className="text-stone-400">Edge CDN</span>
+                <span className="text-white font-bold">Global Mesh</span>
               </div>
 
               <div className="flex items-center justify-between">
-                <span className="text-stone-400">Active Guilds</span>
-                <span className="text-amber-300 font-bold">142 Certified</span>
+                <span className="text-stone-400">Pilot Guilds</span>
+                <span className="text-amber-300 font-bold">8 Verified [Tranche 01]</span>
               </div>
 
               <div className="flex items-center justify-between pt-1 border-t border-white/10 text-[10px]">
-                <span className="text-stone-500">Protocol Spec</span>
-                <span className="text-sky-300">v4.2-canonical</span>
+                <span className="text-stone-500">Settlement</span>
+                <span className="text-sky-300">Non-Custodial Direct</span>
               </div>
             </div>
           </div>
@@ -175,7 +175,7 @@ export const Footer: React.FC = () => {
             © 2026 AETHER UNIVERSAL EXCHANGE. All rights reserved.
           </div>
           <div className="flex items-center gap-4 sm:gap-6 font-sans">
-            <span className="hover:text-stone-300 transition-colors cursor-pointer">4PL Escrow Agreement</span>
+            <span className="hover:text-stone-300 transition-colors cursor-pointer">Direct Settlement Charter</span>
             <span className="hover:text-stone-300 transition-colors cursor-pointer">Canonical SKU Standard</span>
             <span className="hover:text-stone-300 transition-colors cursor-pointer">Zero-Ad Guarantee</span>
           </div>

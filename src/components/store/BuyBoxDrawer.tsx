@@ -318,7 +318,7 @@ export const BuyBoxDrawer: React.FC = () => {
                         6-Month Patina Consensus
                       </div>
                       <p className="text-xs text-[#6E6B65] italic leading-relaxed">
-                        "{product.honestyDossier?.sixMonthPatinaReport || 'Surfaces develop a rich, durable natural patina over daily use.'}"
+                        &ldquo;{product.honestyDossier?.sixMonthPatinaReport || 'Surfaces develop a rich, durable natural patina over daily use.'}&rdquo;
                       </p>
                     </div>
                   </div>

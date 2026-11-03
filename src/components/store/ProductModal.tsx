@@ -31,13 +31,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({
   const { addToCart, toggleFavorite, isFavorite } = useStore();
 
   const [quantity, setQuantity] = useState(1);
-  const [selectedColor, setSelectedColor] = useState<string>("");
-
-  useEffect(() => {
-    if (product?.colors?.length) {
-      setSelectedColor(product.colors[0].name);
-    }
-  }, [product]);
+  const [userSelectedColor, setUserSelectedColor] = useState<string>("");
+  const activeColor = userSelectedColor || product?.colors?.[0]?.name || "";
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -58,13 +53,13 @@ export const ProductModal: React.FC<ProductModalProps> = ({
   const favorited = isFavorite(product.id);
 
   const handleAddToCart = () => {
-    addToCart(product, quantity, selectedColor);
+    addToCart(product, quantity, activeColor);
   };
 
   const handleBuyNow = () => {
-    addToCart(product, quantity, selectedColor);
+    addToCart(product, quantity, activeColor);
     onClose();
-    onOpenCheckout();
+    if (onOpenCheckout) onOpenCheckout();
   };
 
   return (
@@ -174,15 +169,15 @@ export const ProductModal: React.FC<ProductModalProps> = ({
               {product.colors && product.colors.length > 0 && (
                 <div className="space-y-2">
                   <label className="text-xs font-bold text-stone-900 uppercase tracking-wider">
-                    Select Finish: <span className="font-serif text-[#C2673D]">{selectedColor}</span>
+                    Select Finish: <span className="font-serif text-[#C2673D]">{activeColor}</span>
                   </label>
                   <div className="flex flex-wrap gap-2">
                     {product.colors.map((color) => (
                       <button
                         key={color.name}
-                        onClick={() => setSelectedColor(color.name)}
+                        onClick={() => setUserSelectedColor(color.name)}
                         className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-all flex items-center gap-2 cursor-pointer ${
-                          selectedColor === color.name
+                          activeColor === color.name
                             ? "border-[#1C1917] bg-[#1C1917] text-[#F7F5F0] shadow-2xs"
                             : "border-[#E4DFD5] bg-white text-stone-700 hover:border-stone-400"
                         }`}

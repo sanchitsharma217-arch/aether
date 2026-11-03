@@ -1104,6 +1104,26 @@ export const PRODUCTS: Product[] = [
       materialPurity: "100% Renewable Forestry & Natural Wool",
       originCoords: "38.5714° N, 7.9135° W",
     },
+    spareParts: [
+      {
+        id: "part-cork-felt-layer",
+        name: "Replacement Merino Wool Felt Surface Pad",
+        partNumber: "SP-CRK-FELT80",
+        price: 22,
+        inStock: true,
+        replacementEase: "User-Replaceable (No Tools)",
+        estimatedMinutesToSwap: 2,
+      },
+      {
+        id: "part-cork-strap",
+        name: "Organic Cotton Rolled Transport Harness",
+        partNumber: "SP-CRK-STRAP",
+        price: 12,
+        inStock: true,
+        replacementEase: "User-Replaceable (No Tools)",
+        estimatedMinutesToSwap: 1,
+      },
+    ],
     warrantyDoc: {
       duration: "5-Year Natural Materials Warranty",
       summary: "Covers cork delamination, wool fraying, and material separation under normal studio use.",
@@ -1228,6 +1248,26 @@ export const PRODUCTS: Product[] = [
       materialPurity: "100% Natural Red Riverbank Clay",
       originCoords: "34.8872° N, 136.8524° E",
     },
+    spareParts: [
+      {
+        id: "part-tok-wood-collar",
+        name: "Hand-Turned Japanese Beechwood Collar Ring",
+        partNumber: "SP-TOK-COLLAR",
+        price: 16,
+        inStock: true,
+        replacementEase: "User-Replaceable (No Tools)",
+        estimatedMinutesToSwap: 1,
+      },
+      {
+        id: "part-tok-leather-tie",
+        name: "Vegetable-Tanned Cowhide Lacing Strap",
+        partNumber: "SP-TOK-LACE",
+        price: 8,
+        inStock: true,
+        replacementEase: "User-Replaceable (No Tools)",
+        estimatedMinutesToSwap: 2,
+      },
+    ],
     warrantyDoc: {
       duration: "Lifetime Clay Thermal Firing Guarantee",
       summary: "Covers thermal shock fracture under boiling water. 50% discount replacement voucher in case of impact drops.",
@@ -1510,6 +1550,26 @@ export const PRODUCTS: Product[] = [
       materialPurity: "100% Certified Masters of Linen Flax",
       originCoords: "50.8280° N, 3.2649° E",
     },
+    spareParts: [
+      {
+        id: "part-lin-buttons",
+        name: "Set of 12 Natural Mother-of-Pearl Replacement Buttons",
+        partNumber: "SP-LIN-MOP12",
+        price: 14,
+        inStock: true,
+        replacementEase: "User-Replaceable (No Tools)",
+        estimatedMinutesToSwap: 5,
+      },
+      {
+        id: "part-lin-mending-kit",
+        name: "Masters of Linen Matching Flaxyarn Mending Kit & Swatches",
+        partNumber: "SP-LIN-MEND",
+        price: 12,
+        inStock: true,
+        replacementEase: "User-Replaceable (No Tools)",
+        estimatedMinutesToSwap: 10,
+      },
+    ],
     warrantyDoc: {
       duration: "10-Year Weave Integrity Warranty",
       summary: "Covers seam unraveling, premature thinning, and button detachment under standard residential laundering.",
@@ -1768,6 +1828,26 @@ export const PRODUCTS: Product[] = [
       materialPurity: "100% Pure Non-Leaded Bronze & Solid Cypress",
       originCoords: "36.7551° N, 137.0267° E",
     },
+    spareParts: [
+      {
+        id: "part-brz-pin-holder",
+        name: "Solid Turned Brass Multi-Caliber Stick Insert",
+        partNumber: "SP-BRZ-PIN01",
+        price: 18,
+        inStock: true,
+        replacementEase: "User-Replaceable (No Tools)",
+        estimatedMinutesToSwap: 1,
+      },
+      {
+        id: "part-brz-hinoki-base",
+        name: "Salvage Yoshino Hinoki Wood Pedestal Base Plinth",
+        partNumber: "SP-BRZ-BASE01",
+        price: 32,
+        inStock: true,
+        replacementEase: "User-Replaceable (No Tools)",
+        estimatedMinutesToSwap: 2,
+      },
+    ],
     warrantyDoc: {
       duration: "Lifetime Bronze Foundry Guarantee",
       summary: "Lifetime warranty against casting voids, structural cracking, and wooden plinth warpage.",
@@ -1790,7 +1870,10 @@ export const DEPARTMENTS = [
     id: "technology-audio",
     name: "Technology & Audio",
     category: "Technology & Audio" as CraftDepartment,
-    activeCount: "Curated Master SKUs",
+    get activeCount(): string {
+      const c = PRODUCTS.filter((p) => p.category === "Technology & Audio").length;
+      return `${c} Master SKU${c === 1 ? "" : "s"}`;
+    },
     location: "Berlin & Neuchâtel",
     desc: "Planar magnetic transducers, analog audio monitors, and unibody machining with zero cloud tethering.",
     image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=1000&auto=format&fit=crop&q=90",
@@ -1799,7 +1882,10 @@ export const DEPARTMENTS = [
     id: "home-living",
     name: "Home & Living",
     category: "Home & Living" as CraftDepartment,
-    activeCount: "Curated Master SKUs",
+    get activeCount(): string {
+      const c = PRODUCTS.filter((p) => p.category === "Home & Living").length;
+      return `${c} Master SKU${c === 1 ? "" : "s"}`;
+    },
     location: "Lancaster, Flanders & Évora",
     desc: "Continuous heartwood timber plinths, Masters of Linen flax, and harvest-stripped natural cork.",
     image: "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=1000&auto=format&fit=crop&q=90",
@@ -1808,7 +1894,10 @@ export const DEPARTMENTS = [
     id: "kitchen-culinary",
     name: "Kitchen & Culinary",
     category: "Kitchen & Culinary" as CraftDepartment,
-    activeCount: "Curated Master SKUs",
+    get activeCount(): string {
+      const c = PRODUCTS.filter((p) => p.category === "Kitchen & Culinary").length;
+      return `${c} Master SKU${c === 1 ? "" : "s"}`;
+    },
     location: "Champagne-Ardenne, Kochi & Zurich",
     desc: "Sand-cast French Dutch ovens, Aogami carbon steel blades, and iron-dense Tokoname stoneware.",
     image: "https://images.unsplash.com/photo-1584990347449-397a6590214a?w=1000&auto=format&fit=crop&q=90",
@@ -1817,7 +1906,10 @@ export const DEPARTMENTS = [
     id: "wearables-horology",
     name: "Wearables & Horology",
     category: "Wearables & Horology" as CraftDepartment,
-    activeCount: "Curated Master SKUs",
+    get activeCount(): string {
+      const c = PRODUCTS.filter((p) => p.category === "Wearables & Horology").length;
+      return `${c} Master SKU${c === 1 ? "" : "s"}`;
+    },
     location: "Neuchâtel & Geneva",
     desc: "Grade-5 titanium mechanical calibers, sapphire crystals, and zero-battery automatic escapements.",
     image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=1000&auto=format&fit=crop&q=90",
@@ -1826,7 +1918,10 @@ export const DEPARTMENTS = [
     id: "accessories-edc",
     name: "Accessories & EDC",
     category: "Accessories & EDC" as CraftDepartment,
-    activeCount: "Curated Master SKUs",
+    get activeCount(): string {
+      const c = PRODUCTS.filter((p) => p.category === "Accessories & EDC").length;
+      return `${c} Master SKU${c === 1 ? "" : "s"}`;
+    },
     location: "Chicago, Paris & Solingen",
     desc: "Full-grain Horween steerhide folios, solid milled marine brass instruments, and saddle stitchery.",
     image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=1000&auto=format&fit=crop&q=90",

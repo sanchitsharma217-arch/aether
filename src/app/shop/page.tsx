@@ -305,7 +305,7 @@ export default function ShopPage() {
               onClick={() => setSearchQuery(prompt)}
               className="px-3 py-1 rounded-full bg-[#F9F9FB] border border-[#E5E5E9] text-stone-600 hover:text-black hover:border-black transition-colors shrink-0 cursor-pointer text-[11px]"
             >
-              "{prompt}"
+              &ldquo;{prompt}&rdquo;
             </button>
           ))}
         </div>
@@ -544,6 +544,201 @@ export default function ShopPage() {
         </div>
 
       </div>
+
+      {/* 05. Mobile Slide-Over Filter Drawer */}
+      <AnimatePresence>
+        {showMobileFilters && (
+          <div className="fixed inset-0 z-50 lg:hidden">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowMobileFilters(false)}
+              className="fixed inset-0 bg-black/50 backdrop-blur-xs"
+            />
+
+            {/* Slide-over panel */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl flex flex-col z-10"
+            >
+              {/* Header */}
+              <div className="p-5 border-b border-[#E5E5E9] flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <SlidersHorizontal className="h-4 w-4 text-[#0A0A0C]" />
+                  <span className="font-sans font-bold text-sm text-[#0A0A0C] uppercase tracking-wider">
+                    Specification Filters
+                  </span>
+                </div>
+                <button
+                  onClick={() => setShowMobileFilters(false)}
+                  className="p-1.5 rounded-full hover:bg-stone-100 transition-colors text-stone-500 hover:text-black cursor-pointer"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              {/* Scrollable Filters Body */}
+              <div className="p-6 space-y-6 overflow-y-auto flex-1">
+                {/* Reset button */}
+                <div className="flex justify-end">
+                  <button
+                    onClick={clearAllFilters}
+                    className="text-xs font-mono text-[#EA580C] hover:underline cursor-pointer"
+                  >
+                    Reset All Filters
+                  </button>
+                </div>
+
+                {/* Country of Origin */}
+                <div className="space-y-2">
+                  <label className="text-xs font-mono font-bold uppercase tracking-wider text-stone-600 flex items-center gap-1.5">
+                    <Compass className="h-3.5 w-3.5 text-stone-400" />
+                    <span>Atelier Origin</span>
+                  </label>
+                  <select
+                    value={selectedCountry}
+                    onChange={(e) => setSelectedCountry(e.target.value)}
+                    className="w-full p-2.5 rounded-xl bg-[#F9F9FB] border border-[#E5E5E9] text-xs font-sans text-stone-800 focus:outline-none focus:border-black cursor-pointer"
+                  >
+                    {countries.map((c) => (
+                      <option key={c} value={c}>
+                        {c === "All" ? "All Guild Locations" : c}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Min Endurance Score */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-xs font-mono">
+                    <span className="font-bold text-stone-600 uppercase flex items-center gap-1">
+                      <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
+                      <span>Min Endurance Score</span>
+                    </span>
+                    <span className="font-bold text-emerald-800">{minEndurance.toFixed(1)} / 10</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="9.0"
+                    max="9.9"
+                    step="0.1"
+                    value={minEndurance}
+                    onChange={(e) => setMinEndurance(parseFloat(e.target.value))}
+                    className="w-full accent-[#0A0A0C] cursor-pointer"
+                  />
+                  <div className="flex justify-between text-[10px] font-mono text-stone-400">
+                    <span>9.0 (Standard)</span>
+                    <span>9.9 (Generational)</span>
+                  </div>
+                </div>
+
+                {/* Maximum Price */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-xs font-mono">
+                    <span className="font-bold text-stone-600 uppercase">Max Investment</span>
+                    <span className="font-bold text-[#0A0A0C]">${priceMax}</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="50"
+                    max="650"
+                    step="25"
+                    value={priceMax}
+                    onChange={(e) => setPriceMax(parseInt(e.target.value))}
+                    className="w-full accent-[#0A0A0C] cursor-pointer"
+                  />
+                  <div className="flex justify-between text-[10px] font-mono text-stone-400">
+                    <span>$50</span>
+                    <span>$650</span>
+                  </div>
+                </div>
+
+                {/* Warranty Standard */}
+                <div className="space-y-2">
+                  <label className="text-xs font-mono font-bold uppercase tracking-wider text-stone-600 block">
+                    Warranty Standard
+                  </label>
+                  <div className="space-y-2 text-xs font-sans">
+                    {[
+                      { id: "All", label: "All Guarantees" },
+                      { id: "10+ Years", label: "10+ Years or Greater" },
+                      { id: "Lifetime", label: "Lifetime Foundry / Heritage" },
+                    ].map((w) => (
+                      <label key={w.id} className="flex items-center gap-2 cursor-pointer text-stone-700">
+                        <input
+                          type="radio"
+                          name="mobile-warranty"
+                          checked={selectedWarranty === w.id}
+                          onChange={() => setSelectedWarranty(w.id)}
+                          className="accent-[#0A0A0C]"
+                        />
+                        <span>{w.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Boolean Toggles */}
+                <div className="pt-3 border-t border-[#E5E5E9] space-y-3">
+                  <label className="flex items-center justify-between text-xs font-sans cursor-pointer text-stone-800">
+                    <span className="flex items-center gap-1.5 font-medium">
+                      <Wrench className="h-3.5 w-3.5 text-[#EA580C]" />
+                      <span>Field Repairable Only</span>
+                    </span>
+                    <input
+                      type="checkbox"
+                      checked={onlyRepairable}
+                      onChange={(e) => setOnlyRepairable(e.target.checked)}
+                      className="accent-[#0A0A0C] h-4 w-4 rounded cursor-pointer"
+                    />
+                  </label>
+
+                  <label className="flex items-center justify-between text-xs font-sans cursor-pointer text-stone-800">
+                    <span className="flex items-center gap-1.5 font-medium">
+                      <Check className="h-3.5 w-3.5 text-emerald-600" />
+                      <span>In-Stock Only</span>
+                    </span>
+                    <input
+                      type="checkbox"
+                      checked={onlyInStock}
+                      onChange={(e) => setOnlyInStock(e.target.checked)}
+                      className="accent-[#0A0A0C] h-4 w-4 rounded cursor-pointer"
+                    />
+                  </label>
+
+                  <label className="flex items-center justify-between text-xs font-sans cursor-pointer text-stone-800">
+                    <span className="flex items-center gap-1.5 font-medium">
+                      <Heart className="h-3.5 w-3.5 text-rose-500" />
+                      <span>Wishlist Only ({favoritesCount})</span>
+                    </span>
+                    <input
+                      type="checkbox"
+                      checked={showOnlyFavorites}
+                      onChange={(e) => setShowOnlyFavorites(e.target.checked)}
+                      className="accent-[#0A0A0C] h-4 w-4 rounded cursor-pointer"
+                    />
+                  </label>
+                </div>
+              </div>
+
+              {/* Bottom CTA */}
+              <div className="p-5 border-t border-[#E5E5E9] bg-[#F9F9FB]">
+                <button
+                  onClick={() => setShowMobileFilters(false)}
+                  className="w-full py-3 rounded-full bg-[#0A0A0C] text-white text-xs font-bold font-sans uppercase tracking-wider hover:bg-stone-800 transition-colors shadow-md cursor-pointer"
+                >
+                  View {filteredProducts.length} Objects
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

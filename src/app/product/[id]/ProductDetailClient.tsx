@@ -549,7 +549,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
             </div>
 
             {/* Vendor Offer Comparison Table */}
-            <div className="rounded-3xl border border-[#E5E5E9] bg-white overflow-hidden shadow-xs">
+            <div className="rounded-3xl border border-[#E5E5E9] bg-white overflow-x-auto shadow-xs">
               <table className="w-full text-left border-collapse min-w-[700px]">
                 <thead>
                   <tr className="bg-[#F9F9FB] border-b border-[#E5E5E9] text-[11px] font-mono uppercase text-[#64646E] font-bold">
@@ -709,7 +709,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               </span>
             </div>
 
-            <div className="rounded-3xl border border-[#E5E5E9] bg-white overflow-hidden shadow-xs">
+            <div className="rounded-3xl border border-[#E5E5E9] bg-white overflow-x-auto shadow-xs">
               <table className="w-full text-left border-collapse min-w-[600px]">
                 <thead>
                   <tr className="bg-[#F9F9FB] border-b border-[#E5E5E9] text-[11px] font-mono uppercase text-[#64646E] font-bold">
@@ -934,8 +934,8 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 180-Day Wear & Aging Report
               </span>
               <p className="text-xs sm:text-sm text-stone-700 leading-relaxed font-sans italic">
-                "{product.honestyDossier?.sixMonthPatinaReport ||
-                  "Natural materials age gracefully, deepening in character without structural deterioration."}"
+                &ldquo;{product.honestyDossier?.sixMonthPatinaReport ||
+                  "Natural materials age gracefully, deepening in character without structural deterioration."}&rdquo;
               </p>
             </div>
           </motion.div>

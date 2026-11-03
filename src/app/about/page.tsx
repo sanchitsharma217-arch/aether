@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ShieldCheck, Sparkles, Award, Globe, Leaf, Compass, Wrench, CheckCircle2 } from "lucide-react";
+import { Leaf, Compass, Wrench } from "lucide-react";
 
 export default function AboutPage() {
   return (
@@ -79,7 +79,7 @@ export default function AboutPage() {
             THE MATERIAL AUDIT
           </span>
           <h2 className="text-2xl sm:text-4xl font-serif text-[#1C1917] leading-tight">
-            "If an object cannot be repaired, it is not luxury. It is merely expensive waste."
+            &ldquo;If an object cannot be repaired, it is not luxury. It is merely expensive waste.&rdquo;
           </h2>
           <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
             We source exclusively from independent multi-generational workshops: iron-dense Tokoname potters in Japan, Flanders heritage flax weavers in Belgium, Tuscan vegetable tanners in Italy, and Tosa mountain blacksmiths.

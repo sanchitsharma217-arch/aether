@@ -77,3 +77,4 @@ export const ComparisonDock: React.FC = () => {
     </AnimatePresence>
   );
 };
+

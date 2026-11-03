@@ -400,7 +400,7 @@ export default function CartPage() {
 
                 <div className="flex items-center justify-center gap-2 text-[11px] text-stone-500 font-sans">
                   <ShieldCheck className="h-3.5 w-3.5 text-[#5E6857]" />
-                  <span>Verified 256-Bit Cryptographic Checkout</span>
+                  <span>Direct Non-Custodial Settlement · Interactive Demo Checkout</span>
                 </div>
               </div>
             </div>
