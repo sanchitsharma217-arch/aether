@@ -207,9 +207,9 @@ export const HeroBanner: React.FC = () => {
           </div>
 
           <div className="hidden sm:flex items-center gap-3 text-xs font-mono text-[#64646E]">
-            <span>142 Certified Guilds</span>
+            <span>8 Verified Guilds [Tranche 01 Pilot]</span>
             <span>·</span>
-            <span>100% Batched 4PL Dispatch</span>
+            <span>Non-Custodial Direct Settlement</span>
           </div>
         </div>
 
@@ -336,7 +336,7 @@ export const HeroBanner: React.FC = () => {
                   <span>Primary Atelier: {currentSuite.heroProduct.primaryVendor?.name || "Master Guild"}</span>
                 </div>
                 <span className="text-stone-600">|</span>
-                <span className="text-emerald-400">Available from {currentSuite.heroProduct.offers?.length || 3} Verified Vendors</span>
+                <span className="text-emerald-400">Available from {currentSuite.heroProduct.offers?.length || currentSuite.heroProduct.verifiedSellersCount || 1} Verified Vendors</span>
               </div>
 
               <div className="flex items-center gap-2 text-sm font-bold text-white">

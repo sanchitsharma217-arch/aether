@@ -12,11 +12,24 @@ export interface SellerOffer {
   fulfillmentSpeed: string;
   condition: "Sealed New" | "Master Grade" | "Refurbished A+" | "Archival";
   price: number;
+  stockAllocation?: number;
   warranty: string;
   returnTerms: string;
   nodeVerification: "Maker Direct" | "Certified Guild Vault" | "Heritage Restorer";
   isBestMatch?: boolean;
   rating?: number;
+}
+
+export interface VerifiedReview {
+  id: string;
+  author: string;
+  roleOrCity: string;
+  rating: number;
+  date: string;
+  batchId: string;
+  monthsOwned: number;
+  comment: string;
+  helpfulCount: number;
 }
 
 export interface SparePart {
@@ -50,10 +63,14 @@ export interface DigitalPassport {
 }
 
 export interface WarrantyDoc {
-  duration: string; // e.g. "10-Year Guild Craftsmanship Warranty" or "Lifetime Repair"
+  duration: string; // e.g. "20-Year Natural Timber Split Warranty" or "10-Year Guild Craftsmanship Warranty"
   summary: string;
   replacementTerms: string;
   repairCenter: string;
+  coverageScope?: string[];
+  exclusions?: string[];
+  claimProtocol?: string[];
+  refinishingService?: string;
 }
 
 export interface Product {
@@ -64,6 +81,7 @@ export interface Product {
   originalPrice?: number;
   rating: number;
   reviewsCount: number;
+  verifiedReviews?: VerifiedReview[];
   inStock: boolean;
   stockCount: number;
   stockUrgency?: string;
@@ -110,9 +128,12 @@ export interface Product {
     carbonFootprint?: string;
   };
   honestyDossier?: {
-    keepRate: number; // e.g. 97.4%
+    keepRate: number; // e.g. 98.6%
+    auditedUnitsCount?: number; // e.g. 188
+    measurementMethodology?: string;
     returnReasons: { percentage: number; reason: string }[];
     sixMonthPatinaReport: string;
+    refurbishmentProtocol?: string;
   };
   enduranceIndex?: {
     score: number;

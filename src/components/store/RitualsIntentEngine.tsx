@@ -207,7 +207,7 @@ export const RitualsIntentEngine: React.FC<Props> = ({ className = "" }) => {
                         <span>Sold by: {prod.primaryVendor?.name || "Master Atelier"}</span>
                       </div>
                       <div className="text-[#64646E] text-[10px] flex items-center gap-2 font-mono">
-                        <span>{prod.offers?.length || 3} Verified Offers</span>
+                        <span>{prod.offers?.length || prod.verifiedSellersCount || 1} Verified Offers</span>
                         <span>•</span>
                         <span className="font-bold text-emerald-700">{prod.lifespanScore || 9.8}/10 Lifespan</span>
                       </div>

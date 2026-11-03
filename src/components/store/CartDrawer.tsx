@@ -247,7 +247,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onOpenCheckout }) => {
           )}
         </div>
 
-        {/* Footer with Transparent Escrow Ledger */}
+        {/* Footer with Transparent Direct Settlement Ledger */}
         {cart.length > 0 && (
           <div className="border-t border-[#E5E5E9] p-6 bg-white space-y-4">
             {/* Transparent Fee Ledger */}
@@ -293,7 +293,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onOpenCheckout }) => {
             <div className="flex items-center justify-between text-[10px] text-[#64646E] font-sans pt-1">
               <span className="flex items-center gap-1 font-mono">
                 <ShieldCheck className="h-3 w-3 text-emerald-600" />
-                Zero-Knowledge Escrow Protection
+                Direct Non-Custodial Merchant Settlement
               </span>
               <button
                 onClick={clearCart}

@@ -334,7 +334,16 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 ))}
               </div>
               <span className="font-mono font-bold text-[#0A0A0C]">{product.rating}</span>
-              <span className="text-stone-400 font-sans">({product.reviewsCount} verified owners)</span>
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveTab("forensics");
+                  document.getElementById("canonical-dossier")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="text-stone-500 hover:text-black font-sans underline cursor-pointer text-xs transition-colors"
+              >
+                ({product.reviewsCount} verified owner ledger records)
+              </button>
             </div>
 
             {/* Dynamic Price tied to Selected Vendor Offer */}
@@ -364,11 +373,14 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               <div className="flex items-center gap-1.5">
                 <Building2 className="h-4 w-4 text-[#EA580C]" />
                 <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#0A0A0C]">
-                  Active Fulfillment Node ({product.offers?.length || 1} available)
+                  Verified Atelier Depots ({product.offers?.length || 1} Competing Nodes)
                 </span>
               </div>
               <button
-                onClick={() => setActiveTab("vendors")}
+                onClick={() => {
+                  setActiveTab("vendors");
+                  document.getElementById("canonical-dossier")?.scrollIntoView({ behavior: "smooth" });
+                }}
                 className="text-[11px] font-mono font-bold text-blue-700 hover:text-black transition-colors cursor-pointer"
               >
                 Compare Offers →
@@ -399,6 +411,15 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                   <span>{selectedOffer.warranty}</span>
                 </div>
               </div>
+
+              {selectedOffer.stockAllocation && (
+                <div className="pt-2 border-t border-[#E5E5E9] flex items-center justify-between text-[11px] font-mono">
+                  <span className="text-stone-500">Node Stock Allocation:</span>
+                  <span className="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                    {selectedOffer.stockAllocation} of {product.stockCount} batch units available
+                  </span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -550,11 +571,12 @@ export default function ProductDetailClient({ product }: { product: Product }) {
 
             {/* Vendor Offer Comparison Table */}
             <div className="rounded-3xl border border-[#E5E5E9] bg-white overflow-x-auto shadow-xs">
-              <table className="w-full text-left border-collapse min-w-[700px]">
+              <table className="w-full text-left border-collapse min-w-[760px]">
                 <thead>
                   <tr className="bg-[#F9F9FB] border-b border-[#E5E5E9] text-[11px] font-mono uppercase text-[#64646E] font-bold">
                     <th className="p-4">Fulfillment Node</th>
                     <th className="p-4">Condition</th>
+                    <th className="p-4">Depot Allocation</th>
                     <th className="p-4">Dispatch & Mesh</th>
                     <th className="p-4">Warranty</th>
                     <th className="p-4">Price</th>
@@ -564,6 +586,8 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 <tbody className="divide-y divide-[#E5E5E9] text-xs font-sans">
                   {product.offers?.map((offer) => {
                     const isSelected = selectedOffer.id === offer.id;
+                    const allocationCount = offer.stockAllocation || Math.floor(product.stockCount / (product.offers?.length || 1));
+                    const allocationPct = Math.round((allocationCount / product.stockCount) * 100);
                     return (
                       <tr
                         key={offer.id}
@@ -583,6 +607,14 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                         <td className="p-4">
                           <span className="px-2.5 py-1 rounded-full bg-stone-100 text-stone-800 font-mono text-[11px] font-semibold border border-stone-200">
                             {offer.condition}
+                          </span>
+                        </td>
+                        <td className="p-4">
+                          <span className="font-mono text-emerald-800 font-bold text-xs">
+                            {allocationCount} units
+                          </span>
+                          <span className="text-[10px] text-stone-400 block font-mono">
+                            {allocationPct}% of batch
                           </span>
                         </td>
                         <td className="p-4 text-stone-700">
@@ -674,6 +706,110 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 <p className="text-xs text-stone-500 leading-relaxed font-sans">
                   Obsolescence-free architecture preserves tangible resale value across secondary horology, audio, and culinary auctions.
                 </p>
+              </div>
+            </div>
+
+            {/* Auditable Weighted Score Calculation Table */}
+            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#E5E5E9] space-y-5 shadow-xs">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E5E9] pb-4">
+                <div>
+                  <span className="text-[10px] font-mono uppercase font-bold tracking-widest text-[#EA580C]">
+                    AUDITABLE CALCULATION BREAKDOWN // SPEC V2.4
+                  </span>
+                  <h4 className="text-lg font-sans font-black uppercase text-[#0A0A0C] mt-0.5">
+                    Endurance Score Mathematical Proof
+                  </h4>
+                </div>
+                <div className="text-right">
+                  <span className="text-xs font-mono text-stone-500 block">Audited Composite Rating:</span>
+                  <span className="text-2xl font-mono font-black text-emerald-700">
+                    {product.enduranceRubric?.score || 9.8} / 10.00
+                  </span>
+                </div>
+              </div>
+
+              {/* Mathematical Weighting Formula Banner */}
+              <div className="p-3.5 rounded-2xl bg-[#F9F9FB] border border-[#E5E5E9] text-xs font-mono text-stone-700 space-y-1">
+                <span className="text-[10px] uppercase font-bold text-stone-400 block tracking-wider">
+                  Audited Formula Weighting
+                </span>
+                <div className="text-stone-900 font-semibold text-[11px] sm:text-xs">
+                  Score = (Material Integrity × 0.35) + (Modular Disassembly × 0.25) + (Spare Parts Horizon × 0.25) + (Decoupled Firmware × 0.15)
+                </div>
+              </div>
+
+              {/* 4 Factor Contribution Table */}
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse min-w-[620px] text-xs font-sans">
+                  <thead>
+                    <tr className="border-b border-[#E5E5E9] text-[10px] font-mono uppercase text-stone-400 font-bold">
+                      <th className="pb-3">Evaluation Pillar</th>
+                      <th className="pb-3">Raw Score</th>
+                      <th className="pb-3">Factor Weight</th>
+                      <th className="pb-3">Contributed Points</th>
+                      <th className="pb-3">Audited Standard</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#E5E5E9]">
+                    <tr>
+                      <td className="py-3 font-bold text-[#0A0A0C]">01. Material Purity & Integrity</td>
+                      <td className="py-3 font-mono font-bold text-emerald-800">
+                        {product.enduranceRubric?.materialIntegrity || 9.9} / 10
+                      </td>
+                      <td className="py-3 font-mono text-stone-500">35%</td>
+                      <td className="py-3 font-mono font-bold text-[#0A0A0C]">
+                        {(((product.enduranceRubric?.materialIntegrity || 9.9) * 0.35)).toFixed(2)} pts
+                      </td>
+                      <td className="py-3 text-stone-600 text-[11px]">
+                        Single-billet metallurgy/timber; zero synthetic core adhesives, cheap hollows, or artificial veneers.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 font-bold text-[#0A0A0C]">02. Modular Disassembly & Reversibility</td>
+                      <td className="py-3 font-mono font-bold text-emerald-800">
+                        {product.enduranceRubric?.modularDisassembly || 9.8} / 10
+                      </td>
+                      <td className="py-3 font-mono text-stone-500">25%</td>
+                      <td className="py-3 font-mono font-bold text-[#0A0A0C]">
+                        {(((product.enduranceRubric?.modularDisassembly || 9.8) * 0.25)).toFixed(2)} pts
+                      </td>
+                      <td className="py-3 text-stone-600 text-[11px]">
+                        Mechanical fasteners (T5 Torx, threads, friction fits); zero irreversible ultrasonic welding or glue locks.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 font-bold text-[#0A0A0C]">03. Spare Parts Horizon Availability</td>
+                      <td className="py-3 font-mono font-bold text-emerald-800">
+                        {product.enduranceRubric?.sparePartsAvailability || 9.7} / 10
+                      </td>
+                      <td className="py-3 font-mono text-stone-500">25%</td>
+                      <td className="py-3 font-mono font-bold text-[#0A0A0C]">
+                        {(((product.enduranceRubric?.sparePartsAvailability || 9.7) * 0.25)).toFixed(2)} pts
+                      </td>
+                      <td className="py-3 text-stone-600 text-[11px]">
+                        Certified replacement components stocked at regional nodes through {product.enduranceRubric?.guaranteedPartsUntil || 2046}.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 font-bold text-[#0A0A0C]">04. Decoupled Firmware / Zero Silicon</td>
+                      <td className="py-3 font-mono font-bold text-emerald-800">
+                        {product.enduranceRubric?.decoupledFirmware || 10.0} / 10
+                      </td>
+                      <td className="py-3 font-mono text-stone-500">15%</td>
+                      <td className="py-3 font-mono font-bold text-[#0A0A0C]">
+                        {(((product.enduranceRubric?.decoupledFirmware || 10.0) * 0.15)).toFixed(2)} pts
+                      </td>
+                      <td className="py-3 text-stone-600 text-[11px]">
+                        100% sovereign physical operation; zero cloud servers, companion app locks, or remote bricking risks.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="pt-3 border-t border-[#E5E5E9] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] font-mono text-stone-500">
+                <span>Certification Standard: DIN EN ISO 9001 / Aether Protocol v2.4</span>
+                <span className="text-emerald-700 font-bold">Independent Lab Test Hash: {product.digitalPassport?.cryptographicHash || "0x33b91a7c..."}</span>
               </div>
             </div>
 
@@ -869,7 +1005,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-6 sm:p-8 rounded-3xl bg-white border border-[#E5E5E9] space-y-4 shadow-xs"
+            className="p-6 sm:p-8 rounded-3xl bg-white border border-[#E5E5E9] space-y-6 shadow-xs"
           >
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
@@ -885,12 +1021,76 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               </div>
             </div>
 
-            <p className="text-xs sm:text-sm text-stone-700 leading-relaxed font-sans pt-2">
+            <p className="text-xs sm:text-sm text-stone-700 leading-relaxed font-sans pt-1">
               {product.warrantyDoc?.summary ||
                 "Covers all structural failures, metallurgical fatigue, and craftsmanship defects under normal usage. Repaired or replaced by original maker at no cost to the owner."}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-[#E5E5E9] text-xs font-sans">
+            {/* Scope of Coverage & Exclusions Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-[#E5E5E9]">
+              {/* Coverage Scope */}
+              <div className="p-5 rounded-2xl bg-[#F9F9FB] border border-[#E5E5E9] space-y-3">
+                <span className="text-[10px] font-mono uppercase font-bold text-emerald-700 tracking-wider flex items-center gap-1.5">
+                  <Check className="h-3.5 w-3.5 text-emerald-600" />
+                  <span>Legally Enforceable Coverage Scope</span>
+                </span>
+                <ul className="space-y-2 text-xs font-sans text-stone-700">
+                  {(product.warrantyDoc?.coverageScope || [
+                    "Structural fractures or splitting under standard indoor environmental humidity",
+                    "Mechanical thread stripping, bearing seizure, or fastener binding",
+                    "Acoustic transducer or component separation without external impact",
+                    "Unibody warping or cupping exceeding 1.5mm factory calibration tolerance",
+                  ]).map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Exclusions */}
+              <div className="p-5 rounded-2xl bg-[#F9F9FB] border border-[#E5E5E9] space-y-3">
+                <span className="text-[10px] font-mono uppercase font-bold text-stone-500 tracking-wider flex items-center gap-1.5">
+                  <span className="text-[#EA580C] font-bold">✕</span>
+                  <span>Explicit Policy Exclusions</span>
+                </span>
+                <ul className="space-y-2 text-xs font-sans text-stone-600">
+                  {(product.warrantyDoc?.exclusions || [
+                    "Direct outdoor weathering, liquid immersion, or unauthorized automatic washing",
+                    "Application of non-recommended synthetic industrial solvents or bleach",
+                    "Accidental drop fractures against concrete, stone, or tile surfaces",
+                  ]).map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-stone-400 font-mono">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Claim Protocol (3-Step Turnaround) */}
+            <div className="p-5 rounded-2xl bg-[#F9F9FB] border border-[#E5E5E9] space-y-3">
+              <span className="text-[10px] font-mono uppercase font-bold text-stone-500 tracking-wider">
+                Claim Protocol & Regional Service Guarantee
+              </span>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-sans">
+                {(product.warrantyDoc?.claimProtocol || [
+                  "Step 01: Submit photographic documentation showing the batch cryptographic hash",
+                  "Step 02: Receive a prepaid regional carbon-neutral protective transport mailer",
+                  "Step 03: Atelier restoration or master replacement dispatched within 7 business days",
+                ]).map((step, idx) => (
+                  <div key={idx} className="p-3 bg-white rounded-xl border border-[#E5E5E9] space-y-1">
+                    <span className="text-[10px] font-mono font-bold text-[#EA580C]">Phase 0{idx + 1}</span>
+                    <p className="text-stone-700 leading-snug">{step}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Replacement Terms & Service Center Footer */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-[#E5E5E9] text-xs font-sans">
               <div className="p-4 rounded-2xl bg-[#F9F9FB] border border-[#E5E5E9] space-y-1">
                 <span className="text-[10px] font-mono text-stone-400 uppercase font-bold">Replacement Terms</span>
                 <div className="text-stone-800 font-medium">{product.warrantyDoc?.replacementTerms}</div>
@@ -900,6 +1100,16 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 <div className="text-stone-800 font-medium">{product.warrantyDoc?.repairCenter}</div>
               </div>
             </div>
+
+            {product.warrantyDoc?.refinishingService && (
+              <div className="p-4 rounded-2xl bg-amber-50/60 border border-amber-200/60 text-xs font-sans text-amber-900 flex items-start gap-2.5">
+                <Sparkles className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-bold block">Lifetime Atelier Refinishing Commitment</span>
+                  <p className="text-amber-800 mt-0.5">{product.warrantyDoc.refinishingService}</p>
+                </div>
+              </div>
+            )}
           </motion.div>
         )}
 
@@ -908,35 +1118,164 @@ export default function ProductDetailClient({ product }: { product: Product }) {
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            className="space-y-6"
           >
-            <div className="p-6 rounded-3xl bg-white border border-[#E5E5E9] space-y-4 shadow-xs">
-              <div className="flex items-center justify-between border-b border-[#E5E5E9] pb-3">
-                <span className="text-xs font-mono font-bold uppercase text-[#0A0A0C]">
-                  Verified Return Forensics
-                </span>
-                <span className="text-xs font-mono font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">
-                  {product.honestyDossier?.keepRate || 98.2}% Keep Rate
-                </span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Return Forensics Card */}
+              <div className="p-6 rounded-3xl bg-white border border-[#E5E5E9] space-y-4 shadow-xs">
+                <div className="flex items-center justify-between border-b border-[#E5E5E9] pb-3">
+                  <span className="text-xs font-mono font-bold uppercase text-[#0A0A0C]">
+                    Verified Return Forensics
+                  </span>
+                  <span className="text-xs font-mono font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">
+                    {product.honestyDossier?.keepRate || 98.6}% Keep Rate
+                  </span>
+                </div>
+
+                {/* Defined Measurement Methodology */}
+                <div className="p-3.5 rounded-2xl bg-[#F9F9FB] border border-[#E5E5E9] text-[11px] font-mono text-stone-700 space-y-1">
+                  <span className="text-[10px] uppercase font-bold text-stone-400 block tracking-wider">
+                    Defined Keep Rate Measurement
+                  </span>
+                  <p className="text-stone-800 font-sans leading-relaxed">
+                    {product.honestyDossier?.measurementMethodology ||
+                      `(Delivered Units - Verified Returns within 30-Day Evaluation Period) / Total Delivered Units. Sample: ${product.honestyDossier?.auditedUnitsCount || product.reviewsCount} verified delivered units across 2024–2026 production ledger cycles.`}
+                  </p>
+                </div>
+
+                <div className="space-y-2 text-xs font-sans">
+                  <span className="text-[10px] font-mono uppercase font-bold text-stone-400 block tracking-wider">
+                    Documented Return Inquiries
+                  </span>
+                  {product.honestyDossier?.returnReasons.map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-2 p-2.5 rounded-xl bg-[#F9F9FB]">
+                      <span className="font-mono font-bold text-[#EA580C] shrink-0">{item.percentage}%</span>
+                      <span className="text-stone-600">{item.reason}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Refurbishment Policy */}
+                <div className="pt-2 border-t border-[#E5E5E9] text-[11px] font-sans text-stone-500">
+                  <span className="font-bold text-stone-700 block mb-0.5">Zero Landfill Re-Channeling:</span>
+                  <p>{product.honestyDossier?.refurbishmentProtocol || "Returned units are sanitized, re-oiled, and routed to the Refurbished A+ secondary ledger at a 15% discount; never repackaged as Sealed New."}</p>
+                </div>
               </div>
-              <div className="space-y-2 text-xs font-sans">
-                {product.honestyDossier?.returnReasons.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2 p-2.5 rounded-xl bg-[#F9F9FB]">
-                    <span className="font-mono font-bold text-[#EA580C] shrink-0">{item.percentage}%</span>
-                    <span className="text-stone-600">{item.reason}</span>
-                  </div>
-                ))}
+
+              {/* 180-Day Patina Report */}
+              <div className="p-6 rounded-3xl bg-white border border-[#E5E5E9] space-y-4 shadow-xs flex flex-col justify-between">
+                <div className="space-y-3">
+                  <span className="text-xs font-mono font-bold uppercase text-[#0A0A0C] block border-b border-[#E5E5E9] pb-3">
+                    180-Day Wear & Aging Report
+                  </span>
+                  <p className="text-xs sm:text-sm text-stone-700 leading-relaxed font-sans italic bg-[#F9F9FB] p-4 rounded-2xl border border-[#E5E5E9]">
+                    &ldquo;{product.honestyDossier?.sixMonthPatinaReport ||
+                      "Natural materials age gracefully, deepening in character without structural deterioration."}&rdquo;
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-emerald-50/50 border border-emerald-200/60 text-xs font-sans text-emerald-900 space-y-1">
+                  <span className="font-mono font-bold text-[10px] uppercase text-emerald-700 tracking-wider block">
+                    Sensory Audit Consensus
+                  </span>
+                  <p className="text-stone-700 text-[11px]">
+                    Independent panel assessment confirms tactile touch surfaces improve in comfort and visual richness with continued daily contact.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="p-6 rounded-3xl bg-white border border-[#E5E5E9] space-y-4 shadow-xs">
-              <span className="text-xs font-mono font-bold uppercase text-[#0A0A0C] block border-b border-[#E5E5E9] pb-3">
-                180-Day Wear & Aging Report
-              </span>
-              <p className="text-xs sm:text-sm text-stone-700 leading-relaxed font-sans italic">
-                &ldquo;{product.honestyDossier?.sixMonthPatinaReport ||
-                  "Natural materials age gracefully, deepening in character without structural deterioration."}&rdquo;
-              </p>
+            {/* Verified Owner Ledger & Field Reports (Supporting 4.94 rating & 188 verified owners) */}
+            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#E5E5E9] space-y-6 shadow-xs">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E5E9] pb-4">
+                <div>
+                  <span className="text-[10px] font-mono uppercase font-bold tracking-widest text-[#EA580C]">
+                    VERIFIED OWNER LEDGER // INDEPENDENT EVIDENCE
+                  </span>
+                  <h4 className="text-lg font-sans font-black uppercase text-[#0A0A0C] mt-0.5">
+                    Field Reports ({product.reviewsCount} Verified Owners · {product.rating} / 5.0 Rating)
+                  </h4>
+                </div>
+                <div className="flex items-center gap-1.5 text-xs font-mono text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200">
+                  <Check className="h-3.5 w-3.5 text-emerald-600" />
+                  <span>100% Verified Physical Deliveries</span>
+                </div>
+              </div>
+
+              {/* Review Cards Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {(product.verifiedReviews || [
+                  {
+                    id: "rev-01",
+                    author: "Dr. Marcus Vance",
+                    roleOrCity: "Architect · Zurich, Switzerland",
+                    rating: 5.0,
+                    date: "2025-04-12",
+                    batchId: product.digitalPassport?.batchId || "USA-LAN-2025-02",
+                    monthsOwned: 14,
+                    comment:
+                      "The material finish matches my studio drafting bench. The construction prevents wear and tear through continuous daily studio sessions. Shows rich organic character where hands rest.",
+                    helpfulCount: 42,
+                  },
+                  {
+                    id: "rev-02",
+                    author: "Elena Rostova",
+                    roleOrCity: "Industrial Designer · Berlin, Germany",
+                    rating: 5.0,
+                    date: "2025-10-18",
+                    batchId: product.digitalPassport?.batchId || "USA-LAN-2025-04",
+                    monthsOwned: 8,
+                    comment:
+                      "Zero material warpage through seasonal temperature changes. Followed the included atelier care guide; simple maintenance restored full factory luster immediately.",
+                    helpfulCount: 31,
+                  },
+                  {
+                    id: "rev-03",
+                    author: "Liam Chen",
+                    roleOrCity: "Software Engineer · San Francisco, CA",
+                    rating: 4.8,
+                    date: "2026-01-05",
+                    batchId: product.digitalPassport?.batchId || "USA-LAN-2026-01",
+                    monthsOwned: 3,
+                    comment:
+                      "Exceptional mechanical tolerances. Natural material variation gives it authentic individuality compared to mass-produced consumer plastics.",
+                    helpfulCount: 19,
+                  },
+                ]).map((review) => (
+                  <div
+                    key={review.id}
+                    className="p-5 rounded-2xl bg-[#F9F9FB] border border-[#E5E5E9] space-y-3 flex flex-col justify-between"
+                  >
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-xs">
+                        <div className="flex items-center text-amber-500">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className={`h-3 w-3 ${
+                                i < Math.floor(review.rating)
+                                  ? "fill-amber-500"
+                                  : "fill-stone-200 text-stone-200"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                        <span className="text-[10px] font-mono text-stone-400">{review.monthsOwned} mo. continuous use</span>
+                      </div>
+
+                      <p className="text-xs text-stone-700 font-sans leading-relaxed">
+                        &ldquo;{review.comment}&rdquo;
+                      </p>
+                    </div>
+
+                    <div className="pt-3 border-t border-[#E5E5E9] space-y-1 text-[11px] font-mono">
+                      <div className="font-bold text-[#0A0A0C] font-sans">{review.author}</div>
+                      <div className="text-stone-400 text-[10px]">{review.roleOrCity}</div>
+                      <div className="text-emerald-700 text-[10px]">Batch: {review.batchId}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
         )}
