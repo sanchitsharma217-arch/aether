@@ -8,7 +8,7 @@ import { CERTIFIED_GUILDS } from "@/data/certifiedGuilds";
 import { CATEGORIES } from "@/data/mockProducts";
 
 export const Footer: React.FC = () => {
-  const { setSelectedCategory } = useStore();
+  const { setSelectedCategory, setSearchQuery } = useStore();
   const [subscribed, setSubscribed] = useState(false);
   const [email, setEmail] = useState("");
 
@@ -116,13 +116,19 @@ export const Footer: React.FC = () => {
           {/* Column 2: Verified Guilds & Ateliers */}
           <div className="space-y-3">
             <h5 className="font-mono font-bold text-white uppercase tracking-wider text-[11px]">
-              Verified Guilds (Tranche 01)
+              8 Verified Guilds (Tranche 01)
             </h5>
-            <ul className="space-y-2 text-stone-400 font-sans">
-              {CERTIFIED_GUILDS.slice(0, 5).map((guild) => (
+            <ul className="space-y-1.5 text-stone-400 font-sans text-[11px]">
+              {CERTIFIED_GUILDS.map((guild) => (
                 <li key={guild.id}>
-                  <Link href="/shop" className="hover:text-white transition-colors">
-                    {guild.name} ({guild.location.split(",")[0]})
+                  <Link
+                    href="/shop"
+                    onClick={() => {
+                      setSearchQuery(guild.name.split(" ")[0]);
+                    }}
+                    className="hover:text-white transition-colors truncate block"
+                  >
+                    {guild.name.replace(" Engineering Guild", "").replace(" (Kenjiro Yamada Kiln)", "")} ({guild.location.split(",")[0]})
                   </Link>
                 </li>
               ))}

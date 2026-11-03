@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -62,6 +62,9 @@ export default function ShopPage() {
     });
     return counts;
   }, []);
+
+  // When a search query is active, prioritize catalog view to surface matching objects
+  const activeViewMode = searchQuery.trim() ? "catalog" : viewMode;
 
   // Extract unique countries
   const countries = useMemo(() => {
@@ -335,7 +338,7 @@ export default function ShopPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#E5E5E9] pb-4 mb-8">
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
           {["All", ...CATEGORIES].map((cat) => {
-            const isSelected = viewMode === "catalog" && selectedCategory === cat;
+            const isSelected = activeViewMode === "catalog" && selectedCategory === cat;
             return (
               <button
                 key={cat}
@@ -367,7 +370,7 @@ export default function ShopPage() {
           <button
             onClick={() => setViewMode("catalog")}
             className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-              viewMode === "catalog"
+              activeViewMode === "catalog"
                 ? "bg-[#0A0A0C] text-white shadow-xs"
                 : "text-stone-600 hover:text-black"
             }`}
@@ -378,7 +381,7 @@ export default function ShopPage() {
           <button
             onClick={() => setViewMode("suites")}
             className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-              viewMode === "suites"
+              activeViewMode === "suites"
                 ? "bg-[#EA580C] text-white shadow-xs"
                 : "text-stone-600 hover:text-black"
             }`}
@@ -415,7 +418,7 @@ export default function ShopPage() {
             </label>
             <div className="space-y-1">
               {["All", ...CATEGORIES].map((cat) => {
-                const active = viewMode === "catalog" && selectedCategory === cat;
+                const active = activeViewMode === "catalog" && selectedCategory === cat;
                 return (
                   <button
                     key={cat}
@@ -578,7 +581,7 @@ export default function ShopPage() {
         {/* Right Area: Sort & Product Grid (9 Cols) */}
         <div className="lg:col-span-9 space-y-6">
           {/* Main Content: Either Living Suites & Bundles View OR Master SKU Catalog */}
-          {viewMode === "suites" ? (
+          {activeViewMode === "suites" ? (
             <div className="space-y-10">
               <div className="p-6 rounded-3xl bg-[#F9F9FB] border border-[#E5E5E9] space-y-2">
                 <div className="flex items-center gap-2">
@@ -662,16 +665,16 @@ export default function ShopPage() {
                       {/* Products Grid in Suite */}
                       <div
                         className={`grid grid-cols-1 ${
-                          bundleProducts.length <= 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"
-                        } gap-4`}
+                          bundleProducts.length <= 2 ? "md:grid-cols-2" : "md:grid-cols-3"
+                        } gap-4 sm:gap-6`}
                       >
                         {bundleProducts.map((prod) => (
                           <div
                             key={prod.id}
-                            className="bg-[#F9F9FB] rounded-2xl p-4 sm:p-5 border border-[#E5E5E9] flex flex-col justify-between gap-4 hover:border-[#0A0A0C] transition-all group"
+                            className="bg-[#F9F9FB] rounded-2xl p-4 sm:p-5 border border-[#E5E5E9] flex flex-col justify-between gap-4 hover:border-[#0A0A0C] transition-all group h-full"
                           >
-                            <div className="flex items-center gap-4">
-                              <div className="h-20 w-20 rounded-xl bg-white border border-[#E5E5E9] p-2 flex items-center justify-center shrink-0 overflow-hidden">
+                            <div className="flex items-start gap-3 sm:gap-4 min-w-0">
+                              <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-xl bg-white border border-[#E5E5E9] p-2 flex items-center justify-center shrink-0 overflow-hidden">
                                 <img
                                   src={prod.image}
                                   alt={prod.title}
@@ -685,15 +688,15 @@ export default function ShopPage() {
                                 </span>
                                 <h4
                                   onClick={() => setActiveBuyBoxProduct(prod)}
-                                  className="text-xs sm:text-sm font-sans font-bold text-[#0A0A0C] hover:text-[#EA580C] transition-colors line-clamp-1 cursor-pointer"
+                                  className="text-xs sm:text-sm font-sans font-bold text-[#0A0A0C] hover:text-[#EA580C] transition-colors line-clamp-2 cursor-pointer leading-snug"
                                 >
                                   {prod.title}
                                 </h4>
-                                <div className="text-[11px] text-[#EA580C] font-semibold flex items-center gap-1">
-                                  <Building2 className="h-3 w-3" />
+                                <div className="text-[11px] text-[#EA580C] font-semibold flex items-center gap-1 pt-0.5">
+                                  <Building2 className="h-3 w-3 shrink-0" />
                                   <span className="truncate">{prod.primaryVendor?.name || "Master Atelier"}</span>
                                 </div>
-                                <div className="text-[10px] font-mono text-[#64646E] flex items-center gap-2">
+                                <div className="text-[10px] font-mono text-[#64646E] flex items-center gap-1.5">
                                   <span>{prod.offers?.length || 1} Offers</span>
                                   <span>•</span>
                                   <span className="font-bold text-emerald-700">{prod.lifespanScore || 9.8}/10 Score</span>
@@ -701,8 +704,8 @@ export default function ShopPage() {
                               </div>
                             </div>
 
-                            <div className="flex items-center justify-between pt-2 border-t border-[#E5E5E9]/60">
-                              <div className="text-sm font-mono font-black text-[#0A0A0C]">
+                            <div className="flex items-center justify-between pt-3 border-t border-[#E5E5E9]/60 text-xs font-mono">
+                              <div className="text-base font-mono font-black text-[#0A0A0C]">
                                 ${prod.price}
                               </div>
                               <button
@@ -878,7 +881,7 @@ export default function ShopPage() {
                   </label>
                   <div className="space-y-1">
                     {["All", ...CATEGORIES].map((cat) => {
-                      const active = viewMode === "catalog" && selectedCategory === cat;
+                      const active = activeViewMode === "catalog" && selectedCategory === cat;
                       return (
                         <button
                           key={cat}

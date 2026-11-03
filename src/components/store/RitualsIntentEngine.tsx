@@ -175,16 +175,16 @@ export const RitualsIntentEngine: React.FC<Props> = ({ className = "" }) => {
           {/* Interactive Multi-Item Grid with Photo Zoom */}
           <div
             className={`grid grid-cols-1 ${
-              bundleProducts.length <= 2 ? "md:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"
-            } gap-4`}
+              bundleProducts.length <= 2 ? "md:grid-cols-2" : "md:grid-cols-3"
+            } gap-4 sm:gap-6`}
           >
             {bundleProducts.map((prod) => (
               <div
                 key={prod.id}
-                className="bg-white rounded-2xl p-4 sm:p-5 border border-[#E5E5E9] flex items-center justify-between gap-4 floating-card hover:border-[#0A0A0C] transition-all group"
+                className="bg-white rounded-2xl p-4 sm:p-5 border border-[#E5E5E9] flex flex-col justify-between gap-4 floating-card hover:border-[#0A0A0C] transition-all group h-full"
               >
-                <div className="flex items-center gap-4 min-w-0">
-                  <div className="h-20 w-20 rounded-xl bg-gradient-to-b from-[#F8F8FA] to-[#EFEFF3] border border-[#E5E5E9] p-2 flex items-center justify-center shrink-0 overflow-hidden">
+                <div className="flex items-start gap-3 sm:gap-4 min-w-0">
+                  <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-xl bg-gradient-to-b from-[#F8F8FA] to-[#EFEFF3] border border-[#E5E5E9] p-2 flex items-center justify-center shrink-0 overflow-hidden">
                     <img
                       src={prod.image}
                       alt={prod.title}
@@ -192,40 +192,40 @@ export const RitualsIntentEngine: React.FC<Props> = ({ className = "" }) => {
                     />
                   </div>
 
-                  <div className="space-y-1 min-w-0">
-                    <div className="flex items-center gap-2 text-[10px] font-mono text-[#64646E]">
-                      <span>{prod.canonicalSku || "CANONICAL-SKU"}</span>
+                  <div className="space-y-1 min-w-0 flex-1">
+                    <div className="text-[10px] font-mono text-[#64646E] truncate">
+                      {prod.canonicalSku || "CANONICAL-SKU"}
                     </div>
 
                     <h4
                       onClick={() => setActiveBuyBoxProduct(prod)}
-                      className="text-xs sm:text-sm font-sans font-bold text-[#0A0A0C] hover:text-[#EA580C] transition-colors line-clamp-1 cursor-pointer"
+                      className="text-xs sm:text-sm font-sans font-bold text-[#0A0A0C] hover:text-[#EA580C] transition-colors line-clamp-2 cursor-pointer leading-snug"
                     >
                       {prod.title}
                     </h4>
 
                     {/* Vendor Attribution */}
-                    <div className="space-y-0.5 text-[11px] font-sans">
+                    <div className="space-y-0.5 text-[11px] font-sans pt-0.5">
                       <div className="text-[#EA580C] font-semibold flex items-center gap-1">
-                        <Building2 className="h-3 w-3" />
-                        <span>Sold by: {prod.primaryVendor?.name || "Master Atelier"}</span>
+                        <Building2 className="h-3 w-3 shrink-0" />
+                        <span className="truncate">{prod.primaryVendor?.name || "Master Atelier"}</span>
                       </div>
-                      <div className="text-[#64646E] text-[10px] flex items-center gap-2 font-mono">
-                        <span>{prod.offers?.length || prod.verifiedSellersCount || 1} Verified Offers</span>
+                      <div className="text-[#64646E] text-[10px] flex items-center gap-1.5 font-mono">
+                        <span>{prod.offers?.length || prod.verifiedSellersCount || 1} Offers</span>
                         <span>•</span>
-                        <span className="font-bold text-emerald-700">{prod.lifespanScore || 9.8}/10 Lifespan</span>
+                        <span className="font-bold text-emerald-700">{prod.lifespanScore || 9.8}/10 Score</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="text-right shrink-0 space-y-1">
+                <div className="flex items-center justify-between pt-3 border-t border-[#E5E5E9] text-xs font-mono">
                   <div className="text-base font-mono font-black text-[#0A0A0C]">
                     ${prod.price}
                   </div>
                   <button
                     onClick={() => setActiveBuyBoxProduct(prod)}
-                    className="text-[10px] font-mono font-bold text-blue-700 hover:text-black underline block cursor-pointer"
+                    className="text-[10px] font-mono font-bold text-blue-700 hover:text-black underline cursor-pointer"
                   >
                     Compare Offers
                   </button>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Layers, Sparkles } from "lucide-react";
 import { CraftDepartment } from "@/types/store";
 import { useStore } from "@/context/StoreContext";
+import { PRODUCTS } from "@/data/mockProducts";
 
 export const IntentDepartments: React.FC = () => {
   const { setSelectedCategory } = useStore();
@@ -120,6 +121,9 @@ export const IntentDepartments: React.FC = () => {
               <div className="absolute top-4 left-4 flex items-center gap-2">
                 <span className="text-[10px] font-mono font-bold text-white bg-black/60 backdrop-blur-md px-3 py-1 rounded-full uppercase tracking-wider border border-white/20">
                   {dept.tranche}
+                </span>
+                <span className="text-[10px] font-mono font-bold text-amber-300 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full uppercase tracking-wider border border-white/20">
+                  {PRODUCTS.filter((p) => p.category === dept.category).length} Master SKUs
                 </span>
               </div>
 
