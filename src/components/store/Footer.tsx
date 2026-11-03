@@ -3,8 +3,12 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Check, ShieldCheck, Truck, Layers, Building2, Radio } from "lucide-react";
+import { useStore } from "@/context/StoreContext";
+import { CERTIFIED_GUILDS } from "@/data/certifiedGuilds";
+import { CATEGORIES } from "@/data/mockProducts";
 
 export const Footer: React.FC = () => {
+  const { setSelectedCategory } = useStore();
   const [subscribed, setSubscribed] = useState(false);
   const [email, setEmail] = useState("");
 
@@ -115,25 +119,33 @@ export const Footer: React.FC = () => {
               Verified Guilds (Tranche 01)
             </h5>
             <ul className="space-y-2 text-stone-400 font-sans">
-              <li><Link href="/shop" className="hover:text-white transition-colors">Sonic Laboratories (Zurich / Berlin)</Link></li>
-              <li><Link href="/shop" className="hover:text-white transition-colors">Tosa Smithing Guild (Kochi)</Link></li>
-              <li><Link href="/shop" className="hover:text-white transition-colors">Timber & Joinery Guild (Lancaster)</Link></li>
-              <li><Link href="/shop" className="hover:text-white transition-colors">Tokoname Ceramic Guild (Aichi)</Link></li>
-              <li><Link href="/shop" className="hover:text-white transition-colors">Chicago Tanner Guild (USA)</Link></li>
+              {CERTIFIED_GUILDS.slice(0, 5).map((guild) => (
+                <li key={guild.id}>
+                  <Link href="/shop" className="hover:text-white transition-colors">
+                    {guild.name} ({guild.location.split(",")[0]})
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Column 3: Departments */}
+          {/* Column 3: Departments of Craft */}
           <div className="space-y-3">
             <h5 className="font-mono font-bold text-white uppercase tracking-wider text-[11px]">
-              Departments of Craft
+              5 Departments of Craft
             </h5>
             <ul className="space-y-2 text-stone-400 font-sans">
-              <li><Link href="/shop" className="hover:text-white transition-colors">Hard Goods & Foundry</Link></li>
-              <li><Link href="/shop" className="hover:text-white transition-colors">Acoustic & Audio Systems</Link></li>
-              <li><Link href="/shop" className="hover:text-white transition-colors">Living & Space Architecture</Link></li>
-              <li><Link href="/shop" className="hover:text-white transition-colors">Pantry & Slow Extraction</Link></li>
-              <li><Link href="/shop" className="hover:text-white transition-colors">Apparel Architecture & EDC</Link></li>
+              {CATEGORIES.map((cat) => (
+                <li key={cat}>
+                  <Link
+                    href="/shop"
+                    onClick={() => setSelectedCategory(cat)}
+                    className="hover:text-white transition-colors"
+                  >
+                    {cat}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

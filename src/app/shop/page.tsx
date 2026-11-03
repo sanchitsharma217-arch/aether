@@ -16,8 +16,14 @@ import {
   Sparkles,
   Scale,
   RotateCcw,
+  Layers,
+  ShoppingBag,
+  Building2,
+  PackageCheck,
+  ArrowRight,
 } from "lucide-react";
 import { PRODUCTS, CATEGORIES } from "@/data/mockProducts";
+import { RITUAL_SCENARIOS, RitualScenario } from "@/data/ritualsData";
 import { ProductCard } from "@/components/store/ProductCard";
 import { useStore } from "@/context/StoreContext";
 
@@ -31,8 +37,13 @@ export default function ShopPage() {
     favoritesCount,
     comparedProducts,
     setIsCompareOpen,
+    addBundleToCart,
+    setActiveBuyBoxProduct,
+    setIsCartOpen,
   } = useStore();
 
+  const [viewMode, setViewMode] = useState<"catalog" | "suites">("catalog");
+  const [assembledSuites, setAssembledSuites] = useState<Record<string, boolean>>({});
   const [sortBy, setSortBy] = useState<string>("featured");
   const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
   const [onlyInStock, setOnlyInStock] = useState(false);
@@ -42,6 +53,15 @@ export default function ShopPage() {
   const [minEndurance, setMinEndurance] = useState<number>(9.0);
   const [priceMax, setPriceMax] = useState<number>(650);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+
+  // Department item counts
+  const departmentCounts = useMemo(() => {
+    const counts: Record<string, number> = { All: PRODUCTS.length };
+    CATEGORIES.forEach((cat) => {
+      counts[cat] = PRODUCTS.filter((p) => p.category === cat).length;
+    });
+    return counts;
+  }, []);
 
   // Extract unique countries
   const countries = useMemo(() => {
@@ -311,24 +331,62 @@ export default function ShopPage() {
         </div>
       </div>
 
-      {/* 03. Unified 5 Craft Departments Tab Bar */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-4 border-b border-[#E5E5E9] mb-8 no-scrollbar">
-        {["All", ...CATEGORIES].map((cat) => {
-          const isSelected = selectedCategory === cat;
-          return (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer whitespace-nowrap ${
-                isSelected
-                  ? "bg-[#0A0A0C] text-white shadow-md"
-                  : "bg-[#F9F9FB] border border-[#E5E5E9] text-stone-600 hover:text-black hover:border-black"
-              }`}
-            >
-              {cat}
-            </button>
-          );
-        })}
+      {/* 03. Unified 5 Craft Departments Tab Bar + Catalog / Suites View Switcher */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#E5E5E9] pb-4 mb-8">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
+          {["All", ...CATEGORIES].map((cat) => {
+            const isSelected = viewMode === "catalog" && selectedCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => {
+                  setViewMode("catalog");
+                  setSelectedCategory(cat);
+                }}
+                className={`px-4 py-2.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                  isSelected
+                    ? "bg-[#0A0A0C] text-white shadow-md"
+                    : "bg-[#F9F9FB] border border-[#E5E5E9] text-stone-600 hover:text-black hover:border-black"
+                }`}
+              >
+                <span>{cat}</span>
+                <span
+                  className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono ${
+                    isSelected ? "bg-white/20 text-white" : "bg-stone-200 text-stone-700"
+                  }`}
+                >
+                  {departmentCounts[cat] ?? 0}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* View Mode Toggle: Single Master SKUs vs Living Suites */}
+        <div className="flex items-center gap-1 bg-[#F9F9FB] p-1 rounded-full border border-[#E5E5E9] shrink-0 self-start md:self-auto">
+          <button
+            onClick={() => setViewMode("catalog")}
+            className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+              viewMode === "catalog"
+                ? "bg-[#0A0A0C] text-white shadow-xs"
+                : "text-stone-600 hover:text-black"
+            }`}
+          >
+            <Layers className="h-3.5 w-3.5" />
+            <span>Master SKUs (12)</span>
+          </button>
+          <button
+            onClick={() => setViewMode("suites")}
+            className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+              viewMode === "suites"
+                ? "bg-[#EA580C] text-white shadow-xs"
+                : "text-stone-600 hover:text-black"
+            }`}
+          >
+            <Sparkles className="h-3.5 w-3.5" />
+            <span>Living Suites (4)</span>
+          </button>
+        </div>
       </div>
 
       {/* 04. Main Layout: Advanced Filters Sidebar + Catalog Grid */}
@@ -347,6 +405,42 @@ export default function ShopPage() {
             >
               Reset All
             </button>
+          </div>
+
+          {/* Filter: 5 Craft Departments */}
+          <div className="space-y-2">
+            <label className="text-xs font-mono font-bold uppercase tracking-wider text-stone-600 block flex items-center gap-1.5">
+              <Layers className="h-3.5 w-3.5 text-stone-400" />
+              <span>Craft Department</span>
+            </label>
+            <div className="space-y-1">
+              {["All", ...CATEGORIES].map((cat) => {
+                const active = viewMode === "catalog" && selectedCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => {
+                      setViewMode("catalog");
+                      setSelectedCategory(cat);
+                    }}
+                    className={`w-full text-left px-3 py-1.5 rounded-xl text-xs font-sans flex items-center justify-between transition-colors cursor-pointer ${
+                      active
+                        ? "bg-[#0A0A0C] text-white font-bold"
+                        : "hover:bg-stone-200/60 text-stone-700"
+                    }`}
+                  >
+                    <span className="truncate">{cat}</span>
+                    <span
+                      className={`text-[10px] font-mono px-1.5 py-0.5 rounded shrink-0 ml-2 ${
+                        active ? "bg-stone-800 text-stone-200" : "bg-stone-200 text-stone-600"
+                      }`}
+                    >
+                      {departmentCounts[cat] ?? 0}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           {/* Filter: Country of Origin */}
@@ -483,63 +577,245 @@ export default function ShopPage() {
 
         {/* Right Area: Sort & Product Grid (9 Cols) */}
         <div className="lg:col-span-9 space-y-6">
-          {/* Controls Bar: Sort & Filter Toggle */}
-          <div className="flex items-center justify-between gap-4 p-4 rounded-2xl bg-[#F9F9FB] border border-[#E5E5E9]">
-            <div className="text-xs font-mono text-stone-600">
-              Showing <span className="font-bold text-black">{filteredProducts.length}</span> objects
-            </div>
+          {/* Main Content: Either Living Suites & Bundles View OR Master SKU Catalog */}
+          {viewMode === "suites" ? (
+            <div className="space-y-10">
+              <div className="p-6 rounded-3xl bg-[#F9F9FB] border border-[#E5E5E9] space-y-2">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4 text-[#EA580C]" />
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#EA580C]">
+                    ARCHIVAL CAPSULES // COHERENT LIVING
+                  </span>
+                </div>
+                <h2 className="text-2xl font-sans font-black uppercase text-[#0A0A0C]">
+                  Curated Living Suites & Multi-Maker Capsules
+                </h2>
+                <p className="text-xs text-stone-600 font-sans max-w-2xl leading-relaxed">
+                  Engineered to eliminate cognitive clutter. Multi-vendor suites cluster canonical objects from independent certified guilds into a single consolidated low-impact 4PL parcel, with bundled savings calculated dynamically from live atelier inventory.
+                </p>
+              </div>
 
-            <div className="flex items-center gap-3">
-              {/* Mobile Filter Toggle */}
-              <button
-                onClick={() => setShowMobileFilters(!showMobileFilters)}
-                className="lg:hidden px-3 py-1.5 rounded-full border border-[#E5E5E9] bg-white text-xs font-mono font-bold flex items-center gap-1.5"
-              >
-                <SlidersHorizontal className="h-3.5 w-3.5" />
-                <span>Filters</span>
-              </button>
+              <div className="space-y-8">
+                {RITUAL_SCENARIOS.map((scenario) => {
+                  const bundleProducts = scenario.bundleProductIds
+                    .map((id) => PRODUCTS.find((p) => p.id === id))
+                    .filter((p): p is (typeof PRODUCTS)[0] => Boolean(p));
 
-              {/* Sort By Dropdown */}
-              <div className="flex items-center gap-2 text-xs font-mono">
-                <span className="text-stone-400 hidden sm:inline">Sort:</span>
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="px-3 py-1.5 rounded-xl bg-white border border-[#E5E5E9] text-xs font-sans font-semibold text-stone-900 focus:outline-none cursor-pointer shadow-xs"
-                >
-                  <option value="featured">Featured Atelier Order</option>
-                  <option value="endurance">Highest Endurance Score</option>
-                  <option value="price-low">Price: Low to High</option>
-                  <option value="price-high">Price: High to Low</option>
-                  <option value="rating">Highest Verified Rating</option>
-                </select>
+                  const regularTotal = bundleProducts.reduce((sum, p) => sum + p.price, 0);
+                  const discountMultiplier = (100 - scenario.bundleDiscountPercent) / 100;
+                  const bundleTotal = Math.round(regularTotal * discountMultiplier);
+                  const totalSavings = regularTotal - bundleTotal;
+                  const isAssembled = assembledSuites[scenario.id];
+
+                  const handleAssemble = () => {
+                    const bundleItems = bundleProducts.map((prod) => ({
+                      product: prod,
+                      quantity: 1,
+                      color: prod.colors?.[0]?.name,
+                      offer: prod.offers?.[0],
+                    }));
+                    addBundleToCart(bundleItems);
+                    setAssembledSuites((prev) => ({ ...prev, [scenario.id]: true }));
+                    setIsCartOpen(true);
+                  };
+
+                  return (
+                    <div
+                      key={scenario.id}
+                      className="rounded-3xl bg-white border border-[#E5E5E9] p-6 sm:p-8 space-y-6 shadow-xs"
+                    >
+                      {/* Suite Header */}
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E5E5E9] pb-5">
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#EA580C]">
+                              {scenario.tagline}
+                            </span>
+                            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-stone-100 text-stone-700 font-bold">
+                              {scenario.badge}
+                            </span>
+                          </div>
+                          <h3 className="text-xl font-sans font-black uppercase text-[#0A0A0C]">
+                            {scenario.title}
+                          </h3>
+                          <p className="text-xs text-[#64646E] max-w-xl font-sans leading-relaxed">
+                            {scenario.description}
+                          </p>
+                        </div>
+
+                        <div className="text-right sm:border-l sm:border-[#E5E5E9] sm:pl-6 shrink-0 space-y-0.5">
+                          <div className="text-xs text-[#64646E] line-through font-mono">
+                            Individual Total: ${regularTotal}
+                          </div>
+                          <div className="text-xl font-mono font-black text-[#0A0A0C]">
+                            ${bundleTotal}{" "}
+                            <span className="text-xs font-mono font-bold text-emerald-700">
+                              (Save ${totalSavings})
+                            </span>
+                          </div>
+                          <div className="text-[10px] font-mono text-stone-400">
+                            -{scenario.bundleDiscountPercent}% Capsule Incentive
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Products Grid in Suite */}
+                      <div
+                        className={`grid grid-cols-1 ${
+                          bundleProducts.length <= 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"
+                        } gap-4`}
+                      >
+                        {bundleProducts.map((prod) => (
+                          <div
+                            key={prod.id}
+                            className="bg-[#F9F9FB] rounded-2xl p-4 sm:p-5 border border-[#E5E5E9] flex flex-col justify-between gap-4 hover:border-[#0A0A0C] transition-all group"
+                          >
+                            <div className="flex items-center gap-4">
+                              <div className="h-20 w-20 rounded-xl bg-white border border-[#E5E5E9] p-2 flex items-center justify-center shrink-0 overflow-hidden">
+                                <img
+                                  src={prod.image}
+                                  alt={prod.title}
+                                  className="max-h-full max-w-full object-contain filter drop-shadow-[0_8px_12px_rgba(0,0,0,0.12)] group-hover:scale-110 transition-transform duration-500 ease-out"
+                                />
+                              </div>
+
+                              <div className="space-y-1 min-w-0 flex-1">
+                                <span className="text-[10px] font-mono text-[#64646E] block truncate">
+                                  {prod.canonicalSku || "CANONICAL-SKU"}
+                                </span>
+                                <h4
+                                  onClick={() => setActiveBuyBoxProduct(prod)}
+                                  className="text-xs sm:text-sm font-sans font-bold text-[#0A0A0C] hover:text-[#EA580C] transition-colors line-clamp-1 cursor-pointer"
+                                >
+                                  {prod.title}
+                                </h4>
+                                <div className="text-[11px] text-[#EA580C] font-semibold flex items-center gap-1">
+                                  <Building2 className="h-3 w-3" />
+                                  <span className="truncate">{prod.primaryVendor?.name || "Master Atelier"}</span>
+                                </div>
+                                <div className="text-[10px] font-mono text-[#64646E] flex items-center gap-2">
+                                  <span>{prod.offers?.length || 1} Offers</span>
+                                  <span>•</span>
+                                  <span className="font-bold text-emerald-700">{prod.lifespanScore || 9.8}/10 Score</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="flex items-center justify-between pt-2 border-t border-[#E5E5E9]/60">
+                              <div className="text-sm font-mono font-black text-[#0A0A0C]">
+                                ${prod.price}
+                              </div>
+                              <button
+                                onClick={() => setActiveBuyBoxProduct(prod)}
+                                className="text-[10px] font-mono font-bold text-blue-700 hover:text-black underline cursor-pointer"
+                              >
+                                Compare Offers
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Action Bar for Suite */}
+                      <div className="bg-[#0A0A0C] text-white rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                          <div className="h-9 w-9 rounded-xl bg-white/10 flex items-center justify-center text-emerald-400 shrink-0">
+                            <ShoppingBag className="h-4 w-4" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-sans font-bold uppercase tracking-wide">
+                              Consolidate {bundleProducts.length} Objects into Universal Bag
+                            </div>
+                            <div className="text-[11px] text-stone-400 font-sans">
+                              Batched into unified low-impact 4PL dispatch from verified ateliers.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-4 w-full sm:w-auto justify-end">
+                          <button
+                            onClick={handleAssemble}
+                            className={`w-full sm:w-auto px-5 py-2.5 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-2 ${
+                              isAssembled
+                                ? "bg-emerald-600 text-white"
+                                : "bg-white text-[#0A0A0C] hover:bg-stone-200"
+                            }`}
+                          >
+                            <PackageCheck className="h-3.5 w-3.5" />
+                            <span>
+                              {isAssembled
+                                ? "Capsule Added to Bag"
+                                : `Assemble ${scenario.tabLabel} Capsule (-${scenario.bundleDiscountPercent}%)`}
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
-          </div>
-
-          {/* Product Grid */}
-          {filteredProducts.length === 0 ? (
-            <div className="p-16 rounded-3xl bg-[#F9F9FB] border border-[#E5E5E9] text-center space-y-4">
-              <ShieldCheck className="h-10 w-10 text-stone-400 mx-auto" />
-              <h3 className="text-lg font-sans font-black text-[#0A0A0C] uppercase">
-                No Canonical Objects Matched Current Filters
-              </h3>
-              <p className="text-xs text-stone-500 font-sans max-w-md mx-auto">
-                Try widening your price range, clearing specific filters, or browsing other craft departments.
-              </p>
-              <button
-                onClick={clearAllFilters}
-                className="px-6 py-2.5 rounded-full bg-[#0A0A0C] text-white font-sans font-bold text-xs uppercase tracking-wider hover:bg-stone-800 transition-colors cursor-pointer"
-              >
-                Clear All Filters
-              </button>
-            </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
+            <>
+              {/* Controls Bar: Sort & Filter Toggle */}
+              <div className="flex items-center justify-between gap-4 p-4 rounded-2xl bg-[#F9F9FB] border border-[#E5E5E9]">
+                <div className="text-xs font-mono text-stone-600">
+                  Showing <span className="font-bold text-black">{filteredProducts.length}</span> objects
+                </div>
+
+                <div className="flex items-center gap-3">
+                  {/* Mobile Filter Toggle */}
+                  <button
+                    onClick={() => setShowMobileFilters(!showMobileFilters)}
+                    className="lg:hidden px-3 py-1.5 rounded-full border border-[#E5E5E9] bg-white text-xs font-mono font-bold flex items-center gap-1.5"
+                  >
+                    <SlidersHorizontal className="h-3.5 w-3.5" />
+                    <span>Filters</span>
+                  </button>
+
+                  {/* Sort By Dropdown */}
+                  <div className="flex items-center gap-2 text-xs font-mono">
+                    <span className="text-stone-400 hidden sm:inline">Sort:</span>
+                    <select
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value)}
+                      className="px-3 py-1.5 rounded-xl bg-white border border-[#E5E5E9] text-xs font-sans font-semibold text-stone-900 focus:outline-none cursor-pointer shadow-xs"
+                    >
+                      <option value="featured">Featured Atelier Order</option>
+                      <option value="endurance">Highest Endurance Score</option>
+                      <option value="price-low">Price: Low to High</option>
+                      <option value="price-high">Price: High to Low</option>
+                      <option value="rating">Highest Verified Rating</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              {/* Product Grid */}
+              {filteredProducts.length === 0 ? (
+                <div className="p-16 rounded-3xl bg-[#F9F9FB] border border-[#E5E5E9] text-center space-y-4">
+                  <ShieldCheck className="h-10 w-10 text-stone-400 mx-auto" />
+                  <h3 className="text-lg font-sans font-black text-[#0A0A0C] uppercase">
+                    No Canonical Objects Matched Current Filters
+                  </h3>
+                  <p className="text-xs text-stone-500 font-sans max-w-md mx-auto">
+                    Try widening your price range, clearing specific filters, or browsing other craft departments.
+                  </p>
+                  <button
+                    onClick={clearAllFilters}
+                    className="px-6 py-2.5 rounded-full bg-[#0A0A0C] text-white font-sans font-bold text-xs uppercase tracking-wider hover:bg-stone-800 transition-colors cursor-pointer"
+                  >
+                    Clear All Filters
+                  </button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {filteredProducts.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </div>
+              )}
+            </>
           )}
         </div>
 
@@ -592,6 +868,42 @@ export default function ShopPage() {
                   >
                     Reset All Filters
                   </button>
+                </div>
+
+                {/* Craft Department (5 Departments) */}
+                <div className="space-y-2">
+                  <label className="text-xs font-mono font-bold uppercase tracking-wider text-stone-600 flex items-center gap-1.5">
+                    <Layers className="h-3.5 w-3.5 text-stone-400" />
+                    <span>Craft Department</span>
+                  </label>
+                  <div className="space-y-1">
+                    {["All", ...CATEGORIES].map((cat) => {
+                      const active = viewMode === "catalog" && selectedCategory === cat;
+                      return (
+                        <button
+                          key={cat}
+                          onClick={() => {
+                            setViewMode("catalog");
+                            setSelectedCategory(cat);
+                          }}
+                          className={`w-full text-left px-3 py-2 rounded-xl text-xs font-sans flex items-center justify-between transition-colors cursor-pointer ${
+                            active
+                              ? "bg-[#0A0A0C] text-white font-bold"
+                              : "bg-[#F9F9FB] border border-[#E5E5E9] text-stone-700 hover:text-black"
+                          }`}
+                        >
+                          <span>{cat}</span>
+                          <span
+                            className={`text-[10px] font-mono px-1.5 py-0.5 rounded ${
+                              active ? "bg-stone-800 text-stone-200" : "bg-stone-200 text-stone-600"
+                            }`}
+                          >
+                            {departmentCounts[cat] ?? 0}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
 
                 {/* Country of Origin */}

@@ -173,7 +173,11 @@ export const RitualsIntentEngine: React.FC<Props> = ({ className = "" }) => {
           </div>
 
           {/* Interactive Multi-Item Grid with Photo Zoom */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div
+            className={`grid grid-cols-1 ${
+              bundleProducts.length <= 2 ? "md:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"
+            } gap-4`}
+          >
             {bundleProducts.map((prod) => (
               <div
                 key={prod.id}
