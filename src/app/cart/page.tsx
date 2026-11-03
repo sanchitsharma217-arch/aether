@@ -86,8 +86,8 @@ export default function CartPage() {
             <CheckCircle2 className="h-9 w-9" />
           </div>
           <div className="space-y-2">
-            <span className="text-[11px] font-mono font-bold text-[#C2673D] uppercase tracking-widest">
-              CANONICAL ORDER #AG-91830 CONFIRMED
+            <span className="text-[11px] font-mono font-bold text-[#EA580C] uppercase tracking-widest">
+              CANONICAL ORDER #AE-91830 CONFIRMED
             </span>
             <h2 className="text-2xl sm:text-3xl font-serif text-[#1C1917]">
               Quiet utility begins here.
@@ -203,7 +203,9 @@ export default function CartPage() {
                         <div className="flex items-center gap-2 text-[10px] font-mono text-stone-400">
                           <span>{item.product.canonicalSku || "CANONICAL-SKU"}</span>
                           <span>•</span>
-                          <span className="text-[#5E6857]">{item.product.provenance?.origin || item.product.category}</span>
+                          <span className="text-[#EA580C] font-semibold">
+                            {item.selectedOffer?.sellerName || item.product.primaryVendor.name}
+                          </span>
                         </div>
                         <h3 className="text-sm font-serif font-bold text-[#1C1917] leading-snug">
                           {item.product.title}

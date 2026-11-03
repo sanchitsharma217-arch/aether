@@ -65,9 +65,9 @@ export default function AboutPage() {
           <div className="h-10 w-10 rounded-2xl bg-[#F7F5F0] flex items-center justify-center text-[#1C1917] font-mono font-bold text-xs">
             04
           </div>
-          <h3 className="text-base font-serif font-bold text-[#1C1917]">Repair Guarantee</h3>
+          <h3 className="text-base font-sans font-bold text-[#0A0A0C]">Repair Guarantee</h3>
           <p className="text-xs text-stone-600 leading-relaxed font-sans">
-            Every object is audited on our Endurance Index. Modular screw fasteners, zero glued disposable batteries, and guaranteed spare parts through 2038.
+            Every object is audited on our Endurance Index. Modular screw fasteners, zero glued disposable batteries, and product-specific spare parts commitments through 2038–2076.
           </p>
         </div>
       </div>

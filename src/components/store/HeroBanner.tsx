@@ -437,9 +437,9 @@ export const HeroBanner: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] font-mono uppercase text-[#64646E]">Bundle Total (3 Items)</span>
+                  <span className="text-[10px] font-mono uppercase text-[#64646E]">Setup Total ({currentSuite.items.length} Items)</span>
                   <div className="text-2xl font-mono font-black text-[#0A0A0C]">
-                    ${currentSuite.total}.00
+                    ${currentSuite.items.reduce((s, i) => s + (i.product?.price || i.price), 0)}.00
                   </div>
                 </div>
 
@@ -451,7 +451,7 @@ export const HeroBanner: React.FC = () => {
                   {isAdding ? (
                     <>
                       <Check className="h-4 w-4 text-emerald-400" />
-                      <span>Adding 3 Items...</span>
+                      <span>Adding Setup...</span>
                     </>
                   ) : (
                     <>

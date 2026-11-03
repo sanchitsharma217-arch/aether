@@ -11,6 +11,7 @@ import {
   ChevronRight,
   Eye,
   Check,
+  Scale,
 } from "lucide-react";
 import { Product } from "@/types/store";
 import { useStore } from "@/context/StoreContext";
@@ -21,18 +22,25 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuickView }) => {
-  const { addToCart, toggleFavorite, isFavorite, setActiveBuyBoxProduct } = useStore();
+  const { addToCart, toggleFavorite, isFavorite, setActiveBuyBoxProduct, toggleCompare, isCompared } = useStore();
 
   const [activeImage, setActiveImage] = useState<string>(product.image);
   const [isHovered, setIsHovered] = useState(false);
   const [justAdded, setJustAdded] = useState(false);
 
   const favorited = isFavorite(product.id);
+  const compared = isCompared(product.id);
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     toggleFavorite(product.id);
+  };
+
+  const handleCompareClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleCompare(product.id);
   };
 
   const handleQuickAdd = (e: React.MouseEvent) => {
@@ -52,17 +60,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuickVi
   const displayedImage =
     isHovered && product.secondaryImage ? product.secondaryImage : activeImage;
 
-  const durability = product.lifespanScore || product.enduranceIndex?.score || 9.8;
-  const sellerCount = product.offers?.length || product.verifiedSellersCount || 3;
+  const durability = product.enduranceRubric?.score || product.lifespanScore || product.enduranceIndex?.score || 9.8;
+  const sellerCount = product.offers?.length || product.verifiedSellersCount || 2;
 
   return (
     <article
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group bg-white rounded-3xl border border-[#E5E5E9] p-4 sm:p-5 flex flex-col justify-between floating-card hover:border-[#0A0A0C] hover:shadow-[0_25px_50px_-15px_rgba(0,0,0,0.12)] transition-all duration-500 relative overflow-hidden"
+      className={`group bg-white rounded-3xl border p-4 sm:p-5 flex flex-col justify-between floating-card transition-all duration-500 relative overflow-hidden ${
+        compared ? "border-amber-400 ring-2 ring-amber-400/30" : "border-[#E5E5E9] hover:border-[#0A0A0C]"
+      }`}
     >
       <div>
-        {/* Top Badges & Durability Glassmorphism Pill */}
+        {/* Top Badges & Durability Pill */}
         <div className="flex items-center justify-between mb-3 z-10 relative">
           <div className="flex items-center gap-1.5 flex-wrap">
             <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-[#64646E] bg-[#F1F1F4] border border-[#E5E5E9] px-2.5 py-0.5 rounded-full">
@@ -76,7 +86,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuickVi
           </div>
 
           <div className="flex items-center gap-1.5">
-            {/* Durability score in glassmorphism pill */}
+            {/* Compare Toggle Button */}
+            <button
+              type="button"
+              onClick={handleCompareClick}
+              className={`p-1.5 rounded-full transition-colors cursor-pointer ${
+                compared
+                  ? "bg-amber-100 text-amber-700 border border-amber-300"
+                  : "text-stone-400 hover:text-amber-600 hover:bg-stone-100"
+              }`}
+              title={compared ? "Remove from comparison" : "Add to side-by-side comparison"}
+              aria-label="Compare object"
+            >
+              <Scale className="h-3.5 w-3.5" />
+            </button>
+
+            {/* Durability score pill */}
             <span className="glass-pill inline-flex items-center gap-1 text-[10px] font-mono font-bold text-emerald-800 px-2 py-0.5 rounded-full shadow-xs">
               <ShieldCheck className="h-3 w-3 text-emerald-600" />
               <span>{durability}</span>
@@ -116,7 +141,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuickVi
 
           {/* Canonical SKU Watermark */}
           <div className="absolute bottom-2 left-2.5 text-[9px] font-mono font-bold text-[#64646E] glass-pill px-2 py-0.5 rounded shadow-xs">
-            {product.canonicalSku || "CANONICAL-SKU"}
+            {product.canonicalSku}
           </div>
         </div>
 
@@ -124,11 +149,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuickVi
         <div className="flex items-center gap-1.5 text-[11px] text-[#EA580C] font-semibold font-sans mb-1 truncate">
           <Building2 className="h-3 w-3 shrink-0 text-[#EA580C]" />
           <span className="truncate">
-            Sold by: {product.primaryVendor?.name || "Master Atelier"}
+            {product.primaryVendor.name}
           </span>
-          {product.primaryVendor?.location && (
+          {product.provenance?.origin && (
             <span className="text-[#64646E] text-[10px] font-normal">
-              ({product.primaryVendor.location.split(",")[0]})
+              ({product.provenance.origin.split(",")[0]})
             </span>
           )}
         </div>
@@ -165,7 +190,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuickVi
             onClick={handleOpenBuyBox}
             className="w-full text-left flex items-center justify-between text-[11px] text-blue-700 hover:text-[#0A0A0C] font-sans font-semibold transition-colors pt-0.5 group/seller cursor-pointer"
           >
-            <span>Available from {sellerCount} verified vendors</span>
+            <span>{sellerCount} verified node offers</span>
             <ChevronRight className="h-3 w-3 group-hover/seller:translate-x-0.5 transition-transform" />
           </button>
         </div>
@@ -173,13 +198,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuickVi
 
       {/* Action Buttons: [ Inspect Dossier / 360° ] & [ Quick Add ] */}
       <div className="pt-2 border-t border-[#E5E5E9] flex items-center gap-2">
-        <button
-          onClick={handleOpenBuyBox}
+        <Link
+          href={`/product/${product.id}`}
           className="flex-1 py-2.5 px-3 rounded-xl bg-[#F9F9FB] border border-[#E5E5E9] hover:border-[#0A0A0C] hover:bg-white text-[#0A0A0C] text-xs font-sans font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
         >
           <Eye className="h-3.5 w-3.5 text-[#64646E]" />
-          <span>Inspect 360°</span>
-        </button>
+          <span>Canonical Dossier</span>
+        </Link>
 
         <button
           onClick={handleQuickAdd}

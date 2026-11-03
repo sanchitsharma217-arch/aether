@@ -19,13 +19,13 @@ export const RITUAL_SCENARIOS: RitualScenario[] = [
     tagline: "SUITE 01 · TACTILE ANALOG FOCUS",
     title: "The Creator Workstation Suite",
     description:
-      "Engineered for deep uninterrupted focus. American black walnut desk organizer, planar acoustic monitor headphones, and natural Portuguese cork desk protection.",
+      "Engineered for deep uninterrupted focus. American black walnut desk organizer, planar acoustic monitor headphones, and natural Portuguese cork & wool desk protection.",
     scenarioPrompt: "Acoustic focus and tactile walnut desk setup for uninterrupted studio work",
     atmosphere: "Quiet cedar light, zero digital hum, warm continuous walnut grain",
     coverImage:
       "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1000&auto=format&fit=crop&q=80",
     badge: "Studio Benchmark",
-    bundleProductIds: ["prod-1", "prod-desk-companion"],
+    bundleProductIds: ["prod-1", "prod-desk-companion", "prod-cork-mat"],
     bundleDiscountPercent: 15,
   },
   {
@@ -49,28 +49,28 @@ export const RITUAL_SCENARIOS: RitualScenario[] = [
     tagline: "SUITE 03 · PERMANENT TRANSIT",
     title: "The Unhurried Commute Suite",
     description:
-      "Objects built for decades of travel. Full-grain Chicago Horween Chromexcel leather folio and Grade-5 aerospace titanium mechanical horology.",
-    scenarioPrompt: "Horween leather carryall and automatic titanium field watch",
+      "Objects built for decades of travel. Full-grain Chicago Horween leather folio, Grade-5 aerospace titanium mechanical horology, and solid turned C360 marine brass pen.",
+    scenarioPrompt: "Horween leather carryall, automatic titanium field watch, and solid brass rollerball",
     atmosphere: "Rich neatsfoot oil patina, tactile mechanical sweep, zero synthetic plastic",
     coverImage:
       "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=1000&auto=format&fit=crop&q=80",
     badge: "Patron Travel Pick",
-    bundleProductIds: ["prod-folio", "prod-2"],
+    bundleProductIds: ["prod-folio", "prod-2", "prod-brass-pen"],
     bundleDiscountPercent: 12,
   },
   {
-    id: "suite-audio",
-    tabLabel: "Audio Sanctuary",
-    tagline: "SUITE 04 · PURE ACOUSTICS",
-    title: "The Acoustic Sanctuary Suite",
+    id: "suite-slow-living",
+    tabLabel: "Slow Living & Home",
+    tagline: "SUITE 04 · CONTEMPLATIVE DWELLING",
+    title: "The Mindful Living Suite",
     description:
-      "Restorative sound and ambient calm. Planar magnetic studio monitors and Yoshino Hinoki cypress bronze mineral vessel.",
-    scenarioPrompt: "Lossless studio acoustic monitoring and calming Japanese Hinoki aromatics",
-    atmosphere: "Zero audible distortion, sub-bass fidelity, calming forest phytoncide aroma",
+      "Organic tactile domestic spaces. Belgian stonewashed Masters of Linen duvet, sand-cast Japanese contemplation bronze incense tray, and natural Yoshino Hinoki aromatics.",
+    scenarioPrompt: "Stonewashed linen bedding and cast bronze contemplation incense burner",
+    atmosphere: "Volcanic pumice washed flax, natural cypress phytoncides, quiet amber shade",
     coverImage:
-      "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=1000&auto=format&fit=crop&q=80",
-    badge: "Audiophile Standard",
-    bundleProductIds: ["prod-1", "prod-incense"],
-    bundleDiscountPercent: 15,
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1000&auto=format&fit=crop&q=80",
+    badge: "Sanctuary Standard",
+    bundleProductIds: ["prod-linen-sheets", "prod-bronze-incense"],
+    bundleDiscountPercent: 10,
   },
 ];

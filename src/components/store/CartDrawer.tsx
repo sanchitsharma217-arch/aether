@@ -263,12 +263,12 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onOpenCheckout }) => {
               </div>
 
               <div className="flex justify-between text-[#64646E]">
-                <span>Platform Escrow Protocol (7.0%)</span>
+                <span>Network Infrastructure Fee (7.0%)</span>
                 <span>${platformFee}</span>
               </div>
 
               <div className="flex justify-between text-blue-700">
-                <span>Batched 4PL Consolidated Transit</span>
+                <span>Batched Regional Node Transit</span>
                 <span className="font-bold">FREE ($0.00)</span>
               </div>
 

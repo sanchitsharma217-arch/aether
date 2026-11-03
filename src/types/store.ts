@@ -1,28 +1,75 @@
+export type CraftDepartment =
+  | "Technology & Audio"
+  | "Home & Living"
+  | "Kitchen & Culinary"
+  | "Wearables & Horology"
+  | "Accessories & EDC";
+
 export interface SellerOffer {
   id: string;
   sellerName: string;
   location: string;
   fulfillmentSpeed: string;
-  condition: "Mint / Sealed" | "Master Grade" | "Refurbished A+" | "Archival" | "Sealed New";
+  condition: "Sealed New" | "Master Grade" | "Refurbished A+" | "Archival";
   price: number;
+  warranty: string;
+  returnTerms: string;
+  nodeVerification: "Maker Direct" | "Certified Guild Vault" | "Heritage Restorer";
   isBestMatch?: boolean;
   rating?: number;
+}
+
+export interface SparePart {
+  id: string;
+  name: string;
+  partNumber: string;
+  price: number;
+  inStock: boolean;
+  replacementEase: "User-Replaceable (No Tools)" | "Modular Screw (T5 Included)" | "Workshop Service";
+  estimatedMinutesToSwap: number;
+}
+
+export interface EnduranceRubric {
+  score: number; // e.g. 9.8
+  materialIntegrity: number; // e.g. 9.9
+  modularDisassembly: number; // e.g. 9.8
+  sparePartsAvailability: number; // e.g. 9.7
+  decoupledFirmware: number; // e.g. 10.0
+  guaranteedPartsUntil: number; // e.g. 2038
+  resaleRetention: number; // e.g. 78%
+  methodologyNote: string;
+}
+
+export interface DigitalPassport {
+  batchId: string;
+  productionYear: number;
+  inspectionNode: string;
+  cryptographicHash: string;
+  materialPurity: string;
+  originCoords: string;
+}
+
+export interface WarrantyDoc {
+  duration: string; // e.g. "10-Year Guild Craftsmanship Warranty" or "Lifetime Repair"
+  summary: string;
+  replacementTerms: string;
+  repairCenter: string;
 }
 
 export interface Product {
   id: string;
   title: string;
-  category: "Tech & Audio" | "Wearables" | "Home & Living" | "Accessories" | "Footwear" | "Culinary & Living";
+  category: CraftDepartment;
   price: number;
   originalPrice?: number;
   rating: number;
   reviewsCount: number;
   inStock: boolean;
   stockCount: number;
-  stockUrgency?: string; // e.g. "Only 3 left in stock"
+  stockUrgency?: string;
   image: string;
-  secondaryImage?: string; // alternate lifestyle angle
-  colorImages?: Record<string, string>; // color to image map
+  secondaryImage?: string;
+  colorImages?: Record<string, string>;
   badge?: "Trending" | "New" | "Sale" | "Bestseller" | "Archive";
   description: string;
   features: string[];
@@ -35,34 +82,43 @@ export interface Product {
     price: number;
     image: string;
   };
-  
-  // Aether Core Pillars
-  canonicalSku?: string;
-  primaryVendor?: {
+
+  // Aether Canonical Architecture
+  canonicalSku: string;
+  primaryVendor: {
     name: string;
     location: string;
+    atelierStory?: string;
   };
-  verifiedSellersCount?: number;
-  lifespanScore?: number; // e.g. 9.8
-  durabilityYears?: number; // e.g. 10
-  offers?: SellerOffer[];
+  verifiedSellersCount: number;
+  lifespanScore: number;
+  durabilityYears: number;
+  offers: SellerOffer[];
+  spareParts?: SparePart[];
+  enduranceRubric?: EnduranceRubric;
+  digitalPassport?: DigitalPassport;
+  warrantyDoc?: WarrantyDoc;
+  intentTags?: string[];
+  intentRecommendationReason?: string;
+
   provenance?: {
     origin: string;
+    country: string;
     artisan: string;
     batch: string;
     materials: string[];
     carbonFootprint?: string;
   };
   honestyDossier?: {
-    keepRate: number; // e.g. 97.4
+    keepRate: number; // e.g. 97.4%
     returnReasons: { percentage: number; reason: string }[];
     sixMonthPatinaReport: string;
   };
   enduranceIndex?: {
-    score: number; // e.g. 9.8
+    score: number;
     repairability: string;
-    guaranteedPartsUntil: number; // e.g. 2036
-    resaleRetention: number; // e.g. 74
+    guaranteedPartsUntil: number;
+    resaleRetention: number;
   };
   workshops?: {
     id: string;

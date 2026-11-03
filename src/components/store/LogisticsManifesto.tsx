@@ -30,7 +30,7 @@ export const LogisticsManifesto: React.FC = () => {
           </h2>
 
           <p className="text-sm sm:text-base text-stone-400 max-w-2xl font-sans leading-relaxed">
-            Legacy commerce extracts 35%–45% of every transaction through forced ad bidding and fulfillment monopolies. Aether operates on a 7.0% transparent escrow protocol, routing 93.0% directly to verified craftspeople and certified guild ateliers.
+            Legacy commerce extracts 35%–45% of every transaction through forced ad bidding and fulfillment monopolies. Aether operates on a non-custodial direct merchant settlement protocol: a fixed 7.0% network fee covers routing and cryptographic verification, allowing 93.0% to settle directly with verified craftspeople and certified guild ateliers.
           </p>
         </div>
 
@@ -40,10 +40,10 @@ export const LogisticsManifesto: React.FC = () => {
           {/* Left: 3 Precision Operational Metrics (7 cols) */}
           <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div className="p-6 rounded-3xl bg-[#141418] border border-[#242429] space-y-2 floating-card-dark">
-              <div className="text-[10px] font-mono text-stone-400 uppercase tracking-wider">Platform Take Rate</div>
+              <div className="text-[10px] font-mono text-stone-400 uppercase tracking-wider">Network Platform Fee</div>
               <div className="text-3xl sm:text-4xl font-mono font-black text-emerald-400">7.0%</div>
               <div className="text-xs text-stone-400 font-sans leading-relaxed">
-                Fixed transparent escrow covering hosting, encryption, and decentralized routing.
+                Non-custodial settlement fee covering infrastructure, cryptography, and node coordination.
               </div>
             </div>
 
@@ -104,19 +104,19 @@ export const LogisticsManifesto: React.FC = () => {
 
               <div className="flex items-center justify-between py-1 border-b border-white/5">
                 <span className="text-stone-300 font-sans">Compounded Fees</span>
-                <span className="text-emerald-400 font-bold">7% Escrow</span>
+                <span className="text-emerald-400 font-bold">7% Network Fee</span>
                 <span className="text-stone-500">35% – 45% Taken</span>
               </div>
 
               <div className="flex items-center justify-between py-1 border-b border-white/5">
                 <span className="text-stone-300 font-sans">Review Authenticity</span>
-                <span className="text-emerald-400 font-bold">Zero-Noise Patina</span>
+                <span className="text-emerald-400 font-bold">Verified Ownership Only</span>
                 <span className="text-stone-500">Bot Hijacking Spikes</span>
               </div>
 
               <div className="flex items-center justify-between py-1">
                 <span className="text-stone-300 font-sans">Multi-Vendor Transit</span>
-                <span className="text-emerald-400 font-bold">Batched 4PL Mesh</span>
+                <span className="text-emerald-400 font-bold">Consolidated Regional Mesh</span>
                 <span className="text-stone-500">Separate Boxes & Fees</span>
               </div>
             </div>

@@ -36,22 +36,22 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center gap-2 sm:gap-6 truncate">
           <div className="flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-emerald-400 font-bold">[NETWORK]:</span>
-            <span className="text-stone-300">142 Certified Guilds Active</span>
+            <span className="text-emerald-400 font-bold">[PILOT ATELIERS]:</span>
+            <span className="text-stone-300">8 Certified Maker Guilds [Tranche 01]</span>
           </div>
 
           <span className="hidden md:inline text-stone-600">·</span>
 
           <div className="hidden md:flex items-center gap-1.5">
             <span className="text-amber-400 font-bold">[CANONICAL]:</span>
-            <span className="text-stone-300">Zero Sponsored Duplicates</span>
+            <span className="text-stone-300">1 Master SKU per Physical Product</span>
           </div>
 
           <span className="hidden lg:inline text-stone-600">·</span>
 
           <div className="hidden lg:flex items-center gap-1.5">
-            <span className="text-sky-400 font-bold">[CARBON]:</span>
-            <span className="text-stone-300">100% Batched Electric Delivery</span>
+            <span className="text-sky-400 font-bold">[LOGISTICS]:</span>
+            <span className="text-stone-300">Consolidated Regional Mesh [Stage 1]</span>
           </div>
         </div>
 
@@ -125,7 +125,7 @@ export const Navbar: React.FC = () => {
                         key={dept.id}
                         href="/shop"
                         onClick={() => {
-                          setSelectedCategory("All");
+                          setSelectedCategory(dept.category);
                           setIsDeptDropdownOpen(false);
                         }}
                         className="flex flex-col px-3 py-2 rounded-xl hover:bg-[#F9F9FB] transition-colors group"
@@ -133,7 +133,7 @@ export const Navbar: React.FC = () => {
                         <div className="flex items-center justify-between text-xs font-semibold text-[#0A0A0C] group-hover:text-black">
                           <span>{dept.name}</span>
                           <span className="text-[10px] font-mono text-[#64646E] bg-stone-100 px-1.5 py-0.5 rounded">
-                            {dept.count}
+                            {dept.activeCount}
                           </span>
                         </div>
                         <span className="text-[11px] text-[#64646E] line-clamp-1">{dept.desc}</span>
@@ -228,11 +228,14 @@ export const Navbar: React.FC = () => {
                 <Link
                   key={dept.id}
                   href="/shop"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => {
+                    setSelectedCategory(dept.category);
+                    setIsMobileMenuOpen(false);
+                  }}
                   className="flex items-center justify-between py-2 text-xs font-semibold text-[#121110] border-b border-stone-100"
                 >
                   <span>{dept.name}</span>
-                  <span className="text-[10px] font-mono text-[#6E6B65]">{dept.count} SKUs</span>
+                  <span className="text-[10px] font-mono text-[#6E6B65]">{dept.activeCount}</span>
                 </Link>
               ))}
             </div>

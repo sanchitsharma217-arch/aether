@@ -3,66 +3,76 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRight, Layers, Sparkles } from "lucide-react";
-import { DEPARTMENTS } from "@/data/mockProducts";
+import { CraftDepartment } from "@/types/store";
 import { useStore } from "@/context/StoreContext";
 
 export const IntentDepartments: React.FC = () => {
   const { setSelectedCategory } = useStore();
 
-  const deptCards = [
+  const deptCards: {
+    id: string;
+    title: string;
+    category: CraftDepartment;
+    tranche: string;
+    location: string;
+    image: string;
+    materials: string;
+    desc: string;
+    span: string;
+  }[] = [
     {
-      id: "hard-goods",
-      title: "Hard Goods & Foundry",
-      category: "Home & Living",
-      count: "18 SKUs",
-      location: "Lyon & Toyama",
-      image: "https://images.unsplash.com/photo-1584990347449-397a6590214a?w=1000&auto=format&fit=crop&q=90",
-      materials: "Recycled Pig Iron · Sand-Cast Bronze · Vitreous Enamel",
-      desc: "Indestructible cookware and mineral vessels cast for multi-generational hearths.",
+      id: "tech-audio",
+      title: "Technology & Audio",
+      category: "Technology & Audio",
+      tranche: "Tranche 01 · Active",
+      location: "Berlin & Zurich",
+      image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=1000&auto=format&fit=crop&q=90",
+      materials: "Planar Diaphragms · Solid American Walnut · Aircraft 6061 Alloy",
+      desc: "Reference acoustic monitors and micro-tolerance tooling with zero cloud or battery tethering.",
       span: "lg:col-span-7",
     },
     {
-      id: "audio-systems",
-      title: "Acoustic Systems",
-      category: "Tech & Audio",
-      count: "12 SKUs",
-      location: "Berlin & Miyagi",
-      image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=1000&auto=format&fit=crop&q=90",
-      materials: "Planar Beryllium · Solid American Walnut · Aircraft 6061",
-      desc: "Zero-distortion studio monitoring instruments with glue-free field modularity.",
+      id: "kitchen-culinary",
+      title: "Kitchen & Culinary",
+      category: "Kitchen & Culinary",
+      tranche: "Tranche 01 · Active",
+      location: "Champagne-Ardenne & Kochi",
+      image: "https://images.unsplash.com/photo-1584990347449-397a6590214a?w=1000&auto=format&fit=crop&q=90",
+      materials: "French Sand-Cast Iron · Hitachi Blue Paper Steel · Tokoname Clay",
+      desc: "Generational Dutch ovens, pine-charcoal forged carbon blades, and mineral pour-over ceramics.",
       span: "lg:col-span-5",
     },
     {
-      id: "living-space",
-      title: "Living Architecture",
+      id: "home-living",
+      title: "Home & Living",
       category: "Home & Living",
-      count: "24 SKUs",
-      location: "Flanders & Lancaster",
-      image: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1000&auto=format&fit=crop&q=90",
-      materials: "Belgian Flax · Continuous Heartwood Timber · Natural Beeswax",
-      desc: "Thermo-regulating long-staple bedding and continuous-grain hardwood plinths.",
+      tranche: "Tranche 01 · Active",
+      location: "Lancaster, Flanders & Évora",
+      image: "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=1000&auto=format&fit=crop&q=90",
+      materials: "Continuous Black Walnut · Masters of Linen Flax · Portuguese Cork",
+      desc: "Tactile natural fibers, single-billet desktop plinths, and circular organic desk surfaces.",
       span: "lg:col-span-4",
     },
     {
-      id: "pantry-origins",
-      title: "Pantry & Slow Extraction",
-      category: "Home & Living",
-      count: "15 SKUs",
-      location: "Tokoname & Zurich",
-      image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=1000&auto=format&fit=crop&q=90",
-      materials: "High-Reduction Stoneware · 48mm Heptagonal Steel · Hinoki Wood",
-      desc: "Mineral-rich ceramic drippers, nitrogen-hardened mills, and Aogami carbon blades.",
+      id: "wearables-horology",
+      title: "Wearables & Horology",
+      category: "Wearables & Horology",
+      tranche: "Tranche 01 · Active",
+      location: "Neuchâtel, Switzerland",
+      image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=1000&auto=format&fit=crop&q=90",
+      materials: "Grade-5 Aerospace Titanium · Double-Domed Sapphire · Super-LumiNova",
+      desc: "Self-winding mechanical movements sculpted from titanium ingots for multi-decade transit.",
       span: "lg:col-span-4",
     },
     {
-      id: "apparel-edc",
-      title: "Apparel Architecture & EDC",
-      category: "Accessories",
-      count: "19 SKUs",
-      location: "Chicago & Neuchâtel",
+      id: "accessories-edc",
+      title: "Accessories & EDC",
+      category: "Accessories & EDC",
+      tranche: "Tranche 01 · Active",
+      location: "Chicago, Paris & Solingen",
       image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=1000&auto=format&fit=crop&q=90",
-      materials: "Horween Chromexcel Steerhide · Grade-5 Titanium · Sapphire",
-      desc: "Modular pull-up folios and self-winding mechanical calibers that outlive electronics.",
+      materials: "Horween Chromexcel Steerhide · Solid C360 Brass · Braided Thread",
+      desc: "Saddle-stitched leather field folios and solid milled brass rollerballs that acquire individual patina.",
       span: "lg:col-span-4",
     },
   ];
@@ -76,14 +86,14 @@ export const IntentDepartments: React.FC = () => {
             SECTION 04 // MATERIAL GUILDS
           </span>
           <h2 className="text-3xl sm:text-4xl font-sans font-black tracking-tight text-[#0A0A0C] uppercase mt-1">
-            Departments of Craft.
+            5 Departments of Craft.
           </h2>
         </div>
         <Link
           href="/shop"
           className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#0A0A0C] hover:text-[#EA580C] transition-colors"
         >
-          <span>VIEW ALL 5 DEPARTMENTS</span>
+          <span>VIEW FULL CATALOG ARCHIVE</span>
           <ArrowRight className="h-3.5 w-3.5" />
         </Link>
       </div>
@@ -98,38 +108,44 @@ export const IntentDepartments: React.FC = () => {
             className={`group bg-white rounded-3xl overflow-hidden border border-[#E5E5E9] floating-card hover:border-[#0A0A0C] hover:shadow-2xl transition-all duration-500 flex flex-col justify-between cursor-pointer ${dept.span}`}
           >
             {/* Visual Frame */}
-            <div className="relative h-60 w-full bg-[#18181C] overflow-hidden">
-              <div
-                className="absolute inset-0 bg-cover bg-center group-hover:scale-108 transition-transform duration-700 ease-out"
-                style={{ backgroundImage: `url(${dept.image})` }}
+            <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone-100">
+              <img
+                src={dept.image}
+                alt={dept.title}
+                className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-700 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-              <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                <span className="text-[10px] font-mono font-bold glass-pill-dark text-white px-3 py-1 rounded-full shadow-md">
-                  {dept.count}
-                </span>
-                <span className="text-[10px] font-mono font-semibold text-stone-300 glass-pill-dark px-2.5 py-1 rounded-full">
-                  {dept.location}
+              {/* Badges on Visual */}
+              <div className="absolute top-4 left-4 flex items-center gap-2">
+                <span className="text-[10px] font-mono font-bold text-white bg-black/60 backdrop-blur-md px-3 py-1 rounded-full uppercase tracking-wider border border-white/20">
+                  {dept.tranche}
                 </span>
               </div>
 
-              <div className="absolute bottom-4 left-4 right-4 text-white z-10">
-                <h3 className="text-xl sm:text-2xl font-sans font-black tracking-tight uppercase">
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <div className="text-[10px] font-mono text-amber-300 uppercase tracking-widest font-bold">
+                  {dept.location}
+                </div>
+                <h3 className="text-xl sm:text-2xl font-sans font-black tracking-tight uppercase leading-snug">
                   {dept.title}
                 </h3>
               </div>
             </div>
 
-            {/* Content & Specs */}
-            <div className="p-5 sm:p-6 space-y-3">
-              <p className="text-xs text-[#64646E] line-clamp-2 leading-relaxed font-sans">
+            {/* Description & Materials Body */}
+            <div className="p-6 space-y-3 bg-white flex-1 flex flex-col justify-between">
+              <p className="text-xs text-[#64646E] leading-relaxed font-sans">
                 {dept.desc}
               </p>
 
-              <div className="pt-3 border-t border-[#E5E5E9] flex items-center justify-between text-[11px] font-mono">
-                <span className="text-[#64646E] font-medium truncate mr-2">{dept.materials}</span>
-                <ArrowRight className="h-4 w-4 text-[#0A0A0C] group-hover:translate-x-1 transition-transform shrink-0" />
+              <div className="pt-3 border-t border-[#E5E5E9] flex items-center justify-between text-[11px] font-mono text-stone-500">
+                <span className="truncate max-w-[80%] text-[10px] text-stone-600 font-sans">
+                  {dept.materials}
+                </span>
+                <span className="text-[#0A0A0C] font-bold group-hover:translate-x-1 transition-transform">
+                  →
+                </span>
               </div>
             </div>
           </Link>

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Heart, ShoppingBag, Check } from "lucide-react";
+import { Heart, ShoppingBag, Check, Scale } from "lucide-react";
 import { useStore } from "@/context/StoreContext";
 
 export const Toast: React.FC = () => {
@@ -15,6 +15,10 @@ export const Toast: React.FC = () => {
         {toast.type === "fav" ? (
           <div className="h-6 w-6 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center shrink-0">
             <Heart className="h-3.5 w-3.5 fill-rose-500 text-rose-500" />
+          </div>
+        ) : toast.type === "compare" ? (
+          <div className="h-6 w-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
+            <Scale className="h-3.5 w-3.5 text-amber-400" />
           </div>
         ) : (
           <div className="h-6 w-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">

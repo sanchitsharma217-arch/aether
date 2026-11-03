@@ -10,90 +10,106 @@
 
 ---
 
-### 🌐 Live Deployment
-**Production URL:** [https://sanchitsharma217-arch.github.io/aether/](https://sanchitsharma217-arch.github.io/aether/)
+### 🌐 Live Production Deployment
+* **Live Storefront URL:** [https://sanchitsharma217-arch.github.io/aether/](https://sanchitsharma217-arch.github.io/aether/)
+* **Canonical Catalog Archive:** [https://sanchitsharma217-arch.github.io/aether/shop](https://sanchitsharma217-arch.github.io/aether/shop)
+* **Manifesto & Governance:** [https://sanchitsharma217-arch.github.io/aether/about](https://sanchitsharma217-arch.github.io/aether/about)
 
 ---
 
-## 🏛️ Philosophy: The Anti-Amazon Paradigm Shift
+## 🏛️ Architecture: The Anti-Amazon Operating System
 
-Traditional e-commerce platforms incentivize **catalog dilution, paid-placement ads, and race-to-the-bottom disposability**. 
+Traditional e-commerce platforms suffer from **catalog dilution, paid-placement ads, fake reviews, and disposability loops**. 
 
-**AETHER** disrupts the catalog-first retail model with a high-craft, intent-first operating system designed around **Objects of Permanence**:
+**AETHER** replaces the catalog-first retail paradigm with a verified, intent-first operating system designed around **Objects of Permanence**:
 
-1. **Intent-First vs. Catalog-First**: Problem-based basket creation and cross-category discovery instead of keyword SEO traps.
-2. **Canonical 1-SKU Architecture**: One single master listing per real-world product. Merchants compete on fulfillment speed, physical condition, and price under a transparent ledger.
-3. **Meritocracy Index (Zero Ads)**: Ranking driven by verified durability, repairability score, return-to-order ratio, and post-purchase satisfaction.
-4. **Decentralized 4PL Mesh**: Dynamic regional logistics routing with micro-fulfillment nodes and verified node verification.
-
----
-
-## 🎨 Visual Identity & Design System
-
-The visual language is inspired by **Modern Swiss Graphic Design & Luxury Tech** (*SSENSE, Bang & Olufsen, Teenage Engineering, Arc'teryx*):
-
-* **Canvas**: Pure crisp white (`#FFFFFF`) with subtle architectural surface contrast (`#F9F9FB`).
-* **High Dynamic Range Ink**: Deep solid obsidian (`#0A0A0C` and `#0D0D0D`) typography and floating pill buttons with hairline borders (`#E5E5E7`).
-* **Dimensional Elevation**: Floating studio shadow curves (`box-shadow: 0 20px 40px -15px rgba(0,0,0,0.07)`).
-* **Asymmetric Layouts**: 65/35 focal hero stages, studio-lit planar objects, interactive glassmorphic hotspots, and curated setup consoles.
-
----
-
-## ⚡ Key Features
-
-* **Interactive Hero Stage**: Dimensional studio spotlight with floating planar monitors, interactive glassmorphic hotspot inspection, and multi-item Curated Setup Console.
-* **Intent-First Rituals Engine**: Interactive lifestyle builder for cross-vendor setups across *Workstation, Culinary, Acoustic Sanctuary,* and *Technical Field EDC*.
-* **65/35 Asymmetric Vault**: Gallery-grade asymmetric product presentation treating physical goods as industrial artifacts.
-* **Canonical 1-SKU Detail Experience**:
-  * Multi-merchant real-time routing ledger.
-  * Modular repairability & endurance scorecard.
-  * 4PL delivery mesh timelines and node telemetry.
-* **Interactive Shopping Bag & Drawer**: Live price calculations, persistent local storage, promo voucher redemption, and checkout simulation.
-* **Catalog Exploration (`/shop`)**: Multi-dimensional filtering by category, price threshold, stock availability, and favorites.
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 01. INTENT INTELLIGENCE ENGINE                                              │
+│ Natural-Language Lifestyle Capsules & Semantic Compatibility Reasoning      │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 02. CANONICAL 1-SKU MASTER LEDGER                                           │
+│ One Master Page per Physical Product • Multi-Vendor Verified Offers         │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 03. AETHER ENDURANCE INDEX (v2.4 STANDARD)                                  │
+│ Independent Scorecard • Modular Disassembly • Spare Parts Guaranteed        │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 04. NON-CUSTODIAL DIRECT SETTLEMENT & REGIONAL MESH                          │
+│ Transparent 7.0% Infrastructure Fee • 93.0% Directly to Maker Ateliers      │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## 🛠️ Tech Stack
+## 🔍 Credibility Framework & Capability Tiers
+
+To maintain strict institutional credibility, AETHER distinguishes between active, pilot, and planned milestones:
+
+| Capability | Tier | Status | Verification Protocol |
+| :--- | :--- | :--- | :--- |
+| **Canonical 1-SKU Pages** | `LIVE` | Active | Exactly one master page per real-world product with no duplicate clone listings. |
+| **Zero Sponsored Ads** | `LIVE` | Active | 100% merit-based shelf placement dictated by physical durability and return forensics. |
+| **Endurance Index v2.4** | `LIVE` | Active | Published 4-factor scoring rubric: Materials, Disassembly, Parts Horizon, Decoupling. |
+| **Side-by-Side Comparison** | `LIVE` | Active | Compare up to 4 objects side-by-side on materials, warranty, origin, and tolerances. |
+| **Field Spare Parts Catalog**| `LIVE` | Active | Published component catalog with part numbers, replacement ease, and swap times. |
+| **Regional Multi-Node Mesh**| `PILOT` | Tranche 01 | Multi-vendor parcel consolidation across certified hubs in Berlin, Zurich, and Tokyo. |
+| **Direct Settlement** | `PILOT` | Non-Custodial | Fixed 7.0% network fee; 93.0% settles directly to maker merchant accounts without escrow custody. |
+| **Digital Product Passport** | `STAGE 2`| Architecture Ready | Cryptographic batch hash and EU DPP-aligned material purity provenance ledger. |
+
+---
+
+## ⚖️ The 5 Unified Craft Departments
+
+AETHER unifies its entire catalog across 5 master craft departments:
+
+1. **Technology & Audio**: Planar magnetic transducers, analog audio monitors, and unibody machining with zero cloud tethering.
+2. **Home & Living**: Continuous heartwood timber plinths, Belgian Masters of Linen flax, and harvest-stripped Portuguese natural cork.
+3. **Kitchen & Culinary**: Hand-cast French Dutch ovens, Aogami blue paper carbon steel blades, and iron-dense Tokoname clay ceramics.
+4. **Wearables & Horology**: Grade-5 aerospace titanium mechanical calibers, sapphire crystals, and zero-battery automatic escapements.
+5. **Accessories & EDC**: Full-grain Horween steerhide folios, solid turned marine brass instruments, and traditional saddle stitchery.
+
+---
+
+## 🛠️ Tech Stack & Tooling
 
 * **Framework**: [Next.js 16](https://nextjs.org/) (App Router, Turbopack, Static HTML Export)
-* **UI & Core**: [React 19](https://react.dev/), [TypeScript](https://www.typescriptlang.org/)
+* **UI & Core**: [React 19](https://react.dev/), [TypeScript 5](https://www.typescriptlang.org/)
 * **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
 * **Animations**: [Framer Motion](https://www.framer.com/motion/)
 * **Icons**: [Lucide React](https://lucide.dev/)
-* **Deployment & CI/CD**: [GitHub Pages](https://pages.github.com/) via automated GitHub Actions
+* **CI/CD**: GitHub Actions deploying to [GitHub Pages](https://pages.github.com/)
 
 ---
 
 ## 🚀 Getting Started
 
-### Prerequisites
-* Node.js 20+
-* npm, yarn, or pnpm
-
-### Installation
+### Local Development
 
 ```bash
 # Clone the repository
 git clone https://github.com/sanchitsharma217-arch/aether.git
 
-# Navigate to project directory
+# Navigate into project directory
 cd aether
 
 # Install dependencies
 npm install
 
+# Run TypeScript check
+npm run type-check
+
 # Start development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Visit [http://localhost:3000](http://localhost:3000) to inspect the local development build.
 
-### Building for Production / Static Export
+### Production Build & Static Export
 
 ```bash
 npm run build
 ```
-Build output is generated in `./out` ready for deployment to any static host (GitHub Pages, Vercel, Netlify, Cloudflare Pages, S3).
+Generates optimized static HTML in `./out` with zero server-side runtime dependencies.
 
 ---
 

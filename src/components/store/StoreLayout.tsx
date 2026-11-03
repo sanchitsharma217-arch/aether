@@ -9,6 +9,8 @@ import { CartDrawer } from "@/components/store/CartDrawer";
 import { ProductModal } from "@/components/store/ProductModal";
 import { BuyBoxDrawer } from "@/components/store/BuyBoxDrawer";
 import { CheckoutModal } from "@/components/store/CheckoutModal";
+import { ProductComparisonModal } from "@/components/store/ProductComparisonModal";
+import { ComparisonDock } from "@/components/store/ComparisonDock";
 import { Toast } from "@/components/store/Toast";
 import { Product } from "@/types/store";
 
@@ -42,6 +44,8 @@ export const StoreLayout: React.FC<{ children: React.ReactNode }> = ({ children 
           isOpen={isCheckoutOpen}
           onClose={() => setIsCheckoutOpen(false)}
         />
+        <ProductComparisonModal />
+        <ComparisonDock />
         <Toast />
       </div>
     </StoreProvider>
