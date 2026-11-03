@@ -44,11 +44,20 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
       <div className="fixed inset-0" onClick={handleCloseAll} />
 
       <div className="relative w-full max-w-3xl max-h-[92vh] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden z-10 animate-in zoom-in-95 text-stone-900">
+        {/* Top Sandbox Notice Banner */}
+        <div className="px-6 py-2 bg-amber-500/10 border-b border-amber-500/20 text-amber-900 text-[11px] font-mono flex items-center justify-between">
+          <span className="flex items-center gap-1.5 font-bold">
+            <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
+            SIMULATED CHECKOUT PROTOCOL · SANDBOX ENVIRONMENT
+          </span>
+          <span className="text-amber-800 text-[10px] hidden sm:inline">No real payment cards or financial accounts will be charged</span>
+        </div>
+
         {/* Top Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-stone-100 bg-stone-50/70">
           <div className="flex items-center gap-2 text-xs font-semibold text-stone-700">
             <Lock className="h-4 w-4 text-emerald-600" />
-            <span>Encrypted Express Checkout</span>
+            <span>Non-Custodial Direct Settlement Simulator</span>
           </div>
           <button
             onClick={handleCloseAll}
@@ -67,14 +76,14 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
               </div>
 
               <div className="space-y-1">
-                <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">
-                  Order #NOV-84920 Confirmed
+                <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest font-mono">
+                  Simulated Order #NOV-84920 Authorized
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-stone-900">
-                  Thank you for your purchase!
+                  Direct Maker Allocation Confirmed
                 </h3>
                 <p className="text-stone-600 text-sm max-w-md mx-auto leading-relaxed">
-                  We&apos;ve received your order and sent a confirmation receipt with tracking details to{" "}
+                  This demonstration simulated non-custodial direct merchant settlement: 93% allocated directly to verified guild ateliers with a 7% network routing fee. A simulated confirmation was sent to{" "}
                   <span className="font-semibold text-stone-900">{formData.email}</span>.
                 </p>
               </div>
@@ -170,16 +179,21 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
                 {/* Payment Selection Mock */}
                 <div className="pt-2 border-t space-y-2">
                   <h4 className="text-sm font-bold text-stone-900 uppercase tracking-wider">
-                    Payment Method
+                    Settlement Protocol
                   </h4>
-                  <div className="p-3 rounded-xl border border-stone-900 bg-stone-50 flex items-center justify-between text-xs">
+                  <div className="p-3.5 rounded-xl border border-stone-900 bg-stone-50 flex items-center justify-between text-xs">
                     <div className="flex items-center gap-2">
-                      <div className="h-6 w-10 bg-stone-900 rounded text-white text-[9px] font-bold flex items-center justify-center">
-                        CARD
+                      <div className="h-6 px-2 bg-stone-900 rounded text-emerald-400 text-[10px] font-mono font-bold flex items-center justify-center">
+                        93% / 7%
                       </div>
-                      <span className="font-semibold text-stone-900">Credit Card ending in 4242</span>
+                      <div className="space-y-0.5">
+                        <span className="font-semibold text-stone-900 block">Direct Merchant Settlement Protocol</span>
+                        <span className="text-[10px] text-stone-500 font-mono block">93% Direct Maker Payout · 7% Network Fee</span>
+                      </div>
                     </div>
-                    <span className="text-emerald-700 font-bold">✓ Ready</span>
+                    <span className="text-emerald-700 font-mono font-bold text-[11px] bg-emerald-100/80 px-2 py-0.5 rounded">
+                      Demo Mode
+                    </span>
                   </div>
                 </div>
               </div>
@@ -236,12 +250,12 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
                     className="w-full py-3.5 px-4 rounded-xl bg-stone-900 hover:bg-stone-800 text-white font-semibold text-xs tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-98"
                   >
                     <Sparkles className="h-4 w-4 text-amber-300" />
-                    <span>Pay ${total.toFixed(2)}</span>
+                    <span>Authorize Simulated Order (${total.toFixed(2)})</span>
                   </button>
 
-                  <div className="text-[10px] text-stone-400 text-center flex items-center justify-center gap-1">
-                    <ShieldCheck className="h-3 w-3" />
-                    <span>Backed by 30-Day Money-Back Guarantee</span>
+                  <div className="text-[10px] text-stone-500 text-center flex items-center justify-center gap-1 font-mono">
+                    <ShieldCheck className="h-3 w-3 text-emerald-600" />
+                    <span>Non-Custodial Direct Settlement · 30-Day Evaluation Period</span>
                   </div>
                 </div>
               </div>

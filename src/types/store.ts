@@ -5,6 +5,24 @@ export type CraftDepartment =
   | "Wearables & Horology"
   | "Accessories & EDC";
 
+export interface CertifiedGuild {
+  id: string;
+  name: string;
+  location: string;
+  specialty: string;
+  foundedYear: number;
+  activeCraftspeople: number;
+  pilotTranche: string;
+}
+
+export interface InventoryLedger {
+  totalUnits: number; // Total physical batch produced across all nodes
+  availableUnits: number; // Immediately available across active competing nodes
+  reservedUnits: number; // Quality inspection / transit buffer reserve
+  outOfStockUnits: number; // Archival holds / depleted past tranches
+  activeOffersCount: number; // Number of competing nodes offering this SKU
+}
+
 export interface SellerOffer {
   id: string;
   sellerName: string;
@@ -12,7 +30,8 @@ export interface SellerOffer {
   fulfillmentSpeed: string;
   condition: "Sealed New" | "Master Grade" | "Refurbished A+" | "Archival";
   price: number;
-  stockAllocation?: number;
+  stockAllocation?: number; // Available inventory specifically held at this fulfillment depot
+  reservedAllocation?: number; // Reserve buffer held at this depot
   warranty: string;
   returnTerms: string;
   nodeVerification: "Maker Direct" | "Certified Guild Vault" | "Heritage Restorer";
@@ -32,6 +51,14 @@ export interface VerifiedReview {
   helpfulCount: number;
 }
 
+export interface RatingDistribution {
+  stars5: number; // e.g. 92%
+  stars4: number; // e.g. 6%
+  stars3: number; // e.g. 2%
+  stars2: number; // 0%
+  stars1: number; // 0%
+}
+
 export interface SparePart {
   id: string;
   name: string;
@@ -40,6 +67,19 @@ export interface SparePart {
   inStock: boolean;
   replacementEase: "User-Replaceable (No Tools)" | "Modular Screw (T5 Included)" | "Workshop Service";
   estimatedMinutesToSwap: number;
+}
+
+export interface EnduranceBreakdown {
+  score: number; // composite weighted score e.g. 9.8
+  materials: { score: number; weight: number; notes: string };
+  repairability: { score: number; weight: number; notes: string };
+  disassembly: { score: number; weight: number; notes: string };
+  spareParts: { score: number; weight: number; notes: string };
+  warranty: { score: number; weight: number; notes: string };
+  lifecycle: { score: number; weight: number; notes: string };
+  guaranteedPartsUntil: number; // e.g. 2038
+  resaleRetention: number; // e.g. 78%
+  evidenceSource: string; // transparent citation of internal atelier benchmark
 }
 
 export interface EnduranceRubric {
@@ -51,6 +91,14 @@ export interface EnduranceRubric {
   guaranteedPartsUntil: number; // e.g. 2038
   resaleRetention: number; // e.g. 78%
   methodologyNote: string;
+}
+
+export interface ReturnEligibility {
+  evaluationPeriodDays: number; // e.g. 30
+  eligibilityTerms: string;
+  conditionRequired: string;
+  restockingFee: string; // e.g. "$0 (Zero Restocking Fee)"
+  returnShippingCoverage: string; // e.g. "Prepaid low-impact carbon-neutral return crate provided"
 }
 
 export interface DigitalPassport {
@@ -82,9 +130,12 @@ export interface Product {
   rating: number;
   reviewsCount: number;
   verifiedReviews?: VerifiedReview[];
+  ratingDistribution?: RatingDistribution;
   inStock: boolean;
   stockCount: number;
   stockUrgency?: string;
+  inventoryLedger?: InventoryLedger;
+  returnEligibility?: ReturnEligibility;
   image: string;
   secondaryImage?: string;
   colorImages?: Record<string, string>;
@@ -113,6 +164,7 @@ export interface Product {
   durabilityYears: number;
   offers: SellerOffer[];
   spareParts?: SparePart[];
+  enduranceBreakdown?: EnduranceBreakdown;
   enduranceRubric?: EnduranceRubric;
   digitalPassport?: DigitalPassport;
   warrantyDoc?: WarrantyDoc;

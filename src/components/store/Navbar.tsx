@@ -118,7 +118,7 @@ export const Navbar: React.FC = () => {
                     className="absolute left-0 top-full mt-2 w-72 rounded-2xl bg-white border border-[#E5E5E9] shadow-2xl p-2 z-50 floating-card"
                   >
                     <div className="text-[10px] font-mono uppercase text-[#64646E] px-3 py-1.5 font-bold tracking-wider border-b border-[#E5E5E9] mb-1">
-                      5 Canonical Guilds
+                      5 Curated Departments
                     </div>
                     {DEPARTMENTS.map((dept) => (
                       <Link

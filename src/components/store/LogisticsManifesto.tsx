@@ -122,7 +122,7 @@ export const LogisticsManifesto: React.FC = () => {
             </div>
 
             <div className="pt-3 border-t border-white/10 text-[11px] text-stone-400 font-sans leading-relaxed">
-              ✦ Built for objects that outlive disposable trends. Every order consolidates independent ateliers into a unified carbon-batched delivery drop.
+              ✦ Built for objects that outlive disposable trends. Orders within Tranche 01 pilot corridors consolidate multi-origin ateliers into a unified carbon-batched drop; outer-region orders ship direct from maker depots.
             </div>
           </div>
 

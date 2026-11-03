@@ -50,7 +50,7 @@ export const Footer: React.FC = () => {
               </span>
               <span className="flex items-center gap-1.5">
                 <Truck className="h-3.5 w-3.5 text-[#1E3A8A]" />
-                100% Batched 4PL
+                Pilot 4PL Regional Mesh
               </span>
             </div>
           </div>
@@ -112,14 +112,14 @@ export const Footer: React.FC = () => {
           {/* Column 2: Verified Guilds & Ateliers */}
           <div className="space-y-3">
             <h5 className="font-mono font-bold text-white uppercase tracking-wider text-[11px]">
-              Verified Guilds
+              Verified Guilds (Tranche 01)
             </h5>
             <ul className="space-y-2 text-stone-400 font-sans">
-              <li><Link href="/shop" className="hover:text-white transition-colors">Sonic Laboratories (Berlin)</Link></li>
-              <li><Link href="/shop" className="hover:text-white transition-colors">Atelier de Fonte (Lyon)</Link></li>
+              <li><Link href="/shop" className="hover:text-white transition-colors">Sonic Laboratories (Zurich / Berlin)</Link></li>
+              <li><Link href="/shop" className="hover:text-white transition-colors">Tosa Smithing Guild (Kochi)</Link></li>
+              <li><Link href="/shop" className="hover:text-white transition-colors">Timber & Joinery Guild (Lancaster)</Link></li>
+              <li><Link href="/shop" className="hover:text-white transition-colors">Tokoname Ceramic Guild (Aichi)</Link></li>
               <li><Link href="/shop" className="hover:text-white transition-colors">Chicago Tanner Guild (USA)</Link></li>
-              <li><Link href="/shop" className="hover:text-white transition-colors">Alpine Precision Horology (Zurich)</Link></li>
-              <li><Link href="/shop" className="hover:text-white transition-colors">Kenjiro Yamada Kiln (Tokoname)</Link></li>
             </ul>
           </div>
 
@@ -158,12 +158,12 @@ export const Footer: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <span className="text-stone-400">Pilot Guilds</span>
-                <span className="text-amber-300 font-bold">8 Verified [Tranche 01]</span>
+                <span className="text-amber-300 font-bold">8 Verified [Tranche 01 Pilot]</span>
               </div>
 
               <div className="flex items-center justify-between pt-1 border-t border-white/10 text-[10px]">
                 <span className="text-stone-500">Settlement</span>
-                <span className="text-sky-300">Non-Custodial Direct</span>
+                <span className="text-sky-300">Non-Custodial Direct (Sandbox)</span>
               </div>
             </div>
           </div>

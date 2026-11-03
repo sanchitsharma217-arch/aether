@@ -31,10 +31,10 @@ export const TrustGrid: React.FC = () => {
       tagColor: "text-blue-800 bg-blue-50 border border-blue-200",
       icon: Truck,
       title: "Consolidated Multi-Vendor Delivery",
-      subtitle: "Batched Regional Node Logistics",
-      desc: "Order across independent guilds in Tokyo, Berlin, and Zurich in a single checkout. Our pilot regional mesh batches multi-origin items into consolidated drops to reduce shipping waste and fees.",
+      subtitle: "Batched Regional Node Logistics [Tranche 01 Pilot]",
+      desc: "Multi-origin orders originating within our 8 pilot atelier corridors (Tokyo, Zurich, Berlin, Lancaster, Chicago, Aichi, Alentejo, Nagasaki) are consolidated at regional nodes into a unified low-impact drop. Outer-region orders dispatch directly from maker ateliers.",
       stat: "1 Unified Drop",
-      statLabel: "Batched regional dispatch coverage",
+      statLabel: "Tranche 01 pilot corridors",
     },
   ];
 

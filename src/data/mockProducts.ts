@@ -1,9 +1,68 @@
 import { Product, CraftDepartment } from "@/types/store";
+export { CERTIFIED_GUILDS } from "./certifiedGuilds";
 
 export const PRODUCTS: Product[] = [
   // 01. Technology & Audio — Planar Monitors
   {
     id: "prod-1",
+    // METADATA_prod-1
+    inventoryLedger: {
+      "totalUnits": 8,
+      "availableUnits": 5,
+      "reservedUnits": 2,
+      "outOfStockUnits": 1,
+      "activeOffersCount": 3
+},
+    enduranceBreakdown: {
+      "score": 9.8,
+      "materials": {
+            "score": 9.9,
+            "weight": 0.25,
+            "notes": "Aviation-grade aluminum gimbals & solid European walnut acoustic chambers"
+      },
+      "repairability": {
+            "score": 9.7,
+            "weight": 0.2,
+            "notes": "Modular planar drivers and user-swappable lambskin ear cushions"
+      },
+      "disassembly": {
+            "score": 9.8,
+            "weight": 0.15,
+            "notes": "Standard metric T5 Torx fasteners; zero ultrasonic welding"
+      },
+      "spareParts": {
+            "score": 9.7,
+            "weight": 0.15,
+            "notes": "Transducer diaphragms, headbands, and cables inventoried through 2038"
+      },
+      "warranty": {
+            "score": 9.6,
+            "weight": 0.15,
+            "notes": "10-Year Guild Craftsmanship Warranty on all moving gimbals and drivers"
+      },
+      "lifecycle": {
+            "score": 10,
+            "weight": 0.1,
+            "notes": "Pure analog passive transducers; zero obsolescent Bluetooth silicon"
+      },
+      "guaranteedPartsUntil": 2038,
+      "resaleRetention": 78,
+      "evidenceSource": "Internal Atelier Engineering Benchmark & Acoustic Stress Testing (Self-Reported Benchmark Metrics, Verified by Master Guild Protocol)"
+},
+    ratingDistribution: {
+      "stars5": 93,
+      "stars4": 5,
+      "stars3": 2,
+      "stars2": 0,
+      "stars1": 0
+},
+    returnEligibility: {
+      "evaluationPeriodDays": 30,
+      "eligibilityTerms": "30-day unhurried studio evaluation; full refund upon receipt",
+      "conditionRequired": "Unaltered drivers; expected minor headband leather break-in acceptable",
+      "restockingFee": "$0 (Zero Restocking Fee)",
+      "returnShippingCoverage": "Prepaid carbon-neutral return crate provided within Tranche 01 corridors"
+},
     title: "H-01 Open-Back Planar Studio Monitors",
     category: "Technology & Audio",
     price: 340,
@@ -209,6 +268,64 @@ export const PRODUCTS: Product[] = [
   // 02. Kitchen & Culinary — French Dutch Oven
   {
     id: "prod-dutch-oven",
+    // METADATA_prod-dutch-oven
+    inventoryLedger: {
+      "totalUnits": 10,
+      "availableUnits": 8,
+      "reservedUnits": 2,
+      "outOfStockUnits": 0,
+      "activeOffersCount": 3
+},
+    enduranceBreakdown: {
+      "score": 9.9,
+      "materials": {
+            "score": 10,
+            "weight": 0.25,
+            "notes": "Sand-cast virgin iron core with high-density vitreous porcelain enamel"
+      },
+      "repairability": {
+            "score": 9.8,
+            "weight": 0.2,
+            "notes": "Indestructible monobloc casting; replaceable stainless steel lid knob"
+      },
+      "disassembly": {
+            "score": 10,
+            "weight": 0.15,
+            "notes": "Single-piece cast construction with single-screw removable lid finial"
+      },
+      "spareParts": {
+            "score": 9.8,
+            "weight": 0.15,
+            "notes": "Replacement cast finials and silicone gaskets guaranteed through 2074"
+      },
+      "warranty": {
+            "score": 10,
+            "weight": 0.15,
+            "notes": "Lifetime foundry guarantee against thermal stress and enamel cracking"
+      },
+      "lifecycle": {
+            "score": 10,
+            "weight": 0.1,
+            "notes": "Generational heirlooms designed for 100+ years of continuous stovetop use"
+      },
+      "guaranteedPartsUntil": 2074,
+      "resaleRetention": 84,
+      "evidenceSource": "Internal Atelier Engineering Benchmark & Thermal Shock Stress Testing (Self-Reported Benchmark Metrics, Verified by Master Guild Protocol)"
+},
+    ratingDistribution: {
+      "stars5": 95,
+      "stars4": 4,
+      "stars3": 1,
+      "stars2": 0,
+      "stars1": 0
+},
+    returnEligibility: {
+      "evaluationPeriodDays": 30,
+      "eligibilityTerms": "30-day culinary home trial; full refund upon receipt",
+      "conditionRequired": "Enamel intact without abrasive metal gouges",
+      "restockingFee": "$0 (Zero Restocking Fee)",
+      "returnShippingCoverage": "Prepaid protective crate provided within Tranche 01 corridors"
+},
     title: "French Enameled Cast Iron Dutch Oven 5.5 Qt",
     category: "Kitchen & Culinary",
     price: 285,
@@ -382,6 +499,64 @@ export const PRODUCTS: Product[] = [
   // 03. Accessories & EDC — Leather Folio
   {
     id: "prod-folio",
+    // METADATA_prod-folio
+    inventoryLedger: {
+      "totalUnits": 16,
+      "availableUnits": 12,
+      "reservedUnits": 3,
+      "outOfStockUnits": 1,
+      "activeOffersCount": 2
+},
+    enduranceBreakdown: {
+      "score": 9.8,
+      "materials": {
+            "score": 10,
+            "weight": 0.25,
+            "notes": "5.5oz vegetable-tanned steerhide steeped in tree-bark liquors for 60 days"
+      },
+      "repairability": {
+            "score": 9.8,
+            "weight": 0.2,
+            "notes": "Two-needle hand saddle-stitch repairable with waxed linen cord"
+      },
+      "disassembly": {
+            "score": 9.6,
+            "weight": 0.15,
+            "notes": "Solid brass rivets and open gusset panels; zero synthetic interior linings"
+      },
+      "spareParts": {
+            "score": 9.6,
+            "weight": 0.15,
+            "notes": "Replacement elastic retention bands and brass snap studs through 2048"
+      },
+      "warranty": {
+            "score": 9.8,
+            "weight": 0.15,
+            "notes": "25-Year Saddlery Thread & Leather Guarantee covering all seam integrity"
+      },
+      "lifecycle": {
+            "score": 10,
+            "weight": 0.1,
+            "notes": "Develops rich deep patina over decades without fiber delamination"
+      },
+      "guaranteedPartsUntil": 2048,
+      "resaleRetention": 79,
+      "evidenceSource": "Internal Atelier Engineering Benchmark & Tensile Stitch Testing (Self-Reported Benchmark Metrics, Verified by Master Guild Protocol)"
+},
+    ratingDistribution: {
+      "stars5": 93,
+      "stars4": 5,
+      "stars3": 2,
+      "stars2": 0,
+      "stars1": 0
+},
+    returnEligibility: {
+      "evaluationPeriodDays": 30,
+      "eligibilityTerms": "30-day unhurried evaluation; full refund upon receipt",
+      "conditionRequired": "Clean leather surfaces; natural grain variations welcomed",
+      "restockingFee": "$0 (Zero Restocking Fee)",
+      "returnShippingCoverage": "Prepaid protective mailer provided within Tranche 01 corridors"
+},
     title: "Full-Grain Leather Field Folio & Organizer",
     category: "Accessories & EDC",
     price: 185,
@@ -541,6 +716,64 @@ export const PRODUCTS: Product[] = [
   // 04. Wearables & Horology — Titanium Field Watch
   {
     id: "prod-2",
+    // METADATA_prod-2
+    inventoryLedger: {
+      "totalUnits": 9,
+      "availableUnits": 6,
+      "reservedUnits": 2,
+      "outOfStockUnits": 1,
+      "activeOffersCount": 2
+},
+    enduranceBreakdown: {
+      "score": 9.9,
+      "materials": {
+            "score": 10,
+            "weight": 0.25,
+            "notes": "Grade-5 titanium monobloc case & double-domed anti-reflective sapphire"
+      },
+      "repairability": {
+            "score": 9.8,
+            "weight": 0.2,
+            "notes": "Universal Swiss automatic caliber serviceable by any certified watchmaker"
+      },
+      "disassembly": {
+            "score": 9.8,
+            "weight": 0.15,
+            "notes": "Threaded display caseback with Viton O-ring gasket; modular movement ring"
+      },
+      "spareParts": {
+            "score": 9.8,
+            "weight": 0.15,
+            "notes": "Crown stems, mainsprings, and escapement parts guaranteed through 2055"
+      },
+      "warranty": {
+            "score": 10,
+            "weight": 0.15,
+            "notes": "10-Year Swiss Caliber Warranty including complimentary 5-year overhaul"
+      },
+      "lifecycle": {
+            "score": 10,
+            "weight": 0.1,
+            "notes": "Self-winding mechanical caliber requiring zero lithium battery replacements"
+      },
+      "guaranteedPartsUntil": 2055,
+      "resaleRetention": 82,
+      "evidenceSource": "Internal Atelier Horological Benchmark & Pressure Tank Testing (Self-Reported Benchmark Metrics, Verified by Master Guild Protocol)"
+},
+    ratingDistribution: {
+      "stars5": 96,
+      "stars4": 3,
+      "stars3": 1,
+      "stars2": 0,
+      "stars1": 0
+},
+    returnEligibility: {
+      "evaluationPeriodDays": 30,
+      "eligibilityTerms": "30-day chronometer trial; full refund upon return",
+      "conditionRequired": "Case and sapphire free of drops; timekeeping within ±5s/day",
+      "restockingFee": "$0 (Zero Restocking Fee)",
+      "returnShippingCoverage": "Prepaid armored transit mailer provided within Tranche 01 corridors"
+},
     title: "Field Horology Mechanical Titanium Automatic",
     category: "Wearables & Horology",
     price: 420,
@@ -711,6 +944,64 @@ export const PRODUCTS: Product[] = [
   // 05. Kitchen & Culinary — Japanese Santoku
   {
     id: "prod-santoku",
+    // METADATA_prod-santoku
+    inventoryLedger: {
+      "totalUnits": 5,
+      "availableUnits": 4,
+      "reservedUnits": 1,
+      "outOfStockUnits": 0,
+      "activeOffersCount": 2
+},
+    enduranceBreakdown: {
+      "score": 9.9,
+      "materials": {
+            "score": 10,
+            "weight": 0.25,
+            "notes": "Aogami #2 high-carbon core forge-welded between soft iron protective cladding"
+      },
+      "repairability": {
+            "score": 10,
+            "weight": 0.2,
+            "notes": "Easily sharpened on waterstones; profile repairable across 70+ years of use"
+      },
+      "disassembly": {
+            "score": 9.6,
+            "weight": 0.15,
+            "notes": "Traditional friction wa handle replaceable without heat damage to temper"
+      },
+      "spareParts": {
+            "score": 9.8,
+            "weight": 0.15,
+            "notes": "Replacement charred chestnut handles and horn ferrules through 2050"
+      },
+      "warranty": {
+            "score": 10,
+            "weight": 0.15,
+            "notes": "Lifetime blacksmith core integrity guarantee by Tosa smiths"
+      },
+      "lifecycle": {
+            "score": 10,
+            "weight": 0.1,
+            "notes": "High carbon edge retention outlasts stainless steel by 4:1 before re-honing"
+      },
+      "guaranteedPartsUntil": 2050,
+      "resaleRetention": 84,
+      "evidenceSource": "Internal Atelier Blacksmith Benchmark & Rockwell Hardness Testing (Self-Reported Benchmark Metrics, Verified by Master Guild Protocol)"
+},
+    ratingDistribution: {
+      "stars5": 95,
+      "stars4": 4,
+      "stars3": 1,
+      "stars2": 0,
+      "stars1": 0
+},
+    returnEligibility: {
+      "evaluationPeriodDays": 30,
+      "eligibilityTerms": "30-day culinary knife evaluation; full refund upon return",
+      "conditionRequired": "Blade intact without chipping; oiled with camellia oil before repacking",
+      "restockingFee": "$0 (Zero Restocking Fee)",
+      "returnShippingCoverage": "Prepaid blade-safe wooden transit sleeve provided within Tranche 01 corridors"
+},
     title: "Hand-Forged Aogami Blue Steel Santoku 180mm",
     category: "Kitchen & Culinary",
     price: 210,
@@ -860,6 +1151,64 @@ export const PRODUCTS: Product[] = [
   // 06. Home & Living — Solid Walnut Desk Companion & Plinth
   {
     id: "prod-desk-companion",
+    // METADATA_prod-desk-companion
+    inventoryLedger: {
+      "totalUnits": 18,
+      "availableUnits": 14,
+      "reservedUnits": 3,
+      "outOfStockUnits": 1,
+      "activeOffersCount": 2
+},
+    enduranceBreakdown: {
+      "score": 9.8,
+      "materials": {
+            "score": 10,
+            "weight": 0.25,
+            "notes": "FSC-certified kiln-dried American black walnut billet with solid C360 brass inlays"
+      },
+      "repairability": {
+            "score": 9.8,
+            "weight": 0.2,
+            "notes": "Solid hardwood surfaces sandable and re-oilable infinitely with natural wax"
+      },
+      "disassembly": {
+            "score": 9.6,
+            "weight": 0.15,
+            "notes": "Precision friction mortise fit; zero toxic urea-formaldehyde glues"
+      },
+      "spareParts": {
+            "score": 9.6,
+            "weight": 0.15,
+            "notes": "Acoustic cork footing pads and brass pen rest inlays guaranteed through 2045"
+      },
+      "warranty": {
+            "score": 9.8,
+            "weight": 0.15,
+            "notes": "20-Year Natural Timber Split Warranty with $25 flat lifetime re-sanding"
+      },
+      "lifecycle": {
+            "score": 10,
+            "weight": 0.1,
+            "notes": "50+ year expected functional life; natural oil finish patinas gracefully"
+      },
+      "guaranteedPartsUntil": 2045,
+      "resaleRetention": 79,
+      "evidenceSource": "Internal Atelier Woodworking Benchmark & Moisture Chamber Testing (Self-Reported Benchmark Metrics, Verified by Master Guild Protocol)"
+},
+    ratingDistribution: {
+      "stars5": 94,
+      "stars4": 5,
+      "stars3": 1,
+      "stars2": 0,
+      "stars1": 0
+},
+    returnEligibility: {
+      "evaluationPeriodDays": 30,
+      "eligibilityTerms": "30-day studio workspace evaluation; full refund upon return",
+      "conditionRequired": "Intact wood grain without deep gouges or water submersion",
+      "restockingFee": "$0 (Zero Restocking Fee)",
+      "returnShippingCoverage": "Prepaid carbon-neutral crate provided within Tranche 01 corridors"
+},
     title: "Solid American Black Walnut Desk Companion & Plinth",
     category: "Home & Living",
     price: 135,
@@ -1068,6 +1417,64 @@ export const PRODUCTS: Product[] = [
   // 07. Home & Living — Portuguese Natural Cork & Merino Desk Pad (THE SUITE BUILDER FIX!)
   {
     id: "prod-cork-mat",
+    // METADATA_prod-cork-mat
+    inventoryLedger: {
+      "totalUnits": 28,
+      "availableUnits": 22,
+      "reservedUnits": 4,
+      "outOfStockUnits": 2,
+      "activeOffersCount": 2
+},
+    enduranceBreakdown: {
+      "score": 9.7,
+      "materials": {
+            "score": 9.8,
+            "weight": 0.25,
+            "notes": "Hand-stripped Quercus Suber cork and OEKO-TEX certified merino wool felt"
+      },
+      "repairability": {
+            "score": 9.6,
+            "weight": 0.2,
+            "notes": "Self-healing cork cellular structure; water-resistant surface treatment"
+      },
+      "disassembly": {
+            "score": 9.7,
+            "weight": 0.15,
+            "notes": "Natural latex adhesive bonding; 100% biodegradable compostable at end of life"
+      },
+      "spareParts": {
+            "score": 9.6,
+            "weight": 0.15,
+            "notes": "Pre-cut replacement adhesive edge corners guaranteed through 2038"
+      },
+      "warranty": {
+            "score": 9.6,
+            "weight": 0.15,
+            "notes": "10-Year Cellular Integrity Warranty against flaking or disintegration"
+      },
+      "lifecycle": {
+            "score": 9.8,
+            "weight": 0.1,
+            "notes": "15+ year continuous desk lifespan with natural stain and heat resistance"
+      },
+      "guaranteedPartsUntil": 2038,
+      "resaleRetention": 75,
+      "evidenceSource": "Internal Atelier Material Benchmark & Abrasion Resistance Testing (Self-Reported Benchmark Metrics, Verified by Master Guild Protocol)"
+},
+    ratingDistribution: {
+      "stars5": 92,
+      "stars4": 6,
+      "stars3": 2,
+      "stars2": 0,
+      "stars1": 0
+},
+    returnEligibility: {
+      "evaluationPeriodDays": 30,
+      "eligibilityTerms": "30-day desk ergonomics trial; full refund upon return",
+      "conditionRequired": "Clean surface free of ink stains or deep cuts",
+      "restockingFee": "$0 (Zero Restocking Fee)",
+      "returnShippingCoverage": "Prepaid protective roll tube provided within Tranche 01 corridors"
+},
     title: "Portuguese Natural Cork & Merino Wool Desk Pad",
     category: "Home & Living",
     price: 55,
@@ -1212,6 +1619,64 @@ export const PRODUCTS: Product[] = [
   // 08. Kitchen & Culinary — Tokoname Clay Pour-Over Dripper
   {
     id: "prod-brewer",
+    // METADATA_prod-brewer
+    inventoryLedger: {
+      "totalUnits": 10,
+      "availableUnits": 7,
+      "reservedUnits": 2,
+      "outOfStockUnits": 1,
+      "activeOffersCount": 2
+},
+    enduranceBreakdown: {
+      "score": 9.8,
+      "materials": {
+            "score": 10,
+            "weight": 0.25,
+            "notes": "Iron-rich reduction-fired Tokoname red stoneware clay with zero chemical glazes"
+      },
+      "repairability": {
+            "score": 9.6,
+            "weight": 0.2,
+            "notes": "Traditional Kintsugi lacquer repair supported by Tokoname atelier network"
+      },
+      "disassembly": {
+            "score": 10,
+            "weight": 0.15,
+            "notes": "Monolithic ceramic vessel; zero glued sub-components or metal seams"
+      },
+      "spareParts": {
+            "score": 9.6,
+            "weight": 0.15,
+            "notes": "Precision hand-turned brass dripper collar mounts through 2045"
+      },
+      "warranty": {
+            "score": 9.8,
+            "weight": 0.15,
+            "notes": "15-Year Kiln Integrity Guarantee against thermal shock cracking"
+      },
+      "lifecycle": {
+            "score": 10,
+            "weight": 0.1,
+            "notes": "Indefinite ceramic lifespan; minerals subtly soften coffee acidity over time"
+      },
+      "guaranteedPartsUntil": 2045,
+      "resaleRetention": 80,
+      "evidenceSource": "Internal Atelier Ceramic Benchmark & Thermal Cycle Testing (Self-Reported Benchmark Metrics, Verified by Master Guild Protocol)"
+},
+    ratingDistribution: {
+      "stars5": 95,
+      "stars4": 4,
+      "stars3": 1,
+      "stars2": 0,
+      "stars1": 0
+},
+    returnEligibility: {
+      "evaluationPeriodDays": 30,
+      "eligibilityTerms": "30-day extraction trial; full refund upon return",
+      "conditionRequired": "Undamaged ceramic; rinsed and repacked in original wood crate",
+      "restockingFee": "$0 (Zero Restocking Fee)",
+      "returnShippingCoverage": "Prepaid foam-lined crate provided within Tranche 01 corridors"
+},
     title: "Tokoname Clay Artisan Pour-Over Dripper",
     category: "Kitchen & Culinary",
     price: 85,
@@ -1358,6 +1823,64 @@ export const PRODUCTS: Product[] = [
   // 09. Kitchen & Culinary — Aerospace Precision Hand Grinder
   {
     id: "prod-grinder",
+    // METADATA_prod-grinder
+    inventoryLedger: {
+      "totalUnits": 12,
+      "availableUnits": 9,
+      "reservedUnits": 2,
+      "outOfStockUnits": 1,
+      "activeOffersCount": 2
+},
+    enduranceBreakdown: {
+      "score": 9.8,
+      "materials": {
+            "score": 10,
+            "weight": 0.25,
+            "notes": "48mm hardened nitrogen-martensitic stainless steel burr set & 6061 unibody"
+      },
+      "repairability": {
+            "score": 9.8,
+            "weight": 0.2,
+            "notes": "100% field strippable without tools; dual ball-bearing alignment axle"
+      },
+      "disassembly": {
+            "score": 9.8,
+            "weight": 0.15,
+            "notes": "Single push-button axle release; zero proprietary screws or adhesive seals"
+      },
+      "spareParts": {
+            "score": 9.7,
+            "weight": 0.15,
+            "notes": "Replacement burrs, silicone grips, and bearings guaranteed through 2042"
+      },
+      "warranty": {
+            "score": 9.8,
+            "weight": 0.15,
+            "notes": "15-Year Burr & Bearing Warranty including free calibration checks"
+      },
+      "lifecycle": {
+            "score": 9.9,
+            "weight": 0.1,
+            "notes": "Rated for 1,200kg of whole beans (25+ years of 2 daily brews)"
+      },
+      "guaranteedPartsUntil": 2042,
+      "resaleRetention": 81,
+      "evidenceSource": "Internal Atelier Mechanical Benchmark & Burr Wear Simulation (Self-Reported Benchmark Metrics, Verified by Master Guild Protocol)"
+},
+    ratingDistribution: {
+      "stars5": 94,
+      "stars4": 5,
+      "stars3": 1,
+      "stars2": 0,
+      "stars1": 0
+},
+    returnEligibility: {
+      "evaluationPeriodDays": 30,
+      "eligibilityTerms": "30-day grind consistency trial; full refund upon return",
+      "conditionRequired": "Burr set free of foreign stone damage; brushed clean",
+      "restockingFee": "$0 (Zero Restocking Fee)",
+      "returnShippingCoverage": "Prepaid padded travel case provided within Tranche 01 corridors"
+},
     title: "Aerospace Precision Hand Coffee Grinder",
     category: "Kitchen & Culinary",
     price: 165,
@@ -1506,6 +2029,64 @@ export const PRODUCTS: Product[] = [
   // 10. Home & Living — Belgian Stonewashed Flax Linen Duvet Suite
   {
     id: "prod-linen-sheets",
+    // METADATA_prod-linen-sheets
+    inventoryLedger: {
+      "totalUnits": 14,
+      "availableUnits": 11,
+      "reservedUnits": 2,
+      "outOfStockUnits": 1,
+      "activeOffersCount": 2
+},
+    enduranceBreakdown: {
+      "score": 9.7,
+      "materials": {
+            "score": 10,
+            "weight": 0.25,
+            "notes": "100% Normandy long-staple flax woven on vintage projectile looms in Belgium"
+      },
+      "repairability": {
+            "score": 9.5,
+            "weight": 0.2,
+            "notes": "Included matching organic flax thread spool and spare corozo nut buttons"
+      },
+      "disassembly": {
+            "score": 9.6,
+            "weight": 0.15,
+            "notes": "Pure natural fiber weave; biodegradable corozo nut button fasteners"
+      },
+      "spareParts": {
+            "score": 9.6,
+            "weight": 0.15,
+            "notes": "Matching weave patch fabric and natural corozo buttons through 2038"
+      },
+      "warranty": {
+            "score": 9.6,
+            "weight": 0.15,
+            "notes": "10-Year Weave Integrity Warranty against seam separation or fiber thinning"
+      },
+      "lifecycle": {
+            "score": 9.8,
+            "weight": 0.1,
+            "notes": "Becomes progressively softer with every laundering without tensile loss"
+      },
+      "guaranteedPartsUntil": 2038,
+      "resaleRetention": 76,
+      "evidenceSource": "Internal Atelier Textile Benchmark & Martindale Abrasion Testing (Self-Reported Benchmark Metrics, Verified by Master Guild Protocol)"
+},
+    ratingDistribution: {
+      "stars5": 92,
+      "stars4": 6,
+      "stars3": 2,
+      "stars2": 0,
+      "stars1": 0
+},
+    returnEligibility: {
+      "evaluationPeriodDays": 30,
+      "eligibilityTerms": "30-night home sleep trial; full refund upon return",
+      "conditionRequired": "Laundered according to included care guide; no bleaching",
+      "restockingFee": "$0 (Zero Restocking Fee)",
+      "returnShippingCoverage": "Prepaid linen tote mailer provided within Tranche 01 corridors"
+},
     title: "Belgian Stonewashed Flax Linen Duvet Suite",
     category: "Home & Living",
     price: 260,
@@ -1664,6 +2245,64 @@ export const PRODUCTS: Product[] = [
   // 11. Accessories & EDC — Solid Milled Brass Tactile Rollerball
   {
     id: "prod-brass-pen",
+    // METADATA_prod-brass-pen
+    inventoryLedger: {
+      "totalUnits": 20,
+      "availableUnits": 15,
+      "reservedUnits": 3,
+      "outOfStockUnits": 2,
+      "activeOffersCount": 2
+},
+    enduranceBreakdown: {
+      "score": 9.9,
+      "materials": {
+            "score": 10,
+            "weight": 0.25,
+            "notes": "Single-billet lead-free C360 brass CNC-turned to 0.01mm aerospace tolerance"
+      },
+      "repairability": {
+            "score": 10,
+            "weight": 0.2,
+            "notes": "Standard Schmidt or Parker G2 refills; zero proprietary ink cartridges"
+      },
+      "disassembly": {
+            "score": 10,
+            "weight": 0.15,
+            "notes": "Threaded three-piece construction; zero plastic springs or internal glue"
+      },
+      "spareParts": {
+            "score": 9.8,
+            "weight": 0.15,
+            "notes": "Stainless steel wave springs and replacement brass grip collets through 2060"
+      },
+      "warranty": {
+            "score": 10,
+            "weight": 0.15,
+            "notes": "Lifetime Mechanical Thread Guarantee with free replacement parts"
+      },
+      "lifecycle": {
+            "score": 10,
+            "weight": 0.1,
+            "notes": "Virtually indestructible solid metal; patinas to individual hand oils"
+      },
+      "guaranteedPartsUntil": 2060,
+      "resaleRetention": 83,
+      "evidenceSource": "Internal Atelier Machining Benchmark & Drop Strain Stress Testing (Self-Reported Benchmark Metrics, Verified by Master Guild Protocol)"
+},
+    ratingDistribution: {
+      "stars5": 96,
+      "stars4": 3,
+      "stars3": 1,
+      "stars2": 0,
+      "stars1": 0
+},
+    returnEligibility: {
+      "evaluationPeriodDays": 30,
+      "eligibilityTerms": "30-day handwriting trial; full refund upon return",
+      "conditionRequired": "No structural lathe gouges; natural brass patina welcomed",
+      "restockingFee": "$0 (Zero Restocking Fee)",
+      "returnShippingCoverage": "Prepaid mailer provided within Tranche 01 corridors"
+},
     title: "Solid Milled C360 Brass Tactile Rollerball",
     category: "Accessories & EDC",
     price: 95,
@@ -1802,6 +2441,64 @@ export const PRODUCTS: Product[] = [
   // 12. Home & Living — Cast Bronze Contemplation Incense Burner
   {
     id: "prod-bronze-incense",
+    // METADATA_prod-bronze-incense
+    inventoryLedger: {
+      "totalUnits": 11,
+      "availableUnits": 8,
+      "reservedUnits": 2,
+      "outOfStockUnits": 1,
+      "activeOffersCount": 2
+},
+    enduranceBreakdown: {
+      "score": 9.9,
+      "materials": {
+            "score": 10,
+            "weight": 0.25,
+            "notes": "Sand-cast architectural silicon bronze with hand-applied sulfur liver patina"
+      },
+      "repairability": {
+            "score": 10,
+            "weight": 0.2,
+            "notes": "Indestructible solid metal; heat-tolerant refractory chamber"
+      },
+      "disassembly": {
+            "score": 10,
+            "weight": 0.15,
+            "notes": "Solid two-piece gravity-fit lid and base; zero mechanical joints"
+      },
+      "spareParts": {
+            "score": 9.8,
+            "weight": 0.15,
+            "notes": "Replacement brass incense needle holders and cleaning picks through 2065"
+      },
+      "warranty": {
+            "score": 10,
+            "weight": 0.15,
+            "notes": "Lifetime Foundry Bronze Guarantee against heat fractures"
+      },
+      "lifecycle": {
+            "score": 10,
+            "weight": 0.1,
+            "notes": "Century-scale object designed to be passed down through generations"
+      },
+      "guaranteedPartsUntil": 2065,
+      "resaleRetention": 84,
+      "evidenceSource": "Internal Atelier Foundry Benchmark & High-Temperature Thermal Cycling (Self-Reported Benchmark Metrics, Verified by Master Guild Protocol)"
+},
+    ratingDistribution: {
+      "stars5": 95,
+      "stars4": 4,
+      "stars3": 1,
+      "stars2": 0,
+      "stars1": 0
+},
+    returnEligibility: {
+      "evaluationPeriodDays": 30,
+      "eligibilityTerms": "30-day sensory trial; full refund upon return",
+      "conditionRequired": "Ash cleaned; bronze surface undamaged by chemical solvents",
+      "restockingFee": "$0 (Zero Restocking Fee)",
+      "returnShippingCoverage": "Prepaid protective crate provided within Tranche 01 corridors"
+},
     title: "Cast Bronze Contemplation Incense Burner",
     category: "Home & Living",
     price: 145,

@@ -412,14 +412,33 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 </div>
               </div>
 
-              {selectedOffer.stockAllocation && (
-                <div className="pt-2 border-t border-[#E5E5E9] flex items-center justify-between text-[11px] font-mono">
-                  <span className="text-stone-500">Node Stock Allocation:</span>
+              {/* Comprehensive Inventory Ledger Breakdown */}
+              <div className="pt-2.5 border-t border-[#E5E5E9] space-y-1.5 text-[11px] font-mono">
+                <div className="flex items-center justify-between">
+                  <span className="text-stone-500">Active Node Inventory:</span>
                   <span className="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                    {selectedOffer.stockAllocation} of {product.stockCount} batch units available
+                    {selectedOffer.stockAllocation || 1} units available at this depot
                   </span>
                 </div>
-              )}
+                <div className="flex items-center justify-between text-stone-500 text-[10px]">
+                  <span>Total Available Across All Nodes:</span>
+                  <span className="font-bold text-[#0A0A0C]">
+                    {product.inventoryLedger?.availableUnits || product.stockCount} units ({product.offers?.length || 1} competing depots)
+                  </span>
+                </div>
+                <div className="flex items-center justify-between text-stone-500 text-[10px]">
+                  <span>Reserved Transit &amp; QC Buffer:</span>
+                  <span className="text-amber-800 font-semibold">
+                    {product.inventoryLedger?.reservedUnits || 2} units
+                  </span>
+                </div>
+                <div className="flex items-center justify-between text-stone-500 text-[10px]">
+                  <span>Total Physical Batch:</span>
+                  <span className="text-stone-700">
+                    {product.inventoryLedger?.totalUnits || (product.stockCount + 2)} units tracked
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -482,13 +501,13 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               </motion.button>
             </div>
 
-            {/* Direct Instant Settlement */}
+            {/* Direct Node Settlement (Simulated Protocol) */}
             <button
               onClick={handleBuyNow}
               className="w-full py-3.5 px-6 rounded-full border border-[#0A0A0C] bg-white text-[#0A0A0C] hover:bg-stone-100 font-sans font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
             >
               <Zap className="h-4 w-4 text-[#EA580C]" />
-              <span>Instant Node Settlement</span>
+              <span>Direct Node Settlement (Simulated Demo Protocol)</span>
             </button>
           </div>
 
@@ -567,6 +586,38 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               <p className="text-xs text-stone-500 font-sans max-w-md">
                 Merchants on Aether compete openly on price, fulfillment speed, and warranty duration under this single canonical listing. No sponsored duplicate pages.
               </p>
+            </div>
+
+            {/* Inventory Ledger Summary Metric Cards */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
+              <div className="p-3.5 rounded-2xl bg-white border border-[#E5E5E9] space-y-1">
+                <span className="text-[10px] uppercase text-stone-400 font-bold block">Available Stock</span>
+                <span className="text-xl font-bold text-emerald-700 font-mono">
+                  {product.inventoryLedger?.availableUnits || product.stockCount} Units
+                </span>
+                <span className="text-[10px] text-stone-500 block font-sans">Across active nodes</span>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-white border border-[#E5E5E9] space-y-1">
+                <span className="text-[10px] uppercase text-stone-400 font-bold block">Active Node Stock</span>
+                <span className="text-xl font-bold text-[#0A0A0C] font-mono">
+                  {selectedOffer.stockAllocation || 1} Units
+                </span>
+                <span className="text-[10px] text-stone-500 block font-sans truncate">{selectedOffer.sellerName}</span>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-white border border-[#E5E5E9] space-y-1">
+                <span className="text-[10px] uppercase text-stone-400 font-bold block">QC &amp; Transit Reserve</span>
+                <span className="text-xl font-bold text-amber-700 font-mono">
+                  {product.inventoryLedger?.reservedUnits || 2} Units
+                </span>
+                <span className="text-[10px] text-stone-500 block font-sans">Quality quarantine buffer</span>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-white border border-[#E5E5E9] space-y-1">
+                <span className="text-[10px] uppercase text-stone-400 font-bold block">Total Physical Batch</span>
+                <span className="text-xl font-bold text-stone-900 font-mono">
+                  {product.inventoryLedger?.totalUnits || (product.stockCount + 2)} Units
+                </span>
+                <span className="text-[10px] text-stone-500 block font-sans">{product.offers?.length || 1} Competing Nodes</span>
+              </div>
             </div>
 
             {/* Vendor Offer Comparison Table */}
@@ -731,76 +782,102 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               {/* Mathematical Weighting Formula Banner */}
               <div className="p-3.5 rounded-2xl bg-[#F9F9FB] border border-[#E5E5E9] text-xs font-mono text-stone-700 space-y-1">
                 <span className="text-[10px] uppercase font-bold text-stone-400 block tracking-wider">
-                  Audited Formula Weighting
+                  Documented 6-Factor Calculation Formula
                 </span>
                 <div className="text-stone-900 font-semibold text-[11px] sm:text-xs">
-                  Score = (Material Integrity × 0.35) + (Modular Disassembly × 0.25) + (Spare Parts Horizon × 0.25) + (Decoupled Firmware × 0.15)
+                  Score = (Materials × 0.25) + (Repairability × 0.20) + (Disassembly × 0.15) + (Spare Parts × 0.15) + (Warranty × 0.15) + (Lifecycle × 0.10)
                 </div>
               </div>
 
-              {/* 4 Factor Contribution Table */}
+              {/* 6-Factor Contribution Table */}
               <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse min-w-[620px] text-xs font-sans">
+                <table className="w-full text-left border-collapse min-w-[640px] text-xs font-sans">
                   <thead>
                     <tr className="border-b border-[#E5E5E9] text-[10px] font-mono uppercase text-stone-400 font-bold">
                       <th className="pb-3">Evaluation Pillar</th>
                       <th className="pb-3">Raw Score</th>
                       <th className="pb-3">Factor Weight</th>
                       <th className="pb-3">Contributed Points</th>
-                      <th className="pb-3">Audited Standard</th>
+                      <th className="pb-3">Documented Engineering Standard</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[#E5E5E9]">
                     <tr>
-                      <td className="py-3 font-bold text-[#0A0A0C]">01. Material Purity & Integrity</td>
+                      <td className="py-3 font-bold text-[#0A0A0C]">01. Materials Purity &amp; Stress Tolerance</td>
                       <td className="py-3 font-mono font-bold text-emerald-800">
-                        {product.enduranceRubric?.materialIntegrity || 9.9} / 10
-                      </td>
-                      <td className="py-3 font-mono text-stone-500">35%</td>
-                      <td className="py-3 font-mono font-bold text-[#0A0A0C]">
-                        {(((product.enduranceRubric?.materialIntegrity || 9.9) * 0.35)).toFixed(2)} pts
-                      </td>
-                      <td className="py-3 text-stone-600 text-[11px]">
-                        Single-billet metallurgy/timber; zero synthetic core adhesives, cheap hollows, or artificial veneers.
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 font-bold text-[#0A0A0C]">02. Modular Disassembly & Reversibility</td>
-                      <td className="py-3 font-mono font-bold text-emerald-800">
-                        {product.enduranceRubric?.modularDisassembly || 9.8} / 10
+                        {product.enduranceBreakdown?.materials.score || product.enduranceRubric?.materialIntegrity || 9.9} / 10
                       </td>
                       <td className="py-3 font-mono text-stone-500">25%</td>
                       <td className="py-3 font-mono font-bold text-[#0A0A0C]">
-                        {(((product.enduranceRubric?.modularDisassembly || 9.8) * 0.25)).toFixed(2)} pts
+                        {(((product.enduranceBreakdown?.materials.score || product.enduranceRubric?.materialIntegrity || 9.9) * 0.25)).toFixed(2)} pts
                       </td>
                       <td className="py-3 text-stone-600 text-[11px]">
-                        Mechanical fasteners (T5 Torx, threads, friction fits); zero irreversible ultrasonic welding or glue locks.
+                        Single-billet alloy, cast iron, or Appalachian hardwood; zero synthetic core adhesives, hollows, or artificial veneers.
                       </td>
                     </tr>
                     <tr>
-                      <td className="py-3 font-bold text-[#0A0A0C]">03. Spare Parts Horizon Availability</td>
+                      <td className="py-3 font-bold text-[#0A0A0C]">02. Modular Repairability</td>
                       <td className="py-3 font-mono font-bold text-emerald-800">
-                        {product.enduranceRubric?.sparePartsAvailability || 9.7} / 10
+                        {product.enduranceBreakdown?.repairability.score || 9.8} / 10
                       </td>
-                      <td className="py-3 font-mono text-stone-500">25%</td>
+                      <td className="py-3 font-mono text-stone-500">20%</td>
                       <td className="py-3 font-mono font-bold text-[#0A0A0C]">
-                        {(((product.enduranceRubric?.sparePartsAvailability || 9.7) * 0.25)).toFixed(2)} pts
+                        {(((product.enduranceBreakdown?.repairability.score || 9.8) * 0.20)).toFixed(2)} pts
                       </td>
                       <td className="py-3 text-stone-600 text-[11px]">
-                        Certified replacement components stocked at regional nodes through {product.enduranceRubric?.guaranteedPartsUntil || 2046}.
+                        Standard hand-tool servicing; modular sub-assemblies replaceable at home or regional guild workshops.
                       </td>
                     </tr>
                     <tr>
-                      <td className="py-3 font-bold text-[#0A0A0C]">04. Decoupled Firmware / Zero Silicon</td>
+                      <td className="py-3 font-bold text-[#0A0A0C]">03. Disassembly &amp; Reversible Fasteners</td>
                       <td className="py-3 font-mono font-bold text-emerald-800">
-                        {product.enduranceRubric?.decoupledFirmware || 10.0} / 10
+                        {product.enduranceBreakdown?.disassembly.score || product.enduranceRubric?.modularDisassembly || 9.8} / 10
                       </td>
                       <td className="py-3 font-mono text-stone-500">15%</td>
                       <td className="py-3 font-mono font-bold text-[#0A0A0C]">
-                        {(((product.enduranceRubric?.decoupledFirmware || 10.0) * 0.15)).toFixed(2)} pts
+                        {(((product.enduranceBreakdown?.disassembly.score || product.enduranceRubric?.modularDisassembly || 9.8) * 0.15)).toFixed(2)} pts
                       </td>
                       <td className="py-3 text-stone-600 text-[11px]">
-                        100% sovereign physical operation; zero cloud servers, companion app locks, or remote bricking risks.
+                        Metric fasteners (Torx, hex, friction plinths); zero irreversible ultrasonic welding, epoxy, or heat locks.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 font-bold text-[#0A0A0C]">04. Spare-Parts Availability Horizon</td>
+                      <td className="py-3 font-mono font-bold text-emerald-800">
+                        {product.enduranceBreakdown?.spareParts.score || product.enduranceRubric?.sparePartsAvailability || 9.7} / 10
+                      </td>
+                      <td className="py-3 font-mono text-stone-500">15%</td>
+                      <td className="py-3 font-mono font-bold text-[#0A0A0C]">
+                        {(((product.enduranceBreakdown?.spareParts.score || product.enduranceRubric?.sparePartsAvailability || 9.7) * 0.15)).toFixed(2)} pts
+                      </td>
+                      <td className="py-3 text-stone-600 text-[11px]">
+                        Certified replacement wear parts guaranteed stocked at regional nodes through {product.enduranceBreakdown?.guaranteedPartsUntil || product.enduranceRubric?.guaranteedPartsUntil || 2045}.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 font-bold text-[#0A0A0C]">05. Enforceable Warranty Coverage</td>
+                      <td className="py-3 font-mono font-bold text-emerald-800">
+                        {product.enduranceBreakdown?.warranty.score || 9.8} / 10
+                      </td>
+                      <td className="py-3 font-mono text-stone-500">15%</td>
+                      <td className="py-3 font-mono font-bold text-[#0A0A0C]">
+                        {(((product.enduranceBreakdown?.warranty.score || 9.8) * 0.15)).toFixed(2)} pts
+                      </td>
+                      <td className="py-3 text-stone-600 text-[11px]">
+                        {product.warrantyDoc?.duration || "10–25 Year Warranty"} with legally enforceable terms and direct atelier labor.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 font-bold text-[#0A0A0C]">06. Product Lifecycle &amp; MTBF Horizon</td>
+                      <td className="py-3 font-mono font-bold text-emerald-800">
+                        {product.enduranceBreakdown?.lifecycle.score || 10.0} / 10
+                      </td>
+                      <td className="py-3 font-mono text-stone-500">10%</td>
+                      <td className="py-3 font-mono font-bold text-[#0A0A0C]">
+                        {(((product.enduranceBreakdown?.lifecycle.score || 10.0) * 0.10)).toFixed(2)} pts
+                      </td>
+                      <td className="py-3 text-stone-600 text-[11px]">
+                        Decades-long MTBF; natural patina aging curve without performance degradation or planned obsolescence.
                       </td>
                     </tr>
                   </tbody>
@@ -808,8 +885,8 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               </div>
 
               <div className="pt-3 border-t border-[#E5E5E9] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] font-mono text-stone-500">
-                <span>Certification Standard: DIN EN ISO 9001 / Aether Protocol v2.4</span>
-                <span className="text-emerald-700 font-bold">Independent Lab Test Hash: {product.digitalPassport?.cryptographicHash || "0x33b91a7c..."}</span>
+                <span>Standard: Master Atelier Specification v2.4 (Open Engineering Protocol)</span>
+                <span className="text-stone-700 font-bold">Evidence: Internal Atelier Stress Benchmarks &amp; Material Audits</span>
               </div>
             </div>
 
@@ -1087,6 +1164,16 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                   </div>
                 ))}
               </div>
+
+              {/* Review Methodology Box */}
+              <div className="p-5 rounded-2xl bg-[#F9F9FB] border border-[#E5E5E9] space-y-2 text-xs font-sans">
+                <span className="text-[10px] font-mono uppercase font-bold text-stone-500 tracking-wider block">
+                  Review &amp; Field Report Integrity Standard
+                </span>
+                <p className="text-stone-600 leading-relaxed">
+                  Field reports can only be submitted by owners who verify receipt of a physical batch unit with a valid cryptographic passport. A minimum 90-day continuous ownership interval is enforced before submitting wear evaluations. Zero sponsored placements, compensation, or free promotional units are accepted under any circumstances.
+                </p>
+              </div>
             </div>
 
             {/* Replacement Terms & Service Center Footer */}
@@ -1110,6 +1197,31 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 </div>
               </div>
             )}
+
+            {/* Return Eligibility & 30-Day Evaluation Protocol Card */}
+            <div className="p-5 rounded-2xl bg-[#F9F9FB] border border-[#E5E5E9] space-y-3">
+              <span className="text-[10px] font-mono uppercase font-bold text-stone-700 tracking-wider flex items-center gap-1.5">
+                <RotateCcw className="h-3.5 w-3.5 text-[#EA580C]" />
+                <span>30-Day Evaluation Window &amp; Return Terms</span>
+              </span>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-sans">
+                <div className="p-3 bg-white rounded-xl border border-[#E5E5E9] space-y-1">
+                  <span className="text-[10px] font-mono font-bold text-emerald-700 block">Trial Period</span>
+                  <p className="text-stone-800 font-bold">30 Days In-Home</p>
+                  <span className="text-[11px] text-stone-500 block">Unhurried daily studio evaluation</span>
+                </div>
+                <div className="p-3 bg-white rounded-xl border border-[#E5E5E9] space-y-1">
+                  <span className="text-[10px] font-mono font-bold text-emerald-700 block">Restocking Fee</span>
+                  <p className="text-stone-800 font-bold">$0 (Zero Fee)</p>
+                  <span className="text-[11px] text-stone-500 block">100% full item refund to patron</span>
+                </div>
+                <div className="p-3 bg-white rounded-xl border border-[#E5E5E9] space-y-1">
+                  <span className="text-[10px] font-mono font-bold text-emerald-700 block">Return Shipping</span>
+                  <p className="text-stone-800 font-bold">Prepaid Transport Crate</p>
+                  <span className="text-[11px] text-stone-500 block">Low-impact transit provided</span>
+                </div>
+              </div>
+            </div>
           </motion.div>
         )}
 
@@ -1187,6 +1299,17 @@ export default function ProductDetailClient({ product }: { product: Product }) {
 
             {/* Verified Owner Ledger & Field Reports (Supporting 4.94 rating & 188 verified owners) */}
             <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#E5E5E9] space-y-6 shadow-xs">
+              {/* Pilot Cohort Transparent Disclosure */}
+              <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/25 text-amber-900 text-xs font-mono space-y-1">
+                <span className="font-bold flex items-center gap-1.5 text-[#EA580C]">
+                  <span className="h-2 w-2 rounded-full bg-[#EA580C] animate-pulse" />
+                  PILOT EVALUATION COHORT · ARCHIVAL FIELD REPORTS
+                </span>
+                <p className="text-[11px] text-stone-700 font-sans leading-relaxed">
+                  Field evaluations shown below represent structured test reports recorded by verified early testers and master guild patrons (Tranche 01 Cohort) to demonstrate AETHER&apos;s verified physical batch ledger. Simulated demonstration data.
+                </p>
+              </div>
+
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E5E9] pb-4">
                 <div>
                   <span className="text-[10px] font-mono uppercase font-bold tracking-widest text-[#EA580C]">
@@ -1199,6 +1322,34 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 <div className="flex items-center gap-1.5 text-xs font-mono text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200">
                   <Check className="h-3.5 w-3.5 text-emerald-600" />
                   <span>100% Verified Physical Deliveries</span>
+                </div>
+              </div>
+
+              {/* Rating Distribution Bar Breakdown */}
+              <div className="p-5 rounded-2xl bg-[#F9F9FB] border border-[#E5E5E9] space-y-2.5">
+                <span className="text-[10px] font-mono uppercase font-bold text-stone-400 block tracking-wider">
+                  Rating Distribution Breakdown
+                </span>
+                <div className="space-y-1.5 text-xs font-mono">
+                  {[
+                    { stars: "5 Stars", pct: product.ratingDistribution?.stars5 || 94, count: Math.round(product.reviewsCount * 0.94) },
+                    { stars: "4 Stars", pct: product.ratingDistribution?.stars4 || 5, count: Math.round(product.reviewsCount * 0.05) },
+                    { stars: "3 Stars", pct: product.ratingDistribution?.stars3 || 1, count: Math.round(product.reviewsCount * 0.01) },
+                    { stars: "2 Stars", pct: product.ratingDistribution?.stars2 || 0, count: 0 },
+                    { stars: "1 Star", pct: product.ratingDistribution?.stars1 || 0, count: 0 },
+                  ].map((row) => (
+                    <div key={row.stars} className="flex items-center gap-3">
+                      <span className="w-14 text-[11px] text-stone-500 font-sans">{row.stars}</span>
+                      <div className="flex-1 h-2 rounded-full bg-stone-200 overflow-hidden">
+                        <div
+                          className="h-full bg-amber-500 rounded-full"
+                          style={{ width: `${row.pct}%` }}
+                        />
+                      </div>
+                      <span className="w-10 text-right text-[11px] text-stone-700 font-bold">{row.pct}%</span>
+                      <span className="w-16 text-right text-[10px] text-stone-400 font-sans">({row.count} logs)</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -1275,6 +1426,16 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                     </div>
                   </div>
                 ))}
+              </div>
+
+              {/* Review Methodology Box */}
+              <div className="p-5 rounded-2xl bg-[#F9F9FB] border border-[#E5E5E9] space-y-2 text-xs font-sans">
+                <span className="text-[10px] font-mono uppercase font-bold text-stone-500 tracking-wider block">
+                  Review &amp; Field Report Integrity Standard
+                </span>
+                <p className="text-stone-600 leading-relaxed">
+                  Field reports can only be submitted by owners who verify receipt of a physical batch unit with a valid cryptographic passport. A minimum 90-day continuous ownership interval is enforced before submitting wear evaluations. Zero sponsored placements, compensation, or free promotional units are accepted under any circumstances.
+                </p>
               </div>
             </div>
           </motion.div>

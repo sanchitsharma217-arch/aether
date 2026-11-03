@@ -293,7 +293,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onOpenCheckout }) => {
             <div className="flex items-center justify-between text-[10px] text-[#64646E] font-sans pt-1">
               <span className="flex items-center gap-1 font-mono">
                 <ShieldCheck className="h-3 w-3 text-emerald-600" />
-                Direct Non-Custodial Merchant Settlement
+                Non-Custodial Direct Settlement (Simulated Sandbox)
               </span>
               <button
                 onClick={clearCart}
