@@ -38,7 +38,7 @@ export const IntentDepartments: React.FC = () => {
       category: "Kitchen & Culinary",
       tranche: "Tranche 01 · Active",
       location: "Champagne-Ardenne & Kochi",
-      image: "https://images.unsplash.com/photo-1584990347449-397a6590214a?w=1000&auto=format&fit=crop&q=90",
+      image: "https://images.unsplash.com/photo-1556909128-2293de4be38e?w=1000&auto=format&fit=crop&q=90",
       materials: "French Sand-Cast Iron · Hitachi Blue Paper Steel · Tokoname Clay",
       desc: "Generational Dutch ovens, pine-charcoal forged carbon blades, and mineral pour-over ceramics.",
       span: "lg:col-span-5",

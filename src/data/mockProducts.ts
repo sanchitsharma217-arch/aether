@@ -335,7 +335,7 @@ export const PRODUCTS: Product[] = [
     inStock: true,
     stockCount: 8,
     stockUrgency: "Limited Sand-Cast Run · 8 available",
-    image: "https://images.unsplash.com/photo-1584990347449-397a6590214a?w=800&auto=format&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1556909128-2293de4be38e?w=800&auto=format&fit=crop&q=80",
     secondaryImage: "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80",
     badge: "Bestseller",
     description:
@@ -404,7 +404,7 @@ export const PRODUCTS: Product[] = [
       {
         name: "Matte Slate Chalk",
         hex: "#334155",
-        image: "https://images.unsplash.com/photo-1584990347449-397a6590214a?w=800&auto=format&fit=crop&q=80",
+        image: "https://images.unsplash.com/photo-1556909128-2293de4be38e?w=800&auto=format&fit=crop&q=80",
       },
       {
         name: "Earthen Terracotta",
@@ -2684,7 +2684,7 @@ export const DEPARTMENTS = [
     },
     location: "Champagne-Ardenne, Kochi & Zurich",
     desc: "Sand-cast French Dutch ovens, Aogami carbon steel blades, and iron-dense Tokoname stoneware.",
-    image: "https://images.unsplash.com/photo-1584990347449-397a6590214a?w=1000&auto=format&fit=crop&q=90",
+    image: "https://images.unsplash.com/photo-1556909128-2293de4be38e?w=1000&auto=format&fit=crop&q=90",
   },
   {
     id: "wearables-horology",
