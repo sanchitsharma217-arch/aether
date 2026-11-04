@@ -254,14 +254,14 @@ export default function ShopPage() {
         <div className="flex items-center gap-2">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
           <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#EA580C]">
-            CANONICAL CATALOG · VERIFIED ATELIERS ONLY
+            AUTHENTIC ATELIER CATALOG
           </span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-sans font-black tracking-tight text-[#0A0A0C] uppercase">
           Curated Objects of Permanence
         </h1>
         <p className="text-xs sm:text-sm text-[#64646E] max-w-2xl font-sans leading-relaxed">
-          Zero dropshipped white-label clones. Every item corresponds to one canonical SKU with independent durability ratings, published repair schematics, and transparent multi-vendor allocation.
+          Objects crafted for permanence. Sourced directly from independent workshops across Europe and Japan. Verified durability ratings, zero white-label duplicates, and transparent atelier pricing.
         </p>
       </div>
 
@@ -297,7 +297,7 @@ export default function ShopPage() {
               <div className="flex items-center gap-2">
                 <Sparkles className="h-3.5 w-3.5 text-amber-400" />
                 <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-400">
-                  INTENT INTELLIGENCE RECOMMENDATION // {intentMatch.concept}
+                  CURATED MATCH · {intentMatch.concept}
                 </span>
               </div>
               <p className="text-xs text-stone-300 font-sans leading-relaxed">

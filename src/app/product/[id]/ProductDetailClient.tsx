@@ -1237,7 +1237,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               <div className="p-6 rounded-3xl bg-white border border-[#E5E5E9] space-y-4 shadow-xs">
                 <div className="flex items-center justify-between border-b border-[#E5E5E9] pb-3">
                   <span className="text-xs font-mono font-bold uppercase text-[#0A0A0C]">
-                    Verified Return Forensics
+                    Verified Return & Longevity Metrics
                   </span>
                   <span className="text-xs font-mono font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-md">
                     {product.honestyDossier?.keepRate || 98.6}% Keep Rate

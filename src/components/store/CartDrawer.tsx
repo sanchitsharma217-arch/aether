@@ -113,14 +113,14 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onOpenCheckout }) => {
           </button>
         </div>
 
-        {/* 4PL Batch Transit Banner */}
+        {/* Batch Transit Banner */}
         <div className="px-6 py-2.5 bg-emerald-50 border-b border-emerald-200 flex items-center justify-between text-xs font-mono">
           <div className="flex items-center gap-1.5 text-emerald-800">
             <Truck className="h-3.5 w-3.5 text-emerald-600" />
-            <span className="font-bold">Unified 4PL Transit:</span>
-            <span>Consolidated regional dispatch ($0.00)</span>
+            <span className="font-bold">Combined Delivery:</span>
+            <span>Carbon-neutral atelier dispatch ($0.00)</span>
           </div>
-          <span className="text-[10px] text-emerald-800 font-sans font-bold">Tranche 01 Pilot</span>
+          <span className="text-[10px] text-emerald-800 font-sans font-bold">Complimentary</span>
         </div>
 
         {/* Scrollable Body: Grouped by Shipment Packages */}

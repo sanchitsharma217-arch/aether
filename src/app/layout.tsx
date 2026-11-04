@@ -21,9 +21,14 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  title: "AETHER · Universal Exchange — Anti-Amazon Canonical Platform",
+  title: "AETHER · Curated Objects & Architecture of Craft",
   description:
-    "High-contrast universal commerce. Zero pay-to-play placement, single canonical SKUs, verified durability forensics, and consolidated 4PL dispatch.",
+    "An independent marketplace for enduring industrial design, mechanical objects, and atelier goods. Direct from master workshops worldwide.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
 };
 
 export default function RootLayout({

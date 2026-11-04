@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -24,6 +24,19 @@ export const Navbar: React.FC = () => {
 
   const [isDeptDropdownOpen, setIsDeptDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+        searchInputRef.current?.select();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const displayFavCount = isMounted ? favoritesCount : 0;
   const displayCartCount = isMounted ? cartCount : 0;
@@ -36,32 +49,30 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center gap-2 sm:gap-6 truncate">
           <div className="flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            <span className="text-emerald-400 font-bold">[PILOT ATELIERS]:</span>
-            <span className="text-stone-300">8 Certified Maker Guilds [Tranche 01]</span>
+            <span className="text-white font-semibold">Curated Industrial Design</span>
+            <span className="text-stone-400">· Independent Workshops Worldwide</span>
           </div>
 
           <span className="hidden md:inline text-stone-600">·</span>
 
           <div className="hidden md:flex items-center gap-1.5">
-            <span className="text-amber-400 font-bold">[CANONICAL]:</span>
-            <span className="text-stone-300">1 Master SKU per Physical Product</span>
+            <span className="text-stone-400">Direct Atelier Sourcing</span>
           </div>
 
           <span className="hidden lg:inline text-stone-600">·</span>
 
           <div className="hidden lg:flex items-center gap-1.5">
-            <span className="text-sky-400 font-bold">[LOGISTICS]:</span>
-            <span className="text-stone-300">Consolidated Regional Mesh [Stage 1]</span>
+            <span className="text-stone-400">Zero Sponsored Ads</span>
           </div>
         </div>
 
         <div className="hidden sm:flex items-center gap-4 text-[10px] text-stone-400 uppercase tracking-widest font-mono">
           <span className="flex items-center gap-1">
-            <span className="h-1 w-1 rounded-full bg-emerald-500" />
-            Node: mesh-us-east
+            <span className="h-1 w-1 rounded-full bg-emerald-400" />
+            Carbon-Neutral Dispatch
           </span>
           <span className="text-stone-700">|</span>
-          <span className="text-white font-bold">SYSTEM 04</span>
+          <span className="text-stone-300 font-medium">Issue 04</span>
         </div>
       </div>
 
@@ -150,17 +161,23 @@ export const Navbar: React.FC = () => {
             <div className="relative">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#64646E]" />
               <input
+                ref={searchInputRef}
                 type="text"
-                placeholder="Ask anything (e.g. 'Studio monitors', 'Titanium field watch')..."
+                placeholder="Search objects, workshops, materials (e.g. 'Studio monitors', 'Titanium watch')..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-12 py-2 text-xs rounded-xl border border-[#E5E5E9] bg-[#F9F9FB] text-[#0A0A0C] placeholder-[#64646E] focus:outline-none focus:bg-white focus:ring-1 focus:ring-[#0A0A0C] focus:border-[#0A0A0C] transition-all shadow-xs font-sans"
               />
-              <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
-                <span className="text-[10px] font-mono text-[#64646E] bg-white border border-[#E5E5E9] px-1.5 py-0.5 rounded">
+              <button
+                type="button"
+                onClick={() => searchInputRef.current?.focus()}
+                className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 cursor-pointer"
+                title="Focus search (⌘K or Ctrl+K)"
+              >
+                <span className="text-[10px] font-mono text-[#64646E] bg-white border border-[#E5E5E9] px-1.5 py-0.5 rounded shadow-xs hover:border-[#0A0A0C] transition-colors">
                   ⌘K
                 </span>
-              </div>
+              </button>
             </div>
           </div>
 

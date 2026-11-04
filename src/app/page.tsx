@@ -43,10 +43,10 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8 border-b border-[#E5E5E9] pb-4">
           <div>
             <span className="text-[10px] font-mono font-bold text-[#64646E] uppercase tracking-widest">
-              RECENT KILN & WORKSHOP DISPATCHES
+              NEW ARRIVALS · WORKSHOP EDITIONS
             </span>
             <h2 className="text-3xl sm:text-4xl font-sans font-black tracking-tight text-[#0A0A0C] uppercase mt-1">
-              Archival Singularities.
+              Curated Additions.
             </h2>
           </div>
           <Link

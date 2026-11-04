@@ -2,17 +2,11 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
   ShieldCheck,
-  Building2,
   ArrowRight,
   ShoppingBag,
-  Sparkles,
-  Eye,
   Check,
-  Zap,
-  Layers,
 } from "lucide-react";
 import { PRODUCTS } from "@/data/mockProducts";
 import { useStore } from "@/context/StoreContext";
@@ -48,6 +42,39 @@ export const AsymmetricVault: React.FC = () => {
     setTimeout(() => setJustAddedOven(false), 1200);
   };
 
+  const items = [
+    {
+      product: prodH01,
+      tag: "AUDIO · 01",
+      tagColor: "bg-stone-100 text-stone-800 border-stone-200",
+      location: "Berlin, Germany",
+      materials: "Solid Walnut · Planar Transducers",
+      rating: "15-Yr Warranty · 9.8 Score",
+      onAdd: handleAddH01,
+      isAdded: justAddedH01,
+    },
+    {
+      product: prodWatch,
+      tag: "HOROLOGY · 02",
+      tagColor: "bg-orange-50 text-orange-800 border-orange-200",
+      location: "Zurich, Switzerland",
+      materials: "Grade-5 Titanium · Sapphire Crystal",
+      rating: "Automatic · 9.9 Score",
+      onAdd: handleAddWatch,
+      isAdded: justAddedWatch,
+    },
+    {
+      product: prodOven,
+      tag: "CULINARY · 03",
+      tagColor: "bg-blue-50 text-blue-800 border-blue-200",
+      location: "Champagne-Ardenne, France",
+      materials: "Cast Iron · Vitreous Enamel",
+      rating: "50-Yr Warranty · 9.8 Score",
+      onAdd: handleAddOven,
+      isAdded: justAddedOven,
+    },
+  ];
+
   return (
     <section id="asymmetric-vault" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 scroll-mt-24">
       {/* Section Header */}
@@ -56,14 +83,14 @@ export const AsymmetricVault: React.FC = () => {
           <div className="flex items-center gap-2 mb-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
             <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#0A0A0C]">
-              THE CANONICAL VAULT · SCALE & ASYMMETRY
+              ATELIER HIGHLIGHTS · THREE ESSENTIALS
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-sans font-black tracking-tight text-[#0A0A0C] uppercase">
-            Curated Singularities.
+            Crafted for a Lifetime.
           </h2>
           <p className="text-xs sm:text-sm text-[#64646E] mt-1 font-sans">
-            One master listing per physical creation. Zero white-label clone proliferation.
+            Three iconic creations from independent workshops in Berlin, Zurich, and Champagne-Ardenne.
           </p>
         </div>
 
@@ -76,220 +103,86 @@ export const AsymmetricVault: React.FC = () => {
         </Link>
       </div>
 
-      {/* ASYMMETRIC GRID: 1 Giant Feature Card (65% width) + 2 Stacked Mini-Cards (35% width) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-        
-        {/* GIANT FEATURE CARD: 65% Width (8 cols) */}
-        <div
-          onClick={() => setActiveBuyBoxProduct(prodH01)}
-          className="lg:col-span-8 group relative rounded-3xl bg-white border border-[#E5E5E9] floating-card hover:border-[#0A0A0C] transition-all duration-500 p-6 sm:p-10 flex flex-col justify-between overflow-hidden cursor-pointer"
-        >
-          {/* Overlapping Floating Spec Tag breaking out at the top */}
-          <div className="flex items-center justify-between gap-3 relative z-10">
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="font-mono text-[10px] font-semibold uppercase tracking-widest bg-[#0A0A0C] text-white px-2.5 py-1 rounded-md shadow-xs">
-                MASTER BENCHMARK · 01
-              </span>
-              <span className="font-mono text-[10px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded-md flex items-center gap-1">
-                <ShieldCheck className="h-3 w-3 text-emerald-600" />
-                <span>9.8 / 10 Durability Index</span>
-              </span>
-            </div>
+      {/* SYMMETRICAL 3-COLUMN GRID: Perfectly balanced heights, padding, and baselines */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+        {items.map((it) => (
+          <div
+            key={it.product.id}
+            onClick={() => setActiveBuyBoxProduct(it.product)}
+            className="group rounded-2xl bg-white border border-[#E5E5E9] floating-card hover:border-[#0A0A0C] transition-all duration-300 p-6 flex flex-col justify-between overflow-hidden cursor-pointer h-full"
+          >
+            <div>
+              {/* Top Meta Bar */}
+              <div className="flex items-center justify-between text-xs font-mono pb-3 border-b border-[#F0F0F4]">
+                <span className={`text-[10px] font-semibold px-2 py-0.5 rounded border uppercase ${it.tagColor}`}>
+                  {it.tag}
+                </span>
+                <span className="text-[11px] text-[#64646E] truncate ml-2">
+                  {it.location}
+                </span>
+              </div>
 
-            <span className="text-xs font-mono font-bold text-[#64646E] hidden sm:inline">
-              CANONICAL: {prodH01.canonicalSku}
-            </span>
-          </div>
-
-          {/* Center Stage: Oversized studio image that cleanly breaks scale */}
-          <div className="relative my-8 sm:my-10 flex items-center justify-center">
-            {/* Visual glow backdrop */}
-            <div className="absolute inset-0 bg-radial from-stone-100 to-transparent opacity-80 blur-2xl pointer-events-none" />
-
-            <div className="relative w-full max-w-lg aspect-[16/10] flex items-center justify-center">
-              <img
-                src={prodH01.image}
-                alt={prodH01.title}
-                className="max-h-full max-w-full object-contain filter drop-shadow-[0_25px_35px_rgba(0,0,0,0.18)] group-hover:scale-108 group-hover:-rotate-1 transition-transform duration-700 ease-out"
-              />
-
-              {/* Floating Overlapping Micro Glassmorphism Badge */}
-              <div className="absolute -bottom-2 -left-2 sm:bottom-4 sm:left-4 glass-pill p-3 sm:p-4 rounded-2xl shadow-xl space-y-0.5 border border-white/60">
-                <div className="text-[10px] font-mono uppercase text-[#64646E] font-bold">
-                  Certified Origin
-                </div>
-                <div className="text-xs font-sans font-black text-[#0A0A0C]">
-                  {prodH01.primaryVendor.name} &bull; {prodH01.primaryVendor.location.split(",")[0]}
-                </div>
-                <div className="text-[10px] font-mono text-emerald-700 font-semibold">
-                  Available from {prodH01.offers?.length || 1} Verified Depots
+              {/* Symmetrical Image Frame */}
+              <div className="my-5 w-full aspect-[4/3] rounded-xl bg-[#F9F9FB] border border-[#EBEBEF] flex items-center justify-center p-4 relative overflow-hidden group-hover:bg-[#F4F4F7] transition-colors">
+                <img
+                  src={it.product.image}
+                  alt={it.product.title}
+                  className="max-h-full max-w-full object-contain filter group-hover:scale-106 transition-transform duration-500 ease-out"
+                />
+                <div className="absolute bottom-2.5 left-2.5 text-[9px] font-mono font-semibold text-[#64646E] bg-white/90 backdrop-blur-xs px-2 py-0.5 rounded border border-[#E5E5E9] shadow-2xs">
+                  {it.product.canonicalSku}
                 </div>
               </div>
-            </div>
-          </div>
 
-          {/* Bottom Row: Title, Specs & Immediate Buy Box Actions */}
-          <div className="relative z-10 pt-4 border-t border-[#E5E5E9] flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div className="space-y-1 max-w-md">
-              <h3 className="text-xl sm:text-2xl font-sans font-black tracking-tight text-[#0A0A0C] group-hover:text-black">
-                {prodH01.title}
-              </h3>
-              <p className="text-xs text-[#64646E] font-sans line-clamp-2 leading-relaxed">
-                {prodH01.description}
+              {/* Title & Price Header */}
+              <div className="space-y-1 mb-2">
+                <div className="flex items-baseline justify-between gap-2">
+                  <h3 className="text-base font-sans font-bold text-[#0A0A0C] line-clamp-1 group-hover:text-black">
+                    {it.product.title}
+                  </h3>
+                  <span className="text-lg font-mono font-black text-[#0A0A0C] shrink-0">
+                    ${it.product.price}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between text-[11px] font-mono text-[#64646E]">
+                  <span className="truncate">{it.materials}</span>
+                  <span className="text-emerald-700 font-semibold shrink-0 ml-2">{it.rating}</span>
+                </div>
+              </div>
+
+              {/* Description */}
+              <p className="text-xs text-[#64646E] font-sans line-clamp-2 leading-relaxed mb-4">
+                {it.product.description}
               </p>
             </div>
 
-            <div className="flex items-center gap-3 shrink-0 pt-2 sm:pt-0">
-              <div className="text-right">
-                <div className="text-2xl font-mono font-black text-[#0A0A0C]">
-                  ${prodH01.price}.00
-                </div>
-                <div className="text-[10px] font-mono text-[#64646E]">
-                  Free Consolidated Transit
-                </div>
-              </div>
-
+            {/* Symmetrical Action Footer */}
+            <div className="pt-3 border-t border-[#E5E5E9] flex items-center gap-2 mt-auto">
               <button
-                onClick={handleAddH01}
-                className="px-5 py-3 rounded-2xl bg-[#0D0D0D] hover:bg-black text-white font-sans font-semibold text-xs transition-all shadow-md flex items-center gap-2 cursor-pointer active:scale-95 shrink-0"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveBuyBoxProduct(it.product);
+                }}
+                className="flex-1 py-2.5 text-center rounded-lg border border-[#E5E5E9] hover:border-[#0A0A0C] text-xs font-medium text-[#0A0A0C] transition-all bg-[#F9F9FB] hover:bg-white btn-tactile-white cursor-pointer"
               >
-                {justAddedH01 ? (
-                  <>
-                    <Check className="h-4 w-4 text-emerald-400" />
-                    <span>Added</span>
-                  </>
+                Inspect Specifications
+              </button>
+              <button
+                onClick={it.onAdd}
+                className="p-2.5 rounded-lg bg-[#0D0D0D] text-white hover:bg-black transition-all btn-tactile cursor-pointer shrink-0"
+                title="Add to Bag"
+                aria-label="Add to Bag"
+              >
+                {it.isAdded ? (
+                  <Check className="h-4 w-4 text-emerald-400" />
                 ) : (
-                  <>
-                    <ShoppingBag className="h-4 w-4 text-emerald-400" />
-                    <span>Quick Bag</span>
-                  </>
+                  <ShoppingBag className="h-4 w-4 text-emerald-400" />
                 )}
               </button>
             </div>
           </div>
-        </div>
-
-        {/* 2 STACKED MINI-CARDS: 35% Width (4 cols) */}
-        <div className="lg:col-span-4 flex flex-col gap-6 justify-between">
-          
-          {/* Mini-Card 1: Field Horology Automatic Watch */}
-          <div
-            onClick={() => setActiveBuyBoxProduct(prodWatch)}
-            className="group relative rounded-3xl bg-white border border-[#E5E5E9] floating-card hover:border-[#0A0A0C] transition-all duration-500 p-5 sm:p-6 flex flex-col justify-between overflow-hidden cursor-pointer flex-1"
-          >
-            <div className="flex items-center justify-between text-xs font-mono pb-2">
-              <span className="text-[10px] font-medium text-[#EA580C] bg-orange-50 border border-orange-200/80 px-2.5 py-0.5 rounded-md uppercase">
-                Horology · 02
-              </span>
-              <span className="text-[10px] text-[#64646E]">
-                Zurich, Switzerland
-              </span>
-            </div>
-
-            <div className="my-3 flex items-center justify-center h-36 relative">
-              <img
-                src={prodWatch.image}
-                alt={prodWatch.title}
-                className="max-h-full max-w-full object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.15)] group-hover:scale-110 group-hover:rotate-2 transition-transform duration-500 ease-out"
-              />
-            </div>
-
-            <div className="space-y-2 pt-2 border-t border-[#E5E5E9]">
-              <div className="flex items-baseline justify-between">
-                <h4 className="text-sm font-sans font-bold text-[#0A0A0C] line-clamp-1">
-                  {prodWatch.title}
-                </h4>
-                <span className="text-base font-mono font-black text-[#0A0A0C] shrink-0 ml-2">
-                  ${prodWatch.price}
-                </span>
-              </div>
-
-              <div className="flex items-center justify-between text-[11px] font-mono text-[#64646E]">
-                <span>Grade-5 Titanium · Sapphire</span>
-                <span className="text-emerald-700 font-bold">9.9 Durability</span>
-              </div>
-
-              <div className="pt-2 flex items-center gap-2">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setActiveBuyBoxProduct(prodWatch);
-                  }}
-                  className="flex-1 py-2 text-center rounded-lg border border-[#E5E5E9] hover:border-[#0A0A0C] text-xs font-medium text-[#0A0A0C] transition-all bg-[#F9F9FB] btn-tactile-white cursor-pointer"
-                >
-                  Inspect Offers
-                </button>
-                <button
-                  onClick={handleAddWatch}
-                  className="p-2 rounded-lg bg-[#0D0D0D] text-white hover:bg-black transition-all btn-tactile cursor-pointer"
-                >
-                  {justAddedWatch ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <ShoppingBag className="h-3.5 w-3.5" />}
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Mini-Card 2: Cast Enamelled Dutch Oven */}
-          <div
-            onClick={() => setActiveBuyBoxProduct(prodOven)}
-            className="group relative rounded-3xl bg-white border border-[#E5E5E9] floating-card hover:border-[#0A0A0C] transition-all duration-500 p-5 sm:p-6 flex flex-col justify-between overflow-hidden cursor-pointer flex-1"
-          >
-            <div className="flex items-center justify-between text-xs font-mono pb-2">
-              <span className="text-[10px] font-medium text-[#2563EB] bg-blue-50 border border-blue-200/80 px-2.5 py-0.5 rounded-md uppercase">
-                Culinary · 03
-              </span>
-              <span className="text-[10px] text-[#64646E]">
-                {prodOven.primaryVendor.location}
-              </span>
-            </div>
-
-            <div className="my-3 flex items-center justify-center h-36 relative">
-              <img
-                src={prodOven.image}
-                alt={prodOven.title}
-                className="max-h-full max-w-full object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.15)] group-hover:scale-110 group-hover:-rotate-2 transition-transform duration-500 ease-out"
-              />
-            </div>
-
-            <div className="space-y-2 pt-2 border-t border-[#E5E5E9]">
-              <div className="flex items-baseline justify-between">
-                <h4 className="text-sm font-sans font-bold text-[#0A0A0C] line-clamp-1">
-                  {prodOven.title}
-                </h4>
-                <span className="text-base font-mono font-black text-[#0A0A0C] shrink-0 ml-2">
-                  ${prodOven.price}
-                </span>
-              </div>
-
-              <div className="flex items-center justify-between text-[11px] font-mono text-[#64646E]">
-                <span>Recycled Pig Iron · Enamel</span>
-                <span className="text-emerald-700 font-bold">{prodOven.durabilityYears}-Yr Warranty</span>
-              </div>
-
-              <div className="pt-2 flex items-center gap-2">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setActiveBuyBoxProduct(prodOven);
-                  }}
-                  className="flex-1 py-2 text-center rounded-lg border border-[#E5E5E9] hover:border-[#0A0A0C] text-xs font-medium text-[#0A0A0C] transition-all bg-[#F9F9FB] btn-tactile-white cursor-pointer"
-                >
-                  Inspect Offers
-                </button>
-                <button
-                  onClick={handleAddOven}
-                  className="p-2 rounded-lg bg-[#0D0D0D] text-white hover:bg-black transition-all btn-tactile cursor-pointer"
-                >
-                  {justAddedOven ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <ShoppingBag className="h-3.5 w-3.5" />}
-                </button>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
+        ))}
       </div>
     </section>
   );
 };
-

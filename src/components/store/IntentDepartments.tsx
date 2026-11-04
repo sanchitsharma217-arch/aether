@@ -30,24 +30,24 @@ export const IntentDepartments: React.FC = () => {
       image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=1000&auto=format&fit=crop&q=90",
       materials: "Planar Diaphragms · Solid American Walnut · Aircraft 6061 Alloy",
       desc: "Reference acoustic monitors and micro-tolerance tooling with zero cloud or battery tethering.",
-      span: "lg:col-span-7",
+      span: "lg:col-span-6",
     },
     {
       id: "kitchen-culinary",
       title: "Kitchen & Culinary",
       category: "Kitchen & Culinary",
-      tranche: "Tranche 01 · Active",
+      tranche: "Master Collection",
       location: "Champagne-Ardenne & Kochi",
       image: "https://images.unsplash.com/photo-1556909128-2293de4be38e?w=1000&auto=format&fit=crop&q=90",
       materials: "French Sand-Cast Iron · Hitachi Blue Paper Steel · Tokoname Clay",
       desc: "Generational Dutch ovens, pine-charcoal forged carbon blades, and mineral pour-over ceramics.",
-      span: "lg:col-span-5",
+      span: "lg:col-span-6",
     },
     {
       id: "home-living",
       title: "Home & Living",
       category: "Home & Living",
-      tranche: "Tranche 01 · Active",
+      tranche: "Master Collection",
       location: "Lancaster, Flanders & Évora",
       image: "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=1000&auto=format&fit=crop&q=90",
       materials: "Continuous Black Walnut · Masters of Linen Flax · Portuguese Cork",
@@ -58,7 +58,7 @@ export const IntentDepartments: React.FC = () => {
       id: "wearables-horology",
       title: "Wearables & Horology",
       category: "Wearables & Horology",
-      tranche: "Tranche 01 · Active",
+      tranche: "Master Collection",
       location: "Neuchâtel, Switzerland",
       image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=1000&auto=format&fit=crop&q=90",
       materials: "Grade-5 Aerospace Titanium · Double-Domed Sapphire · Super-LumiNova",
@@ -69,7 +69,7 @@ export const IntentDepartments: React.FC = () => {
       id: "accessories-edc",
       title: "Accessories & EDC",
       category: "Accessories & EDC",
-      tranche: "Tranche 01 · Active",
+      tranche: "Master Collection",
       location: "Chicago, Paris & Solingen",
       image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=1000&auto=format&fit=crop&q=90",
       materials: "Horween Chromexcel Steerhide · Solid C360 Brass · Braided Thread",
@@ -84,10 +84,10 @@ export const IntentDepartments: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8 border-b border-[#E5E5E9] pb-4">
         <div>
           <span className="text-[10px] font-mono font-bold text-[#EA580C] uppercase tracking-widest">
-            SECTION 04 // MATERIAL GUILDS
+            CURATED DISCIPLINES
           </span>
           <h2 className="text-3xl sm:text-4xl font-sans font-black tracking-tight text-[#0A0A0C] uppercase mt-1">
-            5 Departments of Craft.
+            Five Departments of Craft.
           </h2>
         </div>
         <Link
@@ -99,14 +99,14 @@ export const IntentDepartments: React.FC = () => {
         </Link>
       </div>
 
-      {/* Asymmetric Masonry Layout with 7/5 Split on Row 1 and 4/4/4 on Row 2 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
+      {/* Symmetrical Grid: 2 equal cards on Row 1 (6/6), 3 equal cards on Row 2 (4/4/4) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch">
         {deptCards.map((dept) => (
           <Link
             key={dept.id}
             href="/shop"
             onClick={() => setSelectedCategory(dept.category)}
-            className={`group bg-white rounded-3xl overflow-hidden border border-[#E5E5E9] floating-card hover:border-[#0A0A0C] hover:shadow-2xl transition-all duration-500 flex flex-col justify-between cursor-pointer ${dept.span}`}
+            className={`group bg-white rounded-2xl overflow-hidden border border-[#E5E5E9] floating-card hover:border-[#0A0A0C] hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer h-full ${dept.span}`}
           >
             {/* Visual Frame */}
             <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone-100">
@@ -123,7 +123,7 @@ export const IntentDepartments: React.FC = () => {
                   {dept.tranche}
                 </span>
                 <span className="text-[10px] font-mono font-medium text-amber-300 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md uppercase tracking-wider border border-white/20">
-                  {PRODUCTS.filter((p) => p.category === dept.category).length} Master SKUs
+                  {PRODUCTS.filter((p) => p.category === dept.category).length} Works
                 </span>
               </div>
 
@@ -139,11 +139,11 @@ export const IntentDepartments: React.FC = () => {
 
             {/* Description & Materials Body */}
             <div className="p-6 space-y-3 bg-white flex-1 flex flex-col justify-between">
-              <p className="text-xs text-[#64646E] leading-relaxed font-sans">
+              <p className="text-xs text-[#64646E] leading-relaxed font-sans line-clamp-2 h-10">
                 {dept.desc}
               </p>
 
-              <div className="pt-3 border-t border-[#E5E5E9] flex items-center justify-between text-[11px] font-mono text-stone-500">
+              <div className="pt-3 border-t border-[#E5E5E9] flex items-center justify-between text-[11px] font-mono text-stone-500 mt-auto">
                 <span className="truncate max-w-[80%] text-[10px] text-stone-600 font-sans">
                   {dept.materials}
                 </span>

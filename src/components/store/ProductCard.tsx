@@ -67,25 +67,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuickVi
     <article
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`group bg-white rounded-3xl border p-4 sm:p-5 flex flex-col justify-between floating-card transition-all duration-500 relative overflow-hidden ${
+      className={`group bg-white rounded-2xl border p-4 sm:p-5 flex flex-col justify-between floating-card transition-all duration-300 relative overflow-hidden h-full ${
         compared ? "border-amber-400 ring-2 ring-amber-400/30" : "border-[#E5E5E9] hover:border-[#0A0A0C]"
       }`}
     >
       <div>
-        {/* Top Badges & Durability Tag */}
-        <div className="flex items-center justify-between mb-3 z-10 relative">
-          <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="text-[9px] font-mono font-medium uppercase tracking-wider text-[#64646E] bg-[#F1F1F4] border border-[#E5E5E9] px-2 py-0.5 rounded-md">
+        {/* Top Badges & Durability Tag - Fixed Height Row to keep all card images perfectly aligned */}
+        <div className="h-6 flex items-center justify-between mb-3 z-10 relative">
+          <div className="flex items-center gap-1.5 overflow-hidden">
+            <span className="text-[9px] font-mono font-medium uppercase tracking-wider text-[#64646E] bg-[#F1F1F4] border border-[#E5E5E9] px-2 py-0.5 rounded-md truncate">
               {product.category}
             </span>
-            {product.stockUrgency && (
-              <span className="text-[9px] font-mono text-[#EA580C] bg-orange-50 border border-orange-200/80 px-2 py-0.5 rounded-md font-medium">
-                {product.stockUrgency}
-              </span>
-            )}
           </div>
 
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 shrink-0">
             {/* Compare Toggle Button */}
             <button
               type="button"
@@ -128,43 +123,44 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuickVi
           </div>
         </div>
 
-        {/* 4:5 Vertical Image Frame with Magazine-Quality Studio Lighting & Deep Shadow */}
+        {/* 1:1 Square Image Frame - Perfectly Balanced for Both Horizontal and Vertical Objects */}
         <div
           onClick={handleOpenBuyBox}
-          className="aspect-[4/5] w-full bg-gradient-to-b from-[#F8F8FA] to-[#EFEFF3] rounded-2xl flex items-center justify-center p-4 mb-3.5 relative overflow-hidden border border-[#E5E5E9] cursor-pointer"
+          className="aspect-square w-full bg-[#F9F9FB] rounded-xl flex items-center justify-center p-4 mb-3.5 relative overflow-hidden border border-[#EBEBEF] cursor-pointer group-hover:bg-[#F4F4F7] transition-colors"
         >
           <img
             src={displayedImage}
             alt={product.title}
-            className="max-h-full max-w-full object-contain filter drop-shadow-[0_16px_24px_rgba(0,0,0,0.14)] group-hover:scale-108 transition-transform duration-700 ease-out"
+            className="max-h-full max-w-full object-contain filter group-hover:scale-106 transition-transform duration-500 ease-out"
           />
 
-          {/* Canonical SKU Watermark */}
-          <div className="absolute bottom-2 left-2.5 text-[9px] font-mono font-bold text-[#64646E] glass-pill px-2 py-0.5 rounded shadow-xs">
+          {/* Master SKU Watermark */}
+          <div className="absolute bottom-2 left-2.5 text-[9px] font-mono font-bold text-[#64646E] bg-white/90 backdrop-blur-xs px-2 py-0.5 rounded border border-[#E5E5E9] shadow-2xs">
             {product.canonicalSku}
           </div>
         </div>
 
-        {/* Vendor Attribution Row */}
-        <div className="flex items-center gap-1.5 text-[11px] text-[#EA580C] font-semibold font-sans mb-1 truncate">
-          <Building2 className="h-3 w-3 shrink-0 text-[#EA580C]" />
-          <span className="truncate">
-            {product.primaryVendor.name}
-          </span>
-          {product.provenance?.origin && (
-            <span className="text-[#64646E] text-[10px] font-normal">
-              ({product.provenance.origin.split(",")[0]})
+        {/* Standardized Title & Vendor Area: Fixed height guarantees horizontal baseline alignment */}
+        <div className="h-14 flex flex-col justify-start mb-2">
+          <div className="flex items-center gap-1.5 text-[11px] text-[#A84B29] font-medium font-sans mb-0.5 truncate">
+            <Building2 className="h-3 w-3 shrink-0 text-[#A84B29]" />
+            <span className="truncate">
+              {product.primaryVendor.name}
             </span>
-          )}
-        </div>
+            {product.provenance?.origin && (
+              <span className="text-[#64646E] text-[10px] font-normal truncate">
+                ({product.provenance.origin.split(",")[0]})
+              </span>
+            )}
+          </div>
 
-        {/* Title */}
-        <h3
-          onClick={handleOpenBuyBox}
-          className="text-sm font-sans font-black tracking-tight text-[#0A0A0C] group-hover:text-black line-clamp-1 leading-snug cursor-pointer mb-2"
-        >
-          {product.title}
-        </h3>
+          <h3
+            onClick={handleOpenBuyBox}
+            className="text-sm font-sans font-bold tracking-tight text-[#0A0A0C] group-hover:text-black line-clamp-1 leading-snug cursor-pointer"
+          >
+            {product.title}
+          </h3>
+        </div>
 
         {/* Current Best Offer & Multi-Seller Button */}
         <div className="pt-2 border-t border-[#E5E5E9] mb-3 space-y-1">
@@ -181,35 +177,35 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuickVi
             </div>
 
             <span className="text-[10px] font-mono font-medium text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-md">
-              In Stock · Fast Mesh
+              In Stock · Ready to Ship
             </span>
           </div>
 
           {/* Interactive Multi-Vendor Link: Opens Buy Box Drawer */}
           <button
             onClick={handleOpenBuyBox}
-            className="w-full text-left flex items-center justify-between text-[11px] text-blue-700 hover:text-[#0A0A0C] font-sans font-semibold transition-colors pt-0.5 group/seller cursor-pointer"
+            className="w-full text-left flex items-center justify-between text-[11px] text-stone-600 hover:text-[#0A0A0C] font-sans font-medium transition-colors pt-0.5 group/seller cursor-pointer"
           >
-            <span>{sellerCount} verified node offers</span>
+            <span>{sellerCount} verified workshop offers</span>
             <ChevronRight className="h-3 w-3 group-hover/seller:translate-x-0.5 transition-transform" />
           </button>
         </div>
       </div>
 
-      {/* Action Buttons: [ Inspect Dossier / 360° ] & [ Quick Add ] */}
-      <div className="pt-2 border-t border-[#E5E5E9] flex items-center gap-2">
+      {/* Action Buttons: [ View Details ] & [ Quick Add ] */}
+      <div className="pt-2 border-t border-[#E5E5E9] flex items-center gap-2 mt-auto">
         <Link
           href={`/product/${product.id}`}
           className="flex-1 py-2 px-3 rounded-lg bg-[#F9F9FB] border border-[#E5E5E9] hover:border-[#0A0A0C] hover:bg-white text-[#0A0A0C] text-xs font-sans font-medium btn-tactile-white transition-all flex items-center justify-center gap-1.5 cursor-pointer"
         >
           <Eye className="h-3.5 w-3.5 text-[#64646E]" />
-          <span>Canonical Dossier</span>
+          <span>View Details</span>
         </Link>
 
         <button
           onClick={handleQuickAdd}
           className="p-2 rounded-lg bg-[#0D0D0D] hover:bg-black text-white text-xs font-medium btn-tactile transition-all flex items-center justify-center cursor-pointer shrink-0"
-          title="Quick Add Best Match Offer"
+          title="Quick Add to Bag"
           aria-label="Quick Add"
         >
           {justAdded ? (

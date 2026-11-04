@@ -89,21 +89,21 @@ export const RitualsIntentEngine: React.FC<Props> = ({ className = "" }) => {
           <div className="flex items-center gap-2 mb-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
             <span className="text-[10px] font-mono font-medium uppercase tracking-widest text-[#EA580C]">
-              CROSS-VENDOR SUITE BUILDER · INTENT ARCHITECTURE
+              CURATED LIVING SETS · HARMONIOUS COMPOSITION
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-sans font-black tracking-tight text-[#0A0A0C] uppercase">
-            Curate by Living Capsule, not Isolated SKUs.
+            Complete Lifestyle Sets.
           </h2>
           <p className="text-xs sm:text-sm text-[#64646E] font-sans mt-1 max-w-2xl leading-relaxed">
-            Amazon expects you to search 20 separate keywords across conflicting dropshippers. Aether clusters complementary objects from certified independent makers into a unified, discounted setup.
+            Thoughtfully paired objects from independent European and Japanese workshops, designed to function as a coherent aesthetic whole. Save 10% when acquired together.
           </p>
         </div>
 
         <div className="flex items-center gap-3 text-xs text-[#64646E] font-sans">
-          <div className="flex items-center gap-1.5 bg-[#F9F9FB] px-3 py-1.5 rounded-lg border border-[#E5E5E9] shadow-xs">
+          <div className="flex items-center gap-1.5 bg-[#F9F9FB] px-3 py-1.5 rounded-lg border border-[#E5E5E9] shadow-2xs">
             <Truck className="h-3.5 w-3.5 text-blue-600" />
-            <span className="text-[11px] font-mono font-bold text-[#0A0A0C]">1 Consolidated 4PL Parcel</span>
+            <span className="text-[11px] font-mono font-bold text-[#0A0A0C]">Combined Eco-Delivery</span>
           </div>
         </div>
       </div>
@@ -184,11 +184,11 @@ export const RitualsIntentEngine: React.FC<Props> = ({ className = "" }) => {
                 className="bg-white rounded-2xl p-4 sm:p-5 border border-[#E5E5E9] flex flex-col justify-between gap-4 floating-card hover:border-[#0A0A0C] transition-all group h-full"
               >
                 <div className="flex items-start gap-3 sm:gap-4 min-w-0">
-                  <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-xl bg-gradient-to-b from-[#F8F8FA] to-[#EFEFF3] border border-[#E5E5E9] p-2 flex items-center justify-center shrink-0 overflow-hidden">
+                  <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-xl bg-[#F9F9FB] border border-[#EBEBEF] p-2 flex items-center justify-center shrink-0 overflow-hidden">
                     <img
                       src={prod.image}
                       alt={prod.title}
-                      className="max-h-full max-w-full object-contain filter drop-shadow-[0_8px_12px_rgba(0,0,0,0.12)] group-hover:scale-110 transition-transform duration-500 ease-out"
+                      className="max-h-full max-w-full object-contain filter group-hover:scale-106 transition-transform duration-500 ease-out"
                     />
                   </div>
 
@@ -242,10 +242,10 @@ export const RitualsIntentEngine: React.FC<Props> = ({ className = "" }) => {
               </div>
               <div>
                 <h4 className="text-sm font-sans font-bold uppercase tracking-tight">
-                  Assemble {currentScenario.tabLabel} Capsule
+                  Acquire {currentScenario.tabLabel} Set
                 </h4>
                 <p className="text-[11px] text-stone-400 font-sans">
-                  Clusters {bundleProducts.length} objects from verified independent makers into a single low-impact 4PL parcel.
+                  Combines {bundleProducts.length} objects from verified independent workshops into a single carbon-neutral delivery.
                 </p>
               </div>
             </div>

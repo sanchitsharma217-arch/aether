@@ -40,40 +40,40 @@ export const Footer: React.FC = () => {
             </div>
 
             <p className="text-stone-400 max-w-md leading-relaxed text-xs">
-              The universal exchange rejecting pay-to-play shelf placement, duplicate white-label listings, and artificial scarcity. Connecting independent certified ateliers directly with mindful collectors.
+              An independent marketplace dedicated to enduring industrial design, mechanical objects, and timeless craft. Connecting master ateliers directly with discerning collectors worldwide.
             </p>
 
             <div className="flex items-center gap-4 text-[11px] text-stone-400 font-mono flex-wrap">
               <span className="flex items-center gap-1.5">
                 <Layers className="h-3.5 w-3.5 text-[#A84B29]" />
-                1 Master SKU
+                Authentic Single Listings
               </span>
               <span className="flex items-center gap-1.5">
                 <ShieldCheck className="h-3.5 w-3.5 text-[#1B5E3C]" />
-                Direct Merchant Settlement
+                93% Direct to Makers
               </span>
               <span className="flex items-center gap-1.5">
                 <Truck className="h-3.5 w-3.5 text-[#1E3A8A]" />
-                Pilot 4PL Regional Mesh
+                Combined Carbon-Neutral Shipping
               </span>
             </div>
           </div>
 
           <div className="lg:col-span-6 space-y-3">
             <span className="text-[10px] font-mono font-bold text-amber-400 uppercase tracking-widest">
-              DISPATCH & ARCHIVE LEDGER
+              MONTHLY DISPATCH
             </span>
             <h4 className="text-sm font-sans font-bold text-white">
-              The Aether Technical Journal
+              The Aether Journal
             </h4>
             <p className="text-stone-400 text-xs">
-              Receive notifications for serialized kiln releases, material durability whitepapers, and regional guild additions.
+              Curated reflections on timeless industrial design, material craftsmanship, and architectural living. Delivered once a month.
             </p>
 
             {subscribed ? (
               <div className="inline-flex items-center gap-2 text-emerald-400 font-medium bg-emerald-950/40 border border-emerald-800/40 px-3.5 py-2 rounded-xl text-xs font-mono">
                 <Check className="h-4 w-4" />
-                <span>Patron enrollment verified. Welcome to the exchange ledger.</span>
+                <span>Thank you. You are subscribed to our monthly craft journal.</span>
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="flex max-w-md gap-2">
@@ -171,31 +171,52 @@ export const Footer: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <span className="text-stone-400">Edge CDN</span>
-                <span className="text-white font-bold">Global Mesh</span>
+                <span className="text-white font-bold">Global Network</span>
               </div>
 
               <div className="flex items-center justify-between">
-                <span className="text-stone-400">Pilot Guilds</span>
-                <span className="text-amber-300 font-bold">8 Verified [Tranche 01 Pilot]</span>
+                <span className="text-stone-400">Workshops</span>
+                <span className="text-amber-300 font-bold">8 Certified Ateliers</span>
               </div>
 
               <div className="flex items-center justify-between pt-1 border-t border-white/10 text-[10px]">
                 <span className="text-stone-500">Settlement</span>
-                <span className="text-sky-300">Non-Custodial Direct (Sandbox)</span>
+                <span className="text-emerald-400">93% Direct to Maker</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Rights Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-stone-500 text-[11px] font-mono">
-          <div>
-            © 2026 AETHER UNIVERSAL EXCHANGE. All rights reserved.
+        {/* Bottom Rights & Designer Showcase Colophon Bar */}
+        <div className="pt-8 space-y-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-stone-500 text-[11px] font-mono">
+            <div>
+              © 2026 AETHER. Built for objects that endure.
+            </div>
+            <div className="flex items-center gap-4 sm:gap-6 font-sans">
+              <span className="hover:text-stone-300 transition-colors cursor-pointer">Charter of Craft</span>
+              <span className="hover:text-stone-300 transition-colors cursor-pointer">Durability Standard</span>
+              <span className="hover:text-stone-300 transition-colors cursor-pointer">Ad-Free Guarantee</span>
+            </div>
           </div>
-          <div className="flex items-center gap-4 sm:gap-6 font-sans">
-            <span className="hover:text-stone-300 transition-colors cursor-pointer">Direct Settlement Charter</span>
-            <span className="hover:text-stone-300 transition-colors cursor-pointer">Canonical SKU Standard</span>
-            <span className="hover:text-stone-300 transition-colors cursor-pointer">Zero-Ad Guarantee</span>
+
+          {/* Designer Portfolio Attribution */}
+          <div className="pt-4 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-mono text-stone-400">
+            <div className="flex items-center gap-2">
+              <span className="text-stone-500">Concept & Interface Engineering by</span>
+              <a
+                href="https://github.com/sanchitsharma217-arch"
+                target="_blank"
+                rel="noreferrer"
+                className="text-white hover:text-amber-400 font-bold transition-colors underline decoration-stone-600 underline-offset-4"
+              >
+                Sanchit Sharma
+              </a>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <span className="text-emerald-400 font-medium">Available for Select Design Commissions & Roles</span>
+            </div>
           </div>
         </div>
       </div>

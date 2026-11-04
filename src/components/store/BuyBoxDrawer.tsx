@@ -173,7 +173,7 @@ export const BuyBoxDrawer: React.FC = () => {
                       : "text-[#64646E] hover:text-[#0A0A0C]"
                   }`}
                 >
-                  Patina & Return Forensics
+                  Longevity & Returns
                 </button>
               </div>
             </div>
