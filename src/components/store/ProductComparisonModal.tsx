@@ -111,11 +111,11 @@ export const ProductComparisonModal: React.FC = () => {
                             <span className="text-[10px] font-mono text-[#EA580C] uppercase tracking-wider font-bold">
                               {p.canonicalSku}
                             </span>
-                            <h4 className="text-sm font-sans font-black text-[#0A0A0C] leading-snug line-clamp-2">
+                            <h4 className="text-sm font-sans font-bold text-[#0A0A0C] leading-snug line-clamp-2 h-10 mt-0.5">
                               {p.title}
                             </h4>
-                            <div className="text-lg font-serif font-black text-[#0A0A0C] mt-1">
-                              ${p.price}
+                            <div className="text-lg font-mono font-black text-[#0A0A0C] mt-1">
+                              ${p.price}.00
                             </div>
                           </div>
                           <div className="flex gap-2">

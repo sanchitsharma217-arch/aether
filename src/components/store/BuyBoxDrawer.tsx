@@ -225,6 +225,12 @@ export const BuyBoxDrawer: React.FC = () => {
                                 Condition: <span className="text-[#121110] font-semibold">{offer.condition}</span>
                                 {offer.rating && ` · Seller Rating: ${offer.rating} / 5.0`}
                               </div>
+
+                              {offer.stockAllocation && (
+                                <div className="text-[10px] font-mono text-emerald-800 font-semibold pt-0.5">
+                                  {offer.stockAllocation} units allocated · {Math.round((offer.stockAllocation / (product.inventoryLedger?.totalUnits || product.stockCount)) * 100)}% of physical batch ({Math.round((offer.stockAllocation / (product.inventoryLedger?.availableUnits || product.stockCount)) * 100)}% of available)
+                                </div>
+                              )}
                             </div>
 
                             <div className="text-right shrink-0 space-y-1">

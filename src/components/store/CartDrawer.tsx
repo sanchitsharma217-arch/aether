@@ -113,14 +113,14 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onOpenCheckout }) => {
           </button>
         </div>
 
-        {/* Batch Transit Banner */}
-        <div className="px-6 py-2.5 bg-emerald-50 border-b border-emerald-200 flex items-center justify-between text-xs font-mono">
-          <div className="flex items-center gap-1.5 text-emerald-800">
-            <Truck className="h-3.5 w-3.5 text-emerald-600" />
-            <span className="font-bold">Combined Delivery:</span>
-            <span>Carbon-neutral atelier dispatch ($0.00)</span>
+        {/* Conditional Pilot Transit Banner */}
+        <div className="px-6 py-2.5 bg-emerald-50/70 border-b border-emerald-200/80 flex items-center justify-between text-xs font-mono">
+          <div className="flex items-center gap-1.5 text-emerald-900 min-w-0">
+            <Truck className="h-3.5 w-3.5 text-emerald-700 shrink-0" />
+            <span className="font-bold">Pilot Corridor Delivery:</span>
+            <span className="truncate">Complimentary on 8 Atelier Corridors ($0.00)</span>
           </div>
-          <span className="text-[10px] text-emerald-800 font-sans font-bold">Complimentary</span>
+          <span className="text-[10px] text-emerald-800 font-mono font-bold shrink-0 ml-2">Verified Routes</span>
         </div>
 
         {/* Scrollable Body: Grouped by Shipment Packages */}
@@ -278,22 +278,37 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onOpenCheckout }) => {
               </div>
             </div>
 
-            {/* Checkout Action Button with Tactile Obsidian */}
-            <button
-              onClick={() => {
-                setIsCartOpen(false);
-                onOpenCheckout();
-              }}
-              className="w-full py-3.5 px-4 rounded-xl bg-[#0D0D0D] hover:bg-black text-white font-sans font-medium text-xs tracking-wider uppercase btn-tactile transition-all flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <span>Proceed to Universal Checkout</span>
-              <ArrowRight className="h-4 w-4 text-emerald-400" />
-            </button>
+            {/* Split Action Buttons inspired by Furlan Marri (Image 3) */}
+            <div className="grid grid-cols-2 gap-3 pt-1">
+              <button
+                type="button"
+                onClick={() => setIsCartOpen(false)}
+                className="py-3 px-4 rounded-xl border border-[#E5E5E9] hover:border-[#0A0A0C] text-[#0A0A0C] font-mono font-bold text-xs uppercase tracking-wider transition-all bg-[#F9F9FB] hover:bg-white cursor-pointer"
+              >
+                Continue Shopping
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsCartOpen(false);
+                  onOpenCheckout();
+                }}
+                className="py-3 px-4 rounded-xl bg-[#0D0D0D] hover:bg-black text-white font-mono font-bold text-xs uppercase tracking-wider btn-tactile transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+              >
+                <span>Checkout</span>
+                <ArrowRight className="h-3.5 w-3.5 text-emerald-400" />
+              </button>
+            </div>
+
+            {/* Furlan Marri / Triplés Luxury Duty & Logistics Disclosure */}
+            <div className="text-[10px] text-stone-500 font-sans leading-relaxed pt-2 border-t border-[#F0F0F4]">
+              Complimentary consolidated delivery applies to orders within the 8 pilot atelier corridors (Berlin, Zurich, Champagne, Kochi, Aichi, Lancaster, Flanders, Évora). Direct maker freight applies outside pilot routes. Local customs duties and applicable regional taxes are borne by the recipient upon arrival.
+            </div>
 
             <div className="flex items-center justify-between text-[10px] text-[#64646E] font-sans pt-1">
               <span className="flex items-center gap-1 font-mono">
                 <ShieldCheck className="h-3 w-3 text-emerald-600" />
-                Non-Custodial Direct Settlement (Simulated Sandbox)
+                Direct Workshop Settlement (Sandbox Demo)
               </span>
               <button
                 onClick={clearCart}

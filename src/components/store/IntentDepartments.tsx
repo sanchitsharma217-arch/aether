@@ -1,14 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Layers, Sparkles } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Layers, Building2, MapPin, X, ShieldCheck } from "lucide-react";
 import { CraftDepartment } from "@/types/store";
 import { useStore } from "@/context/StoreContext";
 import { PRODUCTS } from "@/data/mockProducts";
+import { CERTIFIED_GUILDS } from "@/data/certifiedGuilds";
 
 export const IntentDepartments: React.FC = () => {
   const { setSelectedCategory } = useStore();
+  const [isGuildModalOpen, setIsGuildModalOpen] = useState(false);
 
   const deptCards: {
     id: string;
@@ -25,7 +28,7 @@ export const IntentDepartments: React.FC = () => {
       id: "tech-audio",
       title: "Technology & Audio",
       category: "Technology & Audio",
-      tranche: "Tranche 01 · Active",
+      tranche: "Master Collection",
       location: "Berlin & Zurich",
       image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=1000&auto=format&fit=crop&q=90",
       materials: "Planar Diaphragms · Solid American Walnut · Aircraft 6061 Alloy",
@@ -84,19 +87,31 @@ export const IntentDepartments: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8 border-b border-[#E5E5E9] pb-4">
         <div>
           <span className="text-[10px] font-mono font-bold text-[#EA580C] uppercase tracking-widest">
-            CURATED DISCIPLINES
+            FEATURED DISCIPLINES (5 CORE DEPARTMENTS · 8 PARTNER GUILDS)
           </span>
           <h2 className="text-3xl sm:text-4xl font-sans font-black tracking-tight text-[#0A0A0C] uppercase mt-1">
             Five Departments of Craft.
           </h2>
         </div>
-        <Link
-          href="/shop"
-          className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#0A0A0C] hover:text-[#EA580C] transition-colors"
-        >
-          <span>VIEW FULL CATALOG ARCHIVE</span>
-          <ArrowRight className="h-3.5 w-3.5" />
-        </Link>
+
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => setIsGuildModalOpen(true)}
+            className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#0A0A0C] hover:text-[#EA580C] px-3 py-1.5 rounded-lg border border-[#E5E5E9] bg-[#F9F9FB] hover:border-black transition-colors cursor-pointer"
+          >
+            <Building2 className="h-3.5 w-3.5 text-[#EA580C]" />
+            <span>ALL 8 GUILDS DIRECTORY</span>
+          </button>
+
+          <Link
+            href="/shop"
+            className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#0A0A0C] hover:text-[#EA580C] transition-colors"
+          >
+            <span>VIEW ALL</span>
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
       </div>
 
       {/* Symmetrical Grid: 2 equal cards on Row 1 (6/6), 3 equal cards on Row 2 (4/4/4) */}
@@ -155,6 +170,83 @@ export const IntentDepartments: React.FC = () => {
           </Link>
         ))}
       </div>
+
+      {/* Complete 8 Certified Guilds Directory Modal */}
+      <AnimatePresence>
+        {isGuildModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              className="w-full max-w-3xl bg-white rounded-2xl border border-[#E5E5E9] shadow-2xl overflow-hidden flex flex-col max-h-[85vh]"
+            >
+              <div className="p-5 sm:p-6 border-b border-[#E5E5E9] flex items-center justify-between bg-[#F9F9FB]">
+                <div className="space-y-0.5">
+                  <div className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#EA580C]">
+                      ATELIER REGISTRY
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-sans font-black text-[#0A0A0C]">
+                    All 8 Certified Guild Workshops
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setIsGuildModalOpen(false)}
+                  className="p-2 text-stone-400 hover:text-black rounded-lg hover:bg-stone-200 transition-colors cursor-pointer"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              <div className="p-6 overflow-y-auto space-y-4 divide-y divide-[#E5E5E9]">
+                {CERTIFIED_GUILDS.map((guild) => (
+                  <div key={guild.id} className="pt-4 first:pt-0 flex flex-col sm:flex-row sm:items-start justify-between gap-3 text-xs">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <span className="font-bold text-sm text-[#0A0A0C]">{guild.name}</span>
+                        <span className="text-[10px] font-mono bg-stone-100 text-stone-600 px-2 py-0.5 rounded border border-stone-200">
+                          Est. {guild.foundedYear}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-stone-500 font-mono text-[11px]">
+                        <MapPin className="h-3 w-3 text-stone-400" />
+                        <span>{guild.location}</span>
+                        <span>·</span>
+                        <span className="text-emerald-700">{guild.activeCraftspeople} Master Craftspeople</span>
+                      </div>
+                      <p className="text-stone-600 font-sans text-xs pt-0.5 max-w-lg">
+                        {guild.specialty}
+                      </p>
+                    </div>
+
+                    <Link
+                      href="/shop"
+                      onClick={() => setIsGuildModalOpen(false)}
+                      className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-[#0A0A0C] hover:text-[#EA580C] px-3 py-1.5 rounded-lg border border-[#E5E5E9] hover:border-black shrink-0 self-start transition-colors"
+                    >
+                      <span>Explore Works</span>
+                      <ArrowRight className="h-3 w-3" />
+                    </Link>
+                  </div>
+                ))}
+              </div>
+
+              <div className="p-4 bg-[#F9F9FB] border-t border-[#E5E5E9] flex items-center justify-between text-[11px] font-mono text-stone-500">
+                <span>All 8 workshops operate on direct merchant settlement (93% direct payout).</span>
+                <button
+                  onClick={() => setIsGuildModalOpen(false)}
+                  className="px-4 py-1.5 rounded-lg bg-[#0D0D0D] text-white hover:bg-black font-medium transition-colors cursor-pointer"
+                >
+                  Close Directory
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

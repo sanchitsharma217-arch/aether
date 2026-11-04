@@ -947,10 +947,10 @@ export const PRODUCTS: Product[] = [
     // METADATA_prod-santoku
     inventoryLedger: {
       "totalUnits": 5,
-      "availableUnits": 4,
-      "reservedUnits": 1,
+      "availableUnits": 5,
+      "reservedUnits": 0,
       "outOfStockUnits": 0,
-      "activeOffersCount": 2
+      "activeOffersCount": 3
 },
     enduranceBreakdown: {
       "score": 9.9,
@@ -1009,8 +1009,8 @@ export const PRODUCTS: Product[] = [
     rating: 4.98,
     reviewsCount: 142,
     inStock: true,
-    stockCount: 4,
-    stockUrgency: "Blacksmith Batch · 4 available",
+    stockCount: 5,
+    stockUrgency: "Master Blacksmith Batch · 5 available",
     image: "https://images.unsplash.com/photo-1593618998160-e34014e67546?w=800&auto=format&fit=crop&q=80",
     secondaryImage: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=800&auto=format&fit=crop&q=80",
     badge: "Bestseller",
@@ -1021,7 +1021,7 @@ export const PRODUCTS: Product[] = [
       location: "Kochi, Japan",
       atelierStory: "Traditional pine-charcoal forge producing edge tools since the Meiji era.",
     },
-    verifiedSellersCount: 2,
+    verifiedSellersCount: 3,
     lifespanScore: 9.8,
     durabilityYears: 40,
     canonicalSku: "AE-SKU-CUL-02",
@@ -1047,7 +1047,7 @@ export const PRODUCTS: Product[] = [
         id: "off-tosa-2",
         sellerName: "Echizen Blades Archive",
         location: "Fukui, Japan",
-        fulfillmentSpeed: "3-Day Asia-Pacific Mesh",
+        fulfillmentSpeed: "3-Day Asia-Pacific Dispatch",
         condition: "Master Grade",
         price: 220,
         stockAllocation: 1,
@@ -1055,6 +1055,19 @@ export const PRODUCTS: Product[] = [
         returnTerms: "30-Day Evaluation Period",
         nodeVerification: "Certified Guild Vault",
         rating: 4.95,
+      },
+      {
+        id: "off-tosa-3",
+        sellerName: "Kyoto Culinary Depot",
+        location: "Kyoto, Japan",
+        fulfillmentSpeed: "2-Day Consolidated Dispatch",
+        condition: "Sealed New",
+        price: 225,
+        stockAllocation: 1,
+        warranty: "Lifetime Blacksmith Guarantee",
+        returnTerms: "30-Day Evaluation Period",
+        nodeVerification: "Certified Guild Vault",
+        rating: 4.97,
       },
     ],
     features: [

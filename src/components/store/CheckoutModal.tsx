@@ -232,12 +232,15 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
                     <div className="flex justify-between">
                       <span>Shipping</span>
                       <span className="font-semibold text-emerald-700">
-                        {shipping === 0 ? "FREE" : `$${shipping.toFixed(2)}`}
+                        {shipping === 0 ? "FREE (Pilot Corridor)" : `$${shipping.toFixed(2)}`}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span>Estimated Tax</span>
                       <span>${tax.toFixed(2)}</span>
+                    </div>
+                    <div className="text-[10px] text-stone-500 font-sans pt-1">
+                      Complimentary consolidated dispatch on 8 pilot atelier corridors. Non-pilot orders route via direct atelier courier.
                     </div>
                     <div className="border-t pt-2 flex justify-between text-sm font-bold text-stone-900">
                       <span>Total Due</span>

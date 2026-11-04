@@ -637,8 +637,11 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 <tbody className="divide-y divide-[#E5E5E9] text-xs font-sans">
                   {product.offers?.map((offer) => {
                     const isSelected = selectedOffer.id === offer.id;
-                    const allocationCount = offer.stockAllocation || Math.floor(product.stockCount / (product.offers?.length || 1));
-                    const allocationPct = Math.round((allocationCount / product.stockCount) * 100);
+                    const totalBatchUnits = product.inventoryLedger?.totalUnits || product.stockCount;
+                    const availableUnits = product.inventoryLedger?.availableUnits || product.stockCount;
+                    const vendorAllocation = offer.stockAllocation || Math.floor(availableUnits / (product.offers?.length || 1));
+                    const pctOfPhysicalBatch = ((vendorAllocation / totalBatchUnits) * 100).toFixed(totalBatchUnits > 10 ? 0 : 0);
+                    const pctOfAvailable = ((vendorAllocation / availableUnits) * 100).toFixed(0);
                     return (
                       <tr
                         key={offer.id}
@@ -661,11 +664,14 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                           </span>
                         </td>
                         <td className="p-4">
-                          <span className="font-mono text-emerald-800 font-bold text-xs">
-                            {allocationCount} units
+                          <span className="font-mono text-emerald-800 font-bold text-xs block">
+                            {vendorAllocation} units
                           </span>
-                          <span className="text-[10px] text-stone-400 block font-mono">
-                            {allocationPct}% of batch
+                          <span className="text-[10px] text-stone-600 block font-mono font-medium">
+                            {pctOfPhysicalBatch}% of physical batch
+                          </span>
+                          <span className="text-[9px] text-stone-400 block font-mono">
+                            ({pctOfAvailable}% of available)
                           </span>
                         </td>
                         <td className="p-4 text-stone-700">
@@ -884,14 +890,41 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 </table>
               </div>
 
-              <div className="pt-3 border-t border-[#E5E5E9] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] font-mono text-stone-500">
-                <span>Standard: Master Atelier Specification v2.4 (Open Engineering Protocol)</span>
-                <span className="text-stone-700 font-bold">Evidence: Internal Atelier Stress Benchmarks &amp; Material Audits</span>
+              {/* Transparent Audit Provenance & Verification Disclosure */}
+              <div className="pt-4 border-t border-[#E5E5E9] grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
+                <div className="p-3.5 rounded-xl bg-[#F9F9FB] border border-[#E5E5E9] space-y-1">
+                  <span className="text-[10px] uppercase font-bold text-stone-400 block tracking-wider">Assessment Date</span>
+                  <span className="text-[#0A0A0C] font-bold block">October 14, 2025</span>
+                  <span className="text-[10px] text-stone-500 font-sans block">Cycle 2025/2026 Annual Audit</span>
+                </div>
+                <div className="p-3.5 rounded-xl bg-[#F9F9FB] border border-[#E5E5E9] space-y-1">
+                  <span className="text-[10px] uppercase font-bold text-stone-400 block tracking-wider">Evidence Source</span>
+                  <span className="text-[#0A0A0C] font-bold block truncate">Manufacturer Specification</span>
+                  <span className="text-[10px] text-stone-500 font-sans block">Self-Reported Atelier Stress Benchmarks</span>
+                </div>
+                <div className="p-3.5 rounded-xl bg-[#F9F9FB] border border-[#E5E5E9] space-y-1">
+                  <span className="text-[10px] uppercase font-bold text-stone-400 block tracking-wider">Verification Status</span>
+                  <span className="text-emerald-700 font-bold block flex items-center gap-1">
+                    <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
+                    Guild Standard Verified
+                  </span>
+                  <span className="text-[10px] text-stone-500 font-sans block">Independent Lab Protocol Pending</span>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/25 text-amber-950 text-xs font-mono space-y-1">
+                <span className="font-bold flex items-center gap-1.5 text-[#EA580C]">
+                  <Info className="h-3.5 w-3.5" />
+                  DATA INTEGRITY DISCLOSURE · INDEPENDENT TESTING DISTINCTION
+                </span>
+                <p className="text-[11px] text-stone-700 font-sans leading-relaxed">
+                  Aether explicitly distinguishes independent testing from manufacturer-provided specifications. Current ratings are derived from verified manufacturer mechanical blueprints and physical fastener audits conducted by guild standards officers. Independent destructive lifecycle lab trials are scheduled for Phase 02. We never fabricate independent test data.
+                </p>
               </div>
             </div>
 
-            <div className="p-6 rounded-3xl bg-white border border-[#E5E5E9] space-y-3">
-              <h4 className="font-sans font-black text-sm uppercase text-[#0A0A0C]">
+            <div className="p-6 rounded-2xl bg-white border border-[#E5E5E9] space-y-3">
+              <h4 className="font-sans font-bold text-sm uppercase text-[#0A0A0C]">
                 Aether Endurance Index v2.4 Testing Protocol
               </h4>
               <p className="text-xs text-stone-600 leading-relaxed font-sans">
@@ -1300,13 +1333,13 @@ export default function ProductDetailClient({ product }: { product: Product }) {
             {/* Verified Owner Ledger & Field Reports (Supporting 4.94 rating & 188 verified owners) */}
             <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#E5E5E9] space-y-6 shadow-xs">
               {/* Pilot Cohort Transparent Disclosure */}
-              <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/25 text-amber-900 text-xs font-mono space-y-1">
+              <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/25 text-amber-950 text-xs font-mono space-y-1.5">
                 <span className="font-bold flex items-center gap-1.5 text-[#EA580C]">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#EA580C]" />
-                  PILOT EVALUATION COHORT · ARCHIVAL FIELD REPORTS
+                  <span className="h-2 w-2 rounded-full bg-[#EA580C]" />
+                  SIMULATED DEMONSTRATION ARCHIVE · FIELD RECORD INTEGRITY
                 </span>
                 <p className="text-[11px] text-stone-700 font-sans leading-relaxed">
-                  Field evaluations shown below represent structured test reports recorded by verified early testers and master guild patrons (Tranche 01 Cohort) to demonstrate AETHER&apos;s verified physical batch ledger. Simulated demonstration data.
+                  Notice: Ratings and field evaluations shown below represent structured demonstration ledger records formatted for platform showcase. Sample size: {product.reviewsCount} simulated deliveries across 2024–2026 pilot batch cycles. Keep rate formula: (Delivered Units − Verified Returns) / Total Delivered Units × 100 = {product.honestyDossier?.keepRate || 98.6}%. We never invent real customer reviews.
                 </p>
               </div>
 
