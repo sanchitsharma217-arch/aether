@@ -87,7 +87,7 @@ export const Footer: React.FC = () => {
                 />
                 <button
                   type="submit"
-                  className="px-5 py-2.5 rounded-xl bg-[#F7F6F3] text-[#121110] hover:bg-white font-semibold transition-colors flex items-center gap-1.5 shrink-0 cursor-pointer text-xs"
+                  className="px-5 py-2.5 rounded-xl bg-[#F7F6F3] text-[#121110] hover:bg-white font-medium btn-tactile-white transition-all flex items-center gap-1.5 shrink-0 cursor-pointer text-xs"
                 >
                   <span>Subscribe</span>
                   <ArrowRight className="h-3.5 w-3.5" />
@@ -164,7 +164,7 @@ export const Footer: React.FC = () => {
               <div className="flex items-center justify-between">
                 <span className="text-stone-400">Environment</span>
                 <span className="text-emerald-400 font-bold flex items-center gap-1">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                   Live Preview Sandbox
                 </span>
               </div>

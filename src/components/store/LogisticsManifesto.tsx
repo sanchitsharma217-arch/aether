@@ -14,9 +14,9 @@ export const LogisticsManifesto: React.FC = () => {
         
         {/* Editorial Eyebrow */}
         <div className="flex items-center gap-2 mb-6">
-          <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="font-mono text-[11px] font-bold text-amber-300 uppercase tracking-widest">
-            THE ECONOMIC MONOLITH // PLATFORM GOVERNANCE
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          <span className="font-mono text-[11px] font-semibold text-amber-300 uppercase tracking-widest">
+            THE ECONOMIC MONOLITH · PLATFORM GOVERNANCE
           </span>
         </div>
 
@@ -66,7 +66,7 @@ export const LogisticsManifesto: React.FC = () => {
             <div className="sm:col-span-3 pt-4 flex flex-wrap gap-4">
               <Link
                 href="/about"
-                className="px-6 py-3.5 rounded-full bg-white text-[#0A0A0C] font-sans font-bold text-xs uppercase tracking-wider hover:bg-stone-200 transition-all flex items-center gap-2 shadow-xl cursor-pointer"
+                className="px-6 py-3 rounded-xl bg-white text-[#0A0A0C] font-sans font-medium text-xs uppercase tracking-wider btn-tactile-white transition-all flex items-center gap-2 cursor-pointer"
               >
                 <span>Read Full Platform Whitepaper</span>
                 <ArrowRight className="h-4 w-4" />
@@ -74,7 +74,7 @@ export const LogisticsManifesto: React.FC = () => {
 
               <Link
                 href="/shop"
-                className="px-6 py-3.5 rounded-full border border-stone-700 text-white font-sans font-bold text-xs uppercase tracking-wider hover:bg-white/10 transition-all cursor-pointer"
+                className="px-6 py-3 rounded-xl border border-stone-700 text-white font-sans font-medium text-xs uppercase tracking-wider hover:bg-white/10 btn-tactile transition-all cursor-pointer"
               >
                 <span>Browse Verified Ateliers</span>
               </Link>

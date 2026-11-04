@@ -72,14 +72,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuickVi
       }`}
     >
       <div>
-        {/* Top Badges & Durability Pill */}
+        {/* Top Badges & Durability Tag */}
         <div className="flex items-center justify-between mb-3 z-10 relative">
           <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-[#64646E] bg-[#F1F1F4] border border-[#E5E5E9] px-2.5 py-0.5 rounded-full">
+            <span className="text-[9px] font-mono font-medium uppercase tracking-wider text-[#64646E] bg-[#F1F1F4] border border-[#E5E5E9] px-2 py-0.5 rounded-md">
               {product.category}
             </span>
             {product.stockUrgency && (
-              <span className="text-[9px] font-mono text-[#EA580C] bg-orange-50 border border-orange-200 px-2 py-0.5 rounded-full font-bold">
+              <span className="text-[9px] font-mono text-[#EA580C] bg-orange-50 border border-orange-200/80 px-2 py-0.5 rounded-md font-medium">
                 {product.stockUrgency}
               </span>
             )}
@@ -90,7 +90,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuickVi
             <button
               type="button"
               onClick={handleCompareClick}
-              className={`p-1.5 rounded-full transition-colors cursor-pointer ${
+              className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
                 compared
                   ? "bg-amber-100 text-amber-700 border border-amber-300"
                   : "text-stone-400 hover:text-amber-600 hover:bg-stone-100"
@@ -101,8 +101,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuickVi
               <Scale className="h-3.5 w-3.5" />
             </button>
 
-            {/* Durability score pill */}
-            <span className="glass-pill inline-flex items-center gap-1 text-[10px] font-mono font-bold text-emerald-800 px-2 py-0.5 rounded-full shadow-xs">
+            {/* Durability score tag */}
+            <span className="glass-pill inline-flex items-center gap-1 text-[10px] font-mono font-medium text-emerald-800 px-2 py-0.5 rounded-md shadow-xs">
               <ShieldCheck className="h-3 w-3 text-emerald-600" />
               <span>{durability}</span>
             </span>
@@ -111,7 +111,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuickVi
             <button
               type="button"
               onClick={handleFavoriteClick}
-              className={`p-1.5 rounded-full transition-colors cursor-pointer ${
+              className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
                 favorited
                   ? "bg-rose-50 text-rose-500"
                   : "text-stone-400 hover:text-[#0A0A0C] hover:bg-stone-100"
@@ -180,7 +180,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuickVi
               )}
             </div>
 
-            <span className="text-[10px] font-mono font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
+            <span className="text-[10px] font-mono font-medium text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-md">
               In Stock · Fast Mesh
             </span>
           </div>
@@ -200,7 +200,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuickVi
       <div className="pt-2 border-t border-[#E5E5E9] flex items-center gap-2">
         <Link
           href={`/product/${product.id}`}
-          className="flex-1 py-2.5 px-3 rounded-xl bg-[#F9F9FB] border border-[#E5E5E9] hover:border-[#0A0A0C] hover:bg-white text-[#0A0A0C] text-xs font-sans font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+          className="flex-1 py-2 px-3 rounded-lg bg-[#F9F9FB] border border-[#E5E5E9] hover:border-[#0A0A0C] hover:bg-white text-[#0A0A0C] text-xs font-sans font-medium btn-tactile-white transition-all flex items-center justify-center gap-1.5 cursor-pointer"
         >
           <Eye className="h-3.5 w-3.5 text-[#64646E]" />
           <span>Canonical Dossier</span>
@@ -208,7 +208,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuickVi
 
         <button
           onClick={handleQuickAdd}
-          className="p-2.5 rounded-xl bg-[#0D0D0D] hover:bg-black text-white text-xs font-semibold transition-all shadow-md hover:scale-105 active:scale-95 flex items-center justify-center cursor-pointer shrink-0"
+          className="p-2 rounded-lg bg-[#0D0D0D] hover:bg-black text-white text-xs font-medium btn-tactile transition-all flex items-center justify-center cursor-pointer shrink-0"
           title="Quick Add Best Match Offer"
           aria-label="Quick Add"
         >

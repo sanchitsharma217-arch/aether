@@ -119,10 +119,10 @@ export const IntentDepartments: React.FC = () => {
 
               {/* Badges on Visual */}
               <div className="absolute top-4 left-4 flex items-center gap-2">
-                <span className="text-[10px] font-mono font-bold text-white bg-black/60 backdrop-blur-md px-3 py-1 rounded-full uppercase tracking-wider border border-white/20">
+                <span className="text-[10px] font-mono font-medium text-white bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md uppercase tracking-wider border border-white/20">
                   {dept.tranche}
                 </span>
-                <span className="text-[10px] font-mono font-bold text-amber-300 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full uppercase tracking-wider border border-white/20">
+                <span className="text-[10px] font-mono font-medium text-amber-300 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md uppercase tracking-wider border border-white/20">
                   {PRODUCTS.filter((p) => p.category === dept.category).length} Master SKUs
                 </span>
               </div>

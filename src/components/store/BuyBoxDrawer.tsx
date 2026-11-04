@@ -109,14 +109,14 @@ export const BuyBoxDrawer: React.FC = () => {
               <div className="flex items-start justify-between gap-4">
                 <div className="space-y-1.5">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-mono text-[10px] font-bold text-[#EA580C] bg-orange-50 border border-orange-200 px-2.5 py-0.5 rounded-full uppercase">
+                    <span className="font-mono text-[10px] font-semibold text-[#EA580C] bg-orange-50 border border-orange-200/80 px-2.5 py-0.5 rounded-md uppercase">
                       {product.canonicalSku || "CANONICAL-SKU"}
                     </span>
-                    <span className="font-mono text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                    <span className="font-mono text-[10px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2.5 py-0.5 rounded-md flex items-center gap-1">
                       <ShieldCheck className="h-3 w-3 text-emerald-600" />
                       <span>{product.lifespanScore || 9.8} / 10 Durability</span>
                     </span>
-                    <span className="text-[10px] font-mono text-[#64646E] bg-[#F1F1F4] px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] font-mono text-[#64646E] bg-[#F1F1F4] px-2 py-0.5 rounded-md">
                       {product.honestyDossier?.keepRate || 98.4}% Keep Rate
                     </span>
                   </div>
@@ -206,7 +206,7 @@ export const BuyBoxDrawer: React.FC = () => {
                                   {offer.sellerName}
                                 </span>
                                 {offer.isBestMatch && (
-                                  <span className="text-[9px] font-mono font-bold bg-[#EAF5EE] text-[#1B5E3C] px-2 py-0.5 rounded-full">
+                                  <span className="text-[9px] font-mono font-medium bg-[#EAF5EE] text-[#1B5E3C] px-2 py-0.5 rounded-md">
                                     Direct Atelier / Best Match
                                   </span>
                                 )}
@@ -343,7 +343,7 @@ export const BuyBoxDrawer: React.FC = () => {
 
                 <button
                   onClick={handleAddSelectedOffer}
-                  className="px-6 py-3.5 rounded-2xl bg-[#0D0D0D] text-white hover:bg-black font-sans font-semibold text-xs tracking-wider uppercase transition-all shadow-xl flex items-center gap-2 cursor-pointer active:scale-95"
+                  className="px-6 py-3 rounded-xl bg-[#0D0D0D] text-white hover:bg-black font-sans font-medium text-xs tracking-wider uppercase btn-tactile transition-all flex items-center gap-2 cursor-pointer"
                 >
                   <ShoppingBag className="h-4 w-4 text-emerald-400" />
                   <span>Add to Universal Bag</span>

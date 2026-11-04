@@ -106,7 +106,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onOpenCheckout }) => {
           </div>
           <button
             onClick={() => setIsCartOpen(false)}
-            className="p-1.5 rounded-full hover:bg-stone-100 text-[#64646E] hover:text-[#0A0A0C] transition-colors cursor-pointer"
+            className="p-1.5 rounded-lg hover:bg-stone-100 text-[#64646E] hover:text-[#0A0A0C] transition-colors cursor-pointer"
             aria-label="Close Bag"
           >
             <X className="h-4 w-4" />
@@ -127,7 +127,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onOpenCheckout }) => {
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {cart.length === 0 ? (
             <div className="text-center py-20 space-y-4">
-              <div className="h-16 w-16 mx-auto rounded-full bg-white flex items-center justify-center text-stone-400 border border-[#E6E4DF] ambient-card">
+              <div className="h-16 w-16 mx-auto rounded-2xl bg-white flex items-center justify-center text-stone-400 border border-[#E6E4DF] ambient-card">
                 <ShoppingBag className="h-8 w-8 stroke-[1.5]" />
               </div>
               <div className="space-y-1">
@@ -140,7 +140,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onOpenCheckout }) => {
               </div>
               <button
                 onClick={() => setIsCartOpen(false)}
-                className="mt-2 px-6 py-2.5 rounded-full bg-[#121110] text-[#F7F6F3] hover:bg-black text-xs font-semibold tracking-wider uppercase shadow-2xs transition-colors cursor-pointer"
+                className="mt-2 px-6 py-2.5 rounded-xl bg-[#121110] text-[#F7F6F3] hover:bg-black text-xs font-medium tracking-wider uppercase btn-tactile transition-all cursor-pointer"
               >
                 Browse Canonical Archive
               </button>
@@ -169,7 +169,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onOpenCheckout }) => {
                       </div>
                     </div>
 
-                    <span className="text-[10px] font-mono text-[#1E3A8A] bg-[#EEF4FF] px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] font-mono text-[#1E3A8A] bg-[#EEF4FF] px-2 py-0.5 rounded-md">
                       {group.speed}
                     </span>
                   </div>
@@ -207,7 +207,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onOpenCheckout }) => {
 
                           {/* Stepper & Delete */}
                           <div className="flex items-center justify-between pt-1">
-                            <div className="flex items-center border border-[#E6E4DF] rounded-full bg-[#F7F6F3] px-2 py-0.5 text-xs">
+                            <div className="flex items-center border border-[#E6E4DF] rounded-lg bg-[#F7F6F3] px-2 py-0.5 text-xs">
                               <button
                                 onClick={() =>
                                   updateQuantity(item.product.id, item.quantity - 1)
@@ -278,13 +278,13 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onOpenCheckout }) => {
               </div>
             </div>
 
-            {/* Checkout Action Button with Deep Obsidian #0D0D0D */}
+            {/* Checkout Action Button with Tactile Obsidian */}
             <button
               onClick={() => {
                 setIsCartOpen(false);
                 onOpenCheckout();
               }}
-              className="w-full py-3.5 px-4 rounded-2xl bg-[#0D0D0D] hover:bg-black text-white font-sans font-bold text-xs tracking-wider uppercase transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+              className="w-full py-3.5 px-4 rounded-xl bg-[#0D0D0D] hover:bg-black text-white font-sans font-medium text-xs tracking-wider uppercase btn-tactile transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>Proceed to Universal Checkout</span>
               <ArrowRight className="h-4 w-4 text-emerald-400" />

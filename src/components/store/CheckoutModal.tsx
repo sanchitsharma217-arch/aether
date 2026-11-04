@@ -47,7 +47,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
         {/* Top Sandbox Notice Banner */}
         <div className="px-6 py-2 bg-amber-500/10 border-b border-amber-500/20 text-amber-900 text-[11px] font-mono flex items-center justify-between">
           <span className="flex items-center gap-1.5 font-bold">
-            <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
+            <span className="h-1.5 w-1.5 rounded-full bg-amber-600" />
             SIMULATED CHECKOUT PROTOCOL · SANDBOX ENVIRONMENT
           </span>
           <span className="text-amber-800 text-[10px] hidden sm:inline">No real payment cards or financial accounts will be charged</span>
@@ -61,7 +61,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
           </div>
           <button
             onClick={handleCloseAll}
-            className="p-1 rounded-full hover:bg-stone-200 text-stone-500 hover:text-stone-900"
+            className="p-1.5 rounded-lg hover:bg-stone-200 text-stone-500 hover:text-stone-900 transition-colors cursor-pointer"
           >
             <X className="h-5 w-5" />
           </button>
@@ -247,7 +247,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 px-4 rounded-xl bg-stone-900 hover:bg-stone-800 text-white font-semibold text-xs tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                    className="w-full py-3.5 px-4 rounded-xl bg-[#0A0A0C] hover:bg-black text-white font-medium text-xs tracking-wider uppercase btn-tactile transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Sparkles className="h-4 w-4 text-amber-300" />
                     <span>Authorize Simulated Order (${total.toFixed(2)})</span>

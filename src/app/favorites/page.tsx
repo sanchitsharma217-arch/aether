@@ -63,7 +63,7 @@ export default function FavoritesPage() {
           <div className="flex items-center gap-2.5">
             <button
               onClick={handleShare}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#E4DFD5] hover:border-stone-400 text-xs font-semibold text-stone-700 bg-white transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-[#E4DFD5] hover:border-stone-400 text-xs font-medium text-stone-700 bg-white btn-tactile-white transition-all cursor-pointer"
             >
               <Share2 className="h-3.5 w-3.5" />
               <span>Share Collection</span>
@@ -71,7 +71,7 @@ export default function FavoritesPage() {
 
             <button
               onClick={handleAddAllToCart}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#1C1917] hover:bg-stone-800 text-[#F7F5F0] text-xs font-semibold shadow-2xs transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#1C1917] hover:bg-black text-[#F7F5F0] text-xs font-medium btn-tactile transition-all cursor-pointer"
             >
               <ShoppingBag className="h-3.5 w-3.5" />
               <span>Add All to Bag</span>
@@ -83,7 +83,7 @@ export default function FavoritesPage() {
       {/* Body List */}
       {favoritesCount === 0 ? (
         <div className="bg-white rounded-3xl border border-[#E4DFD5] p-12 sm:p-20 text-center space-y-4 max-w-lg mx-auto my-12 shadow-2xs">
-          <div className="h-16 w-16 mx-auto rounded-full bg-[#F7F5F0] flex items-center justify-center text-stone-400">
+          <div className="h-16 w-16 mx-auto rounded-2xl bg-[#F7F5F0] flex items-center justify-center text-stone-400">
             <Heart className="h-8 w-8 stroke-[1.5]" />
           </div>
           <div className="space-y-1">
@@ -95,7 +95,7 @@ export default function FavoritesPage() {
           <div className="pt-2">
             <Link
               href="/shop"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1C1917] text-[#F7F5F0] hover:bg-stone-800 text-xs font-semibold tracking-wider uppercase shadow-md transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#1C1917] text-[#F7F5F0] hover:bg-black text-xs font-medium tracking-wider uppercase btn-tactile transition-all cursor-pointer"
             >
               <span>Explore Objects</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -122,7 +122,7 @@ export default function FavoritesPage() {
                     </span>
                     <button
                       onClick={() => toggleFavorite(prod.id)}
-                      className="p-1.5 rounded-full text-rose-500 hover:bg-rose-50 transition-colors cursor-pointer"
+                      className="p-1.5 rounded-lg text-rose-500 hover:bg-rose-50 transition-colors cursor-pointer"
                       title="Remove from favorites"
                     >
                       <Trash2 className="h-3.5 w-3.5" />
@@ -151,7 +151,7 @@ export default function FavoritesPage() {
                 <div className="pt-3 border-t border-stone-100 mt-3 flex items-center gap-2">
                   <button
                     onClick={() => addToCart(prod, 1)}
-                    className="flex-1 py-2 px-3 rounded-full bg-[#1C1917] hover:bg-stone-800 text-[#F7F5F0] text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                    className="flex-1 py-2 px-3 rounded-lg bg-[#1C1917] hover:bg-black text-[#F7F5F0] text-xs font-medium flex items-center justify-center gap-1.5 btn-tactile transition-all cursor-pointer"
                   >
                     <ShoppingBag className="h-3.5 w-3.5" />
                     <span>Move to Bag</span>
@@ -159,7 +159,7 @@ export default function FavoritesPage() {
 
                   <Link
                     href={`/product/${prod.id}`}
-                    className="p-2 rounded-full border border-[#E4DFD5] hover:border-stone-900 text-stone-600 transition-colors text-xs"
+                    className="p-2 rounded-lg border border-[#E4DFD5] hover:border-stone-900 text-stone-600 transition-colors text-xs flex items-center justify-center"
                     title="View Canonical Page"
                   >
                     <ArrowRight className="h-3.5 w-3.5" />

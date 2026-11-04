@@ -197,12 +197,12 @@ export const HeroBanner: React.FC = () => {
     <div className="relative bg-white pt-6 pb-14 sm:pt-8 sm:pb-20 overflow-hidden border-b border-[#E5E5E9]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Top Eyebrow & Live Telemetry Pill */}
+        {/* Top Eyebrow & Live Telemetry Bar */}
         <div className="flex items-center justify-between pb-6">
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-mono text-[11px] font-bold text-[#0A0A0C] uppercase tracking-widest">
-              SYSTEM 04 // THE ANTI-AMAZON MONOLITH
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
+            <span className="font-mono text-[11px] font-semibold text-[#0A0A0C] uppercase tracking-wider">
+              ISSUE 04 · CANONICAL COMMERCE ARCHIVE
             </span>
           </div>
 
@@ -233,7 +233,7 @@ export const HeroBanner: React.FC = () => {
             </p>
 
             {/* Quick Intent Scenario Input */}
-            <div className="flex items-center gap-2 bg-[#F9F9FB] border border-[#E5E5E9] rounded-full p-1.5 pl-3.5 max-w-md w-full shadow-xs">
+            <div className="flex items-center gap-2 bg-[#F9F9FB] border border-[#E5E5E9] rounded-xl p-1.5 pl-3.5 max-w-md w-full shadow-xs focus-within:border-[#0A0A0C] transition-colors">
               <Search className="h-3.5 w-3.5 text-[#64646E] shrink-0" />
               <input
                 type="text"
@@ -247,7 +247,7 @@ export const HeroBanner: React.FC = () => {
                   const el = document.getElementById("asymmetric-vault");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="px-3.5 py-1.5 rounded-full bg-[#0D0D0D] text-white text-[11px] font-semibold hover:bg-black transition-all shrink-0 cursor-pointer shadow-xs"
+                className="px-4 py-1.5 rounded-lg bg-[#0D0D0D] text-white text-[11px] font-medium tracking-wide hover:bg-black active:scale-[0.985] btn-tactile transition-all shrink-0 cursor-pointer"
               >
                 Explore
               </button>
@@ -271,7 +271,7 @@ export const HeroBanner: React.FC = () => {
             {/* Studio Object Stage Header */}
             <div className="relative z-10 flex items-start justify-between gap-4">
               <div className="space-y-1">
-                <span className="font-mono text-[10px] font-bold text-amber-300 uppercase tracking-widest bg-white/10 px-2.5 py-1 rounded-full backdrop-blur-md border border-white/10">
+                <span className="font-mono text-[10px] font-semibold text-amber-300 uppercase tracking-widest bg-white/10 px-2.5 py-1 rounded-md backdrop-blur-md border border-white/10">
                   {currentSuite.tagline}
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-sans font-black tracking-tight text-white mt-2">
@@ -284,10 +284,10 @@ export const HeroBanner: React.FC = () => {
                 </div>
               </div>
 
-              {/* Inspect Button with Glassmorphism */}
+              {/* Inspect Button with Architectural Glass */}
               <button
                 onClick={() => setActiveBuyBoxProduct(currentSuite.heroProduct)}
-                className="glass-pill-dark px-4 py-2 rounded-full text-xs font-mono font-semibold text-white hover:bg-white hover:text-black transition-all flex items-center gap-1.5 shrink-0 shadow-lg cursor-pointer"
+                className="glass-pill-dark px-3.5 py-2 rounded-lg text-xs font-mono font-medium text-white hover:bg-white hover:text-black active:scale-[0.985] transition-all flex items-center gap-1.5 shrink-0 shadow-sm cursor-pointer"
               >
                 <span>Inspect 360° Dossier</span>
                 <ArrowRight className="h-3 w-3" />
@@ -355,24 +355,24 @@ export const HeroBanner: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-4 flex flex-col justify-between floating-card rounded-3xl p-6 sm:p-7 border border-[#E5E5E9] bg-white relative"
           >
-            {/* Header with Smooth Pill Switcher */}
+            {/* Header with Architectural Switcher */}
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-[10px] font-bold text-[#EA580C] uppercase tracking-wider">
+                <span className="font-mono text-[10px] font-semibold text-[#EA580C] uppercase tracking-wider">
                   CURATED SETUP CONSOLE
                 </span>
-                <span className="text-[10px] font-mono bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-bold border border-emerald-200">
+                <span className="text-[10px] font-mono bg-emerald-50 text-emerald-800 px-2.5 py-0.5 rounded-md font-medium border border-emerald-200/80">
                   100% Batched
                 </span>
               </div>
 
-              {/* Tab Pills with Smooth Hover & Active States */}
-              <div className="grid grid-cols-3 gap-1 bg-[#F1F1F4] p-1 rounded-2xl border border-[#E5E5E9] text-xs font-mono">
+              {/* Tab Selector with Tactile Active States */}
+              <div className="grid grid-cols-3 gap-1 bg-[#F1F1F4] p-1 rounded-xl border border-[#E5E5E9] text-xs font-mono">
                 <button
                   onClick={() => setActiveTab("audio")}
-                  className={`py-2 rounded-xl text-center font-bold transition-all cursor-pointer ${
+                  className={`py-2 rounded-lg text-center font-medium transition-all cursor-pointer ${
                     activeTab === "audio"
-                      ? "bg-[#0D0D0D] text-white shadow-md"
+                      ? "bg-[#0D0D0D] text-white shadow-xs btn-tactile"
                       : "text-[#64646E] hover:text-[#0A0A0C]"
                   }`}
                 >
@@ -380,9 +380,9 @@ export const HeroBanner: React.FC = () => {
                 </button>
                 <button
                   onClick={() => setActiveTab("kitchen")}
-                  className={`py-2 rounded-xl text-center font-bold transition-all cursor-pointer ${
+                  className={`py-2 rounded-lg text-center font-medium transition-all cursor-pointer ${
                     activeTab === "kitchen"
-                      ? "bg-[#0D0D0D] text-white shadow-md"
+                      ? "bg-[#0D0D0D] text-white shadow-xs btn-tactile"
                       : "text-[#64646E] hover:text-[#0A0A0C]"
                   }`}
                 >
@@ -390,9 +390,9 @@ export const HeroBanner: React.FC = () => {
                 </button>
                 <button
                   onClick={() => setActiveTab("wfh")}
-                  className={`py-2 rounded-xl text-center font-bold transition-all cursor-pointer ${
+                  className={`py-2 rounded-lg text-center font-medium transition-all cursor-pointer ${
                     activeTab === "wfh"
-                      ? "bg-[#0D0D0D] text-white shadow-md"
+                      ? "bg-[#0D0D0D] text-white shadow-xs btn-tactile"
                       : "text-[#64646E] hover:text-[#0A0A0C]"
                   }`}
                 >
@@ -464,7 +464,7 @@ export const HeroBanner: React.FC = () => {
                 <button
                   onClick={handleAddSuite}
                   disabled={isAdding}
-                  className="px-6 py-3 rounded-2xl bg-[#0D0D0D] hover:bg-black text-white font-sans font-semibold text-xs transition-all shadow-xl hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2 cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#0D0D0D] hover:bg-black text-white font-sans font-medium text-xs tracking-wide btn-tactile transition-all flex items-center gap-2 cursor-pointer"
                 >
                   {isAdding ? (
                     <>

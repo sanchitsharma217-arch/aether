@@ -73,7 +73,7 @@ export const TrustGrid: React.FC = () => {
                   <div className="h-11 w-11 rounded-2xl bg-[#F9F9FB] border border-[#E5E5E9] flex items-center justify-center text-[#0A0A0C] shadow-xs">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <span className={`text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full ${pillar.tagColor}`}>
+                  <span className={`text-[10px] font-mono font-medium px-2 py-0.5 rounded-md ${pillar.tagColor}`}>
                     {pillar.step}
                   </span>
                 </div>

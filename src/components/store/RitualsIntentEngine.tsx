@@ -87,9 +87,9 @@ export const RitualsIntentEngine: React.FC<Props> = ({ className = "" }) => {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-[#E5E5E9]">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#EA580C]">
-              CROSS-VENDOR SUITE BUILDER // INTENT ARCHITECTURE
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
+            <span className="text-[10px] font-mono font-medium uppercase tracking-widest text-[#EA580C]">
+              CROSS-VENDOR SUITE BUILDER · INTENT ARCHITECTURE
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-sans font-black tracking-tight text-[#0A0A0C] uppercase">
@@ -101,7 +101,7 @@ export const RitualsIntentEngine: React.FC<Props> = ({ className = "" }) => {
         </div>
 
         <div className="flex items-center gap-3 text-xs text-[#64646E] font-sans">
-          <div className="flex items-center gap-1.5 bg-[#F9F9FB] px-3.5 py-1.5 rounded-full border border-[#E5E5E9] shadow-xs">
+          <div className="flex items-center gap-1.5 bg-[#F9F9FB] px-3 py-1.5 rounded-lg border border-[#E5E5E9] shadow-xs">
             <Truck className="h-3.5 w-3.5 text-blue-600" />
             <span className="text-[11px] font-mono font-bold text-[#0A0A0C]">1 Consolidated 4PL Parcel</span>
           </div>
@@ -116,15 +116,15 @@ export const RitualsIntentEngine: React.FC<Props> = ({ className = "" }) => {
             <button
               key={scenario.id}
               onClick={() => setUserSelectedScenarioId(scenario.id)}
-              className={`px-5 py-2.5 rounded-full text-xs font-sans font-bold tracking-wide transition-all whitespace-nowrap cursor-pointer flex items-center gap-2 ${
+              className={`px-4 py-2 rounded-lg text-xs font-sans font-medium tracking-wide transition-all whitespace-nowrap cursor-pointer flex items-center gap-2 ${
                 isActive
-                  ? "bg-[#0D0D0D] text-white shadow-md scale-102"
+                  ? "bg-[#0D0D0D] text-white btn-tactile shadow-xs"
                   : "bg-[#F9F9FB] border border-[#E5E5E9] text-[#64646E] hover:bg-white hover:text-black hover:border-[#0A0A0C]"
               }`}
             >
               <span>{scenario.tabLabel}</span>
               <span
-                className={`px-1.5 py-0.5 rounded-full text-[9px] font-mono font-bold ${
+                className={`px-1.5 py-0.5 rounded-md text-[9px] font-mono font-semibold ${
                   isActive ? "bg-[#EA580C] text-white" : "bg-stone-200 text-stone-700"
                 }`}
               >
@@ -263,10 +263,10 @@ export const RitualsIntentEngine: React.FC<Props> = ({ className = "" }) => {
               <button
                 onClick={handleAssembleSuite}
                 disabled={isAssembled}
-                className={`w-full sm:w-auto px-7 py-3 rounded-full text-xs font-sans font-bold tracking-wider uppercase transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xl active:scale-98 ${
+                className={`w-full sm:w-auto px-6 py-2.5 rounded-xl text-xs font-sans font-medium tracking-wide uppercase transition-all flex items-center justify-center gap-2 cursor-pointer btn-tactile-white ${
                   isAssembled
                     ? "bg-emerald-600 text-white"
-                    : "bg-white text-[#0A0A0C] hover:bg-stone-200"
+                    : "bg-white text-[#0A0A0C] hover:bg-stone-100"
                 }`}
               >
                 {isAssembled ? (

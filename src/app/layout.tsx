@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import { Geist, Geist_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 import { StoreLayout } from "@/components/store/StoreLayout";
 
@@ -13,14 +13,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
   subsets: ["latin"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "AETHER // Universal Exchange — Anti-Amazon Canonical Platform",
+  title: "AETHER · Universal Exchange — Anti-Amazon Canonical Platform",
   description:
     "High-contrast universal commerce. Zero pay-to-play placement, single canonical SKUs, verified durability forensics, and consolidated 4PL dispatch.",
 };
@@ -34,7 +35,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} h-full antialiased scroll-smooth`}
+      className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} h-full antialiased scroll-smooth`}
     >
       <body
         suppressHydrationWarning

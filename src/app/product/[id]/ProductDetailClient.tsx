@@ -133,8 +133,8 @@ export default function ProductDetailClient({ product }: { product: Product }) {
         </div>
 
         <div className="flex items-center gap-3 text-[11px]">
-          <span className="flex items-center gap-1.5 text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="flex items-center gap-1.5 text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200/80">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
             <span>Canonical Master SKU · 1 Single Listing</span>
           </span>
           {product.digitalPassport && (
@@ -164,11 +164,11 @@ export default function ProductDetailClient({ product }: { product: Product }) {
 
             {/* Top Overlay Badges */}
             <div className="absolute top-4 left-4 flex flex-col gap-2">
-              <span className="text-[10px] font-mono font-bold bg-[#0A0A0C] text-white px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+              <span className="text-[10px] font-mono font-semibold bg-[#0A0A0C] text-white px-2.5 py-1 rounded-md uppercase tracking-wider shadow-sm">
                 {product.canonicalSku}
               </span>
               {product.badge && (
-                <span className="text-[10px] font-mono font-bold bg-[#EA580C] text-white px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                <span className="text-[10px] font-mono font-semibold bg-[#EA580C] text-white px-2.5 py-1 rounded-md uppercase tracking-wider shadow-sm">
                   {product.badge}
                 </span>
               )}
@@ -178,7 +178,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
             <div className="absolute top-4 right-4 flex items-center gap-2">
               <button
                 onClick={() => toggleCompare(product.id)}
-                className={`p-2.5 rounded-full backdrop-blur-md border shadow-md transition-all cursor-pointer ${
+                className={`p-2.5 rounded-xl backdrop-blur-md border shadow-xs transition-all active:scale-[0.96] cursor-pointer ${
                   compared
                     ? "bg-amber-400 text-black border-amber-500"
                     : "bg-white/80 hover:bg-white text-stone-700 border-[#E5E5E9]"
@@ -190,7 +190,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
 
               <button
                 onClick={() => toggleFavorite(product.id)}
-                className={`p-2.5 rounded-full backdrop-blur-md border shadow-md transition-all cursor-pointer ${
+                className={`p-2.5 rounded-xl backdrop-blur-md border shadow-xs transition-all active:scale-[0.96] cursor-pointer ${
                   favorited
                     ? "bg-rose-50 text-rose-500 border-rose-200"
                     : "bg-white/80 hover:bg-white text-stone-700 border-[#E5E5E9]"
@@ -202,7 +202,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
 
               <button
                 onClick={handleShare}
-                className="p-2.5 rounded-full bg-white/80 hover:bg-white text-stone-700 border border-[#E5E5E9] shadow-md transition-all cursor-pointer"
+                className="p-2.5 rounded-xl bg-white/80 hover:bg-white text-stone-700 border border-[#E5E5E9] shadow-xs transition-all active:scale-[0.96] cursor-pointer"
                 title="Share canonical object"
               >
                 <Share2 className="h-4 w-4" />
@@ -210,7 +210,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
             </div>
 
             {/* Provenance Origin Chip */}
-            <div className="absolute bottom-4 left-4 text-xs font-mono font-medium text-[#0A0A0C] bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#E5E5E9] shadow-xs flex items-center gap-1.5">
+            <div className="absolute bottom-4 left-4 text-xs font-mono font-medium text-[#0A0A0C] bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-md border border-[#E5E5E9] shadow-xs flex items-center gap-1.5">
               <Compass className="h-3.5 w-3.5 text-[#EA580C]" />
               <span>{product.provenance?.origin || product.primaryVendor.location}</span>
             </div>
@@ -252,7 +252,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-xs text-stone-500 font-mono">Rating:</span>
-                <span className="text-sm font-mono font-black px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                <span className="text-sm font-mono font-bold px-2.5 py-0.5 rounded-md bg-emerald-100 text-emerald-800">
                   {product.enduranceRubric?.score || product.lifespanScore} / 10
                 </span>
               </div>
@@ -308,7 +308,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 {product.category}
               </span>
               {product.stockUrgency && (
-                <span className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-[#EA580C] bg-orange-50 border border-orange-200 px-2.5 py-0.5 rounded-full">
+                <span className="inline-flex items-center gap-1 text-[11px] font-mono font-medium text-[#EA580C] bg-orange-50 border border-orange-200/80 px-2.5 py-0.5 rounded-md">
                   <Flame className="h-3 w-3 text-[#EA580C]" />
                   <span>{product.stockUrgency}</span>
                 </span>
@@ -356,7 +356,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                   ${product.originalPrice}
                 </span>
               )}
-              <span className="text-[11px] font-mono font-bold text-emerald-800 bg-emerald-100/80 px-2.5 py-0.5 rounded-full">
+              <span className="text-[11px] font-mono font-medium text-emerald-800 bg-emerald-100/80 px-2.5 py-0.5 rounded-md">
                 0% Middleman Markups
               </span>
             </div>
@@ -394,7 +394,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                   <span className="font-sans font-black text-sm text-[#0A0A0C]">
                     {selectedOffer.sellerName}
                   </span>
-                  <span className="text-[9px] font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                  <span className="text-[9px] font-mono font-medium px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800">
                     {selectedOffer.nodeVerification}
                   </span>
                 </div>
@@ -453,9 +453,9 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                   <button
                     key={color.name}
                     onClick={() => handleSelectColor(color.name)}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-sans font-medium border transition-all cursor-pointer flex items-center gap-2 ${
+                    className={`px-3 py-1.5 rounded-lg text-xs font-sans font-medium border transition-all cursor-pointer flex items-center gap-2 ${
                       selectedColor === color.name
-                        ? "border-[#0A0A0C] bg-[#0A0A0C] text-white shadow-xs"
+                        ? "border-[#0A0A0C] bg-[#0A0A0C] text-white shadow-xs btn-tactile"
                         : "border-[#E5E5E9] bg-white text-stone-700 hover:border-stone-400"
                     }`}
                   >
@@ -474,17 +474,17 @@ export default function ProductDetailClient({ product }: { product: Product }) {
           <div className="space-y-3 pt-2">
             <div className="flex items-center gap-3">
               {/* Stepper */}
-              <div className="flex items-center border border-[#E5E5E9] rounded-full bg-white p-1 shadow-xs">
+              <div className="flex items-center border border-[#E5E5E9] rounded-xl bg-white p-1 shadow-xs">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="h-8 w-8 rounded-full flex items-center justify-center text-stone-600 hover:bg-stone-100 font-mono font-bold cursor-pointer"
+                  className="h-8 w-8 rounded-lg flex items-center justify-center text-stone-700 hover:bg-stone-100 font-mono font-bold cursor-pointer transition-colors"
                 >
                   -
                 </button>
                 <span className="px-3.5 text-xs font-mono font-bold text-stone-900">{quantity}</span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="h-8 w-8 rounded-full flex items-center justify-center text-stone-600 hover:bg-stone-100 font-mono font-bold cursor-pointer"
+                  className="h-8 w-8 rounded-lg flex items-center justify-center text-stone-700 hover:bg-stone-100 font-mono font-bold cursor-pointer transition-colors"
                 >
                   +
                 </button>
@@ -492,9 +492,9 @@ export default function ProductDetailClient({ product }: { product: Product }) {
 
               {/* Add to Bag Button */}
               <motion.button
-                whileTap={{ scale: 0.98 }}
+                whileTap={{ scale: 0.985 }}
                 onClick={handleAddToCart}
-                className="flex-1 py-3.5 px-6 rounded-full bg-[#0A0A0C] hover:bg-stone-800 text-white font-sans font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+                className="flex-1 py-3 px-6 rounded-xl bg-[#0A0A0C] hover:bg-black text-white font-sans font-semibold text-xs uppercase tracking-wider btn-tactile transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <ShoppingBag className="h-4 w-4 text-emerald-400" />
                 <span>Add to Universal Bag • ${(currentPrice * quantity).toLocaleString()}</span>
@@ -504,7 +504,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
             {/* Direct Node Settlement (Simulated Protocol) */}
             <button
               onClick={handleBuyNow}
-              className="w-full py-3.5 px-6 rounded-full border border-[#0A0A0C] bg-white text-[#0A0A0C] hover:bg-stone-100 font-sans font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+              className="w-full py-3 px-6 rounded-xl border border-[#0A0A0C] bg-white text-[#0A0A0C] hover:bg-stone-50 font-sans font-semibold text-xs uppercase tracking-wider btn-tactile-white transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               <Zap className="h-4 w-4 text-[#EA580C]" />
               <span>Direct Node Settlement (Simulated Demo Protocol)</span>
@@ -548,15 +548,15 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as typeof activeTab)}
-                className={`px-4 py-2.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 ${
+                className={`px-3.5 py-2 rounded-lg text-xs font-mono font-medium transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 ${
                   isActive
-                    ? "bg-[#0A0A0C] text-white shadow-md"
+                    ? "bg-[#0A0A0C] text-white shadow-xs btn-tactile"
                     : "bg-[#F9F9FB] border border-[#E5E5E9] text-stone-600 hover:text-black hover:border-black"
                 }`}
               >
                 <span>{tab.label}</span>
                 <span
-                  className={`text-[10px] px-2 py-0.2 rounded-full ${
+                  className={`text-[10px] px-2 py-0.5 rounded-md ${
                     isActive ? "bg-white/20 text-white" : "bg-stone-200 text-stone-700"
                   }`}
                 >
@@ -656,7 +656,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                           </div>
                         </td>
                         <td className="p-4">
-                          <span className="px-2.5 py-1 rounded-full bg-stone-100 text-stone-800 font-mono text-[11px] font-semibold border border-stone-200">
+                          <span className="px-2.5 py-1 rounded-md bg-stone-100 text-stone-800 font-mono text-[11px] font-medium border border-stone-200">
                             {offer.condition}
                           </span>
                         </td>
@@ -697,9 +697,9 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                               setSelectedOffer(offer);
                               showToast(`Switched allocation to ${offer.sellerName} ($${offer.price})`, "cart");
                             }}
-                            className={`px-4 py-2 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                            className={`px-3 py-1.5 rounded-lg text-xs font-mono font-medium uppercase tracking-wider transition-all cursor-pointer ${
                               isSelected
-                                ? "bg-[#0A0A0C] text-white"
+                                ? "bg-[#0A0A0C] text-white btn-tactile"
                                 : "border border-[#E5E5E9] hover:border-black text-stone-800"
                             }`}
                           >
@@ -917,7 +917,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                   Replaceable Components & Service Kits
                 </h3>
               </div>
-              <span className="text-xs font-mono text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+              <span className="text-xs font-mono text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200/80">
                 100% In-Stock at Regional Hubs
               </span>
             </div>
@@ -953,7 +953,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                             onClick={() => {
                               showToast(`Staged ${part.name} ($${part.price}) for dispatch!`, "cart");
                             }}
-                            className="px-3.5 py-1.5 rounded-full border border-[#E5E5E9] hover:border-black text-[11px] font-mono font-bold uppercase transition-colors cursor-pointer"
+                            className="px-3.5 py-1.5 rounded-lg border border-[#E5E5E9] hover:border-black text-[11px] font-mono font-medium uppercase transition-colors cursor-pointer"
                           >
                             Order Component
                           </button>
@@ -1239,7 +1239,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                   <span className="text-xs font-mono font-bold uppercase text-[#0A0A0C]">
                     Verified Return Forensics
                   </span>
-                  <span className="text-xs font-mono font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">
+                  <span className="text-xs font-mono font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-md">
                     {product.honestyDossier?.keepRate || 98.6}% Keep Rate
                   </span>
                 </div>
@@ -1302,7 +1302,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               {/* Pilot Cohort Transparent Disclosure */}
               <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/25 text-amber-900 text-xs font-mono space-y-1">
                 <span className="font-bold flex items-center gap-1.5 text-[#EA580C]">
-                  <span className="h-2 w-2 rounded-full bg-[#EA580C] animate-pulse" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#EA580C]" />
                   PILOT EVALUATION COHORT · ARCHIVAL FIELD REPORTS
                 </span>
                 <p className="text-[11px] text-stone-700 font-sans leading-relaxed">
@@ -1319,7 +1319,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                     Field Reports ({product.reviewsCount} Verified Owners · {product.rating} / 5.0 Rating)
                   </h4>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs font-mono text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200">
+                <div className="flex items-center gap-1.5 text-xs font-mono text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
                   <Check className="h-3.5 w-3.5 text-emerald-600" />
                   <span>100% Verified Physical Deliveries</span>
                 </div>
@@ -1495,7 +1495,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 </span>
                 <button
                   onClick={handleAddToCart}
-                  className="py-2.5 px-6 rounded-full bg-[#0A0A0C] text-white font-sans font-bold text-xs uppercase tracking-wider hover:bg-stone-800 transition-colors flex items-center gap-2 cursor-pointer shadow-md"
+                  className="py-2.5 px-6 rounded-xl bg-[#0A0A0C] text-white font-sans font-semibold text-xs uppercase tracking-wider hover:bg-black btn-tactile transition-all flex items-center gap-2 cursor-pointer shadow-md"
                 >
                   <ShoppingBag className="h-3.5 w-3.5 text-emerald-400" />
                   <span>Add to Bag</span>

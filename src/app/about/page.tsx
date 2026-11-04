@@ -115,7 +115,7 @@ export default function AboutPage() {
         </div>
         <Link
           href="/shop"
-          className="px-7 py-3.5 rounded-full bg-[#F7F5F0] text-[#1C1917] text-xs font-semibold tracking-wider uppercase hover:bg-white transition-colors shrink-0 shadow-sm cursor-pointer"
+          className="px-6 py-3 rounded-xl bg-[#F7F5F0] text-[#1C1917] text-xs font-medium tracking-wider uppercase btn-tactile-white transition-all shrink-0 cursor-pointer"
         >
           Explore Objects Archive
         </Link>

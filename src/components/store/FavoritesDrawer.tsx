@@ -50,7 +50,7 @@ export const FavoritesDrawer: React.FC = () => {
           </div>
           <button
             onClick={() => setIsFavoritesOpen(false)}
-            className="p-1.5 rounded-full hover:bg-stone-200 text-stone-500 hover:text-stone-900 transition-colors"
+            className="p-1.5 rounded-lg hover:bg-stone-200 text-stone-500 hover:text-stone-900 transition-colors cursor-pointer"
           >
             <X className="h-5 w-5" />
           </button>
@@ -60,7 +60,7 @@ export const FavoritesDrawer: React.FC = () => {
         <div className="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-stone-100">
           {favoriteProducts.length === 0 ? (
             <div className="text-center py-20 space-y-4">
-              <div className="h-16 w-16 mx-auto rounded-full bg-rose-50 flex items-center justify-center text-rose-400">
+              <div className="h-16 w-16 mx-auto rounded-2xl bg-rose-50 flex items-center justify-center text-rose-400">
                 <Heart className="h-8 w-8 stroke-[1.5]" />
               </div>
               <div className="space-y-1">
@@ -71,7 +71,7 @@ export const FavoritesDrawer: React.FC = () => {
               </div>
               <button
                 onClick={() => setIsFavoritesOpen(false)}
-                className="mt-2 px-5 py-2.5 rounded-full bg-stone-900 text-white hover:bg-stone-800 text-xs font-semibold shadow-xs transition-colors"
+                className="mt-2 px-5 py-2.5 rounded-xl bg-stone-900 text-white hover:bg-black text-xs font-medium btn-tactile transition-all cursor-pointer"
               >
                 Discover Products
               </button>
@@ -104,7 +104,7 @@ export const FavoritesDrawer: React.FC = () => {
                       onClick={() => {
                         addToCart(prod, 1);
                       }}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-900 hover:bg-stone-800 text-white text-xs font-semibold shadow-2xs transition-all active:scale-95"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-stone-900 hover:bg-black text-white text-xs font-medium btn-tactile transition-all cursor-pointer"
                     >
                       <ShoppingBag className="h-3 w-3" />
                       <span>Add to Bag</span>
@@ -135,7 +135,7 @@ export const FavoritesDrawer: React.FC = () => {
                 favoriteProducts.forEach((p) => addToCart(p, 1));
                 setIsFavoritesOpen(false);
               }}
-              className="px-4 py-2 rounded-full bg-stone-900 hover:bg-stone-800 text-white text-xs font-semibold shadow-xs transition-colors"
+              className="px-4 py-2 rounded-lg bg-stone-900 hover:bg-black text-white text-xs font-medium btn-tactile transition-all cursor-pointer"
             >
               Add All to Bag
             </button>

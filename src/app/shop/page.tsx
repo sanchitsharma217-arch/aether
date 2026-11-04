@@ -240,7 +240,7 @@ export default function ShopPage() {
           {comparedProducts.length > 0 && (
             <button
               onClick={() => setIsCompareOpen(true)}
-              className="text-[11px] font-mono font-bold text-amber-700 bg-amber-100 px-2.5 py-0.5 rounded-full flex items-center gap-1 cursor-pointer"
+              className="text-[11px] font-mono font-medium text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-md flex items-center gap-1 cursor-pointer"
             >
               <Scale className="h-3 w-3" />
               <span>{comparedProducts.length} Staged in Comparison</span>
@@ -252,9 +252,9 @@ export default function ShopPage() {
       {/* 01. Catalog Header */}
       <div className="mb-8 space-y-2">
         <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-emerald-500" />
-          <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#EA580C]">
-            CANONICAL CATALOG // VERIFIED ATELIERS ONLY
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
+          <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#EA580C]">
+            CANONICAL CATALOG · VERIFIED ATELIERS ONLY
           </span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-sans font-black tracking-tight text-[#0A0A0C] uppercase">
@@ -306,7 +306,7 @@ export default function ShopPage() {
             </div>
             <button
               onClick={() => setSelectedCategory(intentMatch.suggestedDepartment)}
-              className="px-3.5 py-1.5 rounded-full bg-white text-[#0A0A0C] text-[11px] font-mono font-bold uppercase tracking-wider shrink-0 hover:bg-stone-200 transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 rounded-lg bg-white text-[#0A0A0C] text-[11px] font-mono font-medium uppercase tracking-wider shrink-0 hover:bg-stone-100 btn-tactile-white transition-all cursor-pointer"
             >
               Filter {intentMatch.suggestedDepartment}
             </button>
@@ -315,7 +315,7 @@ export default function ShopPage() {
 
         {/* Suggestion Prompt Chips */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs font-mono no-scrollbar">
-          <span className="text-stone-400 text-[11px] shrink-0 font-bold">Try Intent:</span>
+          <span className="text-stone-400 text-[11px] shrink-0 font-medium">Try Intent:</span>
           {[
             "Workstation for deep focus",
             "Artisan morning pour-over",
@@ -326,7 +326,7 @@ export default function ShopPage() {
             <button
               key={prompt}
               onClick={() => setSearchQuery(prompt)}
-              className="px-3 py-1 rounded-full bg-[#F9F9FB] border border-[#E5E5E9] text-stone-600 hover:text-black hover:border-black transition-colors shrink-0 cursor-pointer text-[11px]"
+              className="px-3 py-1 rounded-lg bg-[#F9F9FB] border border-[#E5E5E9] text-stone-600 hover:text-black hover:border-black transition-colors shrink-0 cursor-pointer text-[11px]"
             >
               &ldquo;{prompt}&rdquo;
             </button>
@@ -346,15 +346,15 @@ export default function ShopPage() {
                   setViewMode("catalog");
                   setSelectedCategory(cat);
                 }}
-                className={`px-4 py-2.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                className={`px-3.5 py-2 rounded-lg text-xs font-mono font-medium transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
                   isSelected
-                    ? "bg-[#0A0A0C] text-white shadow-md"
+                    ? "bg-[#0A0A0C] text-white shadow-xs btn-tactile"
                     : "bg-[#F9F9FB] border border-[#E5E5E9] text-stone-600 hover:text-black hover:border-black"
                 }`}
               >
                 <span>{cat}</span>
                 <span
-                  className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono ${
+                  className={`text-[10px] px-1.5 py-0.5 rounded-md font-mono ${
                     isSelected ? "bg-white/20 text-white" : "bg-stone-200 text-stone-700"
                   }`}
                 >
@@ -366,12 +366,12 @@ export default function ShopPage() {
         </div>
 
         {/* View Mode Toggle: Single Master SKUs vs Living Suites */}
-        <div className="flex items-center gap-1 bg-[#F9F9FB] p-1 rounded-full border border-[#E5E5E9] shrink-0 self-start md:self-auto">
+        <div className="flex items-center gap-1 bg-[#F1F1F4] p-1 rounded-xl border border-[#E5E5E9] shrink-0 self-start md:self-auto text-xs font-mono">
           <button
             onClick={() => setViewMode("catalog")}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all cursor-pointer flex items-center gap-1.5 ${
               activeViewMode === "catalog"
-                ? "bg-[#0A0A0C] text-white shadow-xs"
+                ? "bg-[#0A0A0C] text-white shadow-xs btn-tactile"
                 : "text-stone-600 hover:text-black"
             }`}
           >
@@ -380,9 +380,9 @@ export default function ShopPage() {
           </button>
           <button
             onClick={() => setViewMode("suites")}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all cursor-pointer flex items-center gap-1.5 ${
               activeViewMode === "suites"
-                ? "bg-[#EA580C] text-white shadow-xs"
+                ? "bg-[#EA580C] text-white shadow-xs btn-tactile"
                 : "text-stone-600 hover:text-black"
             }`}
           >
@@ -634,7 +634,7 @@ export default function ShopPage() {
                             <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#EA580C]">
                               {scenario.tagline}
                             </span>
-                            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-stone-100 text-stone-700 font-bold">
+                            <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-stone-100 text-stone-700 font-medium">
                               {scenario.badge}
                             </span>
                           </div>
@@ -738,10 +738,10 @@ export default function ShopPage() {
                         <div className="flex items-center gap-4 w-full sm:w-auto justify-end">
                           <button
                             onClick={handleAssemble}
-                            className={`w-full sm:w-auto px-5 py-2.5 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-2 ${
+                            className={`w-full sm:w-auto px-5 py-2.5 rounded-xl font-mono text-xs font-medium uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-2 btn-tactile-white ${
                               isAssembled
                                 ? "bg-emerald-600 text-white"
-                                : "bg-white text-[#0A0A0C] hover:bg-stone-200"
+                                : "bg-white text-[#0A0A0C] hover:bg-stone-100"
                             }`}
                           >
                             <PackageCheck className="h-3.5 w-3.5" />
@@ -770,7 +770,7 @@ export default function ShopPage() {
                   {/* Mobile Filter Toggle */}
                   <button
                     onClick={() => setShowMobileFilters(!showMobileFilters)}
-                    className="lg:hidden px-3 py-1.5 rounded-full border border-[#E5E5E9] bg-white text-xs font-mono font-bold flex items-center gap-1.5"
+                    className="lg:hidden px-3 py-1.5 rounded-lg border border-[#E5E5E9] bg-white text-xs font-mono font-medium flex items-center gap-1.5 cursor-pointer hover:border-black"
                   >
                     <SlidersHorizontal className="h-3.5 w-3.5" />
                     <span>Filters</span>
@@ -806,7 +806,7 @@ export default function ShopPage() {
                   </p>
                   <button
                     onClick={clearAllFilters}
-                    className="px-6 py-2.5 rounded-full bg-[#0A0A0C] text-white font-sans font-bold text-xs uppercase tracking-wider hover:bg-stone-800 transition-colors cursor-pointer"
+                    className="px-6 py-2.5 rounded-xl bg-[#0A0A0C] text-white font-sans font-medium text-xs uppercase tracking-wider hover:bg-black btn-tactile transition-all cursor-pointer"
                   >
                     Clear All Filters
                   </button>
@@ -855,7 +855,7 @@ export default function ShopPage() {
                 </div>
                 <button
                   onClick={() => setShowMobileFilters(false)}
-                  className="p-1.5 rounded-full hover:bg-stone-100 transition-colors text-stone-500 hover:text-black cursor-pointer"
+                  className="p-1.5 rounded-lg hover:bg-stone-100 transition-colors text-stone-500 hover:text-black cursor-pointer"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -1045,7 +1045,7 @@ export default function ShopPage() {
               <div className="p-5 border-t border-[#E5E5E9] bg-[#F9F9FB]">
                 <button
                   onClick={() => setShowMobileFilters(false)}
-                  className="w-full py-3 rounded-full bg-[#0A0A0C] text-white text-xs font-bold font-sans uppercase tracking-wider hover:bg-stone-800 transition-colors shadow-md cursor-pointer"
+                  className="w-full py-2.5 rounded-xl bg-[#0A0A0C] text-white text-xs font-medium font-sans uppercase tracking-wider hover:bg-black btn-tactile transition-all cursor-pointer"
                 >
                   View {filteredProducts.length} Objects
                 </button>

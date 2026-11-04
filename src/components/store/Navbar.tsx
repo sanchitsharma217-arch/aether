@@ -35,7 +35,7 @@ export const Navbar: React.FC = () => {
       <div className="h-8 bg-[#0A0A0C] text-[#E5E5E9] border-b border-[#1E1E24] px-4 sm:px-6 lg:px-8 flex items-center justify-between text-[11px] font-mono tracking-wider overflow-hidden">
         <div className="flex items-center gap-2 sm:gap-6 truncate">
           <div className="flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             <span className="text-emerald-400 font-bold">[PILOT ATELIERS]:</span>
             <span className="text-stone-300">8 Certified Maker Guilds [Tranche 01]</span>
           </div>
@@ -154,7 +154,7 @@ export const Navbar: React.FC = () => {
                 placeholder="Ask anything (e.g. 'Studio monitors', 'Titanium field watch')..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-12 py-2 text-xs rounded-full border border-[#E5E5E9] bg-[#F9F9FB] text-[#0A0A0C] placeholder-[#64646E] focus:outline-none focus:bg-white focus:ring-1 focus:ring-[#0A0A0C] focus:border-[#0A0A0C] transition-all shadow-xs font-sans"
+                className="w-full pl-10 pr-12 py-2 text-xs rounded-xl border border-[#E5E5E9] bg-[#F9F9FB] text-[#0A0A0C] placeholder-[#64646E] focus:outline-none focus:bg-white focus:ring-1 focus:ring-[#0A0A0C] focus:border-[#0A0A0C] transition-all shadow-xs font-sans"
               />
               <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
                 <span className="text-[10px] font-mono text-[#64646E] bg-white border border-[#E5E5E9] px-1.5 py-0.5 rounded">
@@ -183,7 +183,7 @@ export const Navbar: React.FC = () => {
             {/* Universal Cart Indicator: [Items: X | $YYY] */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0A0A0C] text-white hover:bg-black shadow-md hover:shadow-lg transition-all cursor-pointer"
+              className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#0A0A0C] text-white hover:bg-black active:scale-[0.985] btn-tactile transition-all cursor-pointer"
               aria-label="Open Universal Cart"
             >
               <ShoppingBag className="h-3.5 w-3.5 text-emerald-400" />
@@ -205,7 +205,7 @@ export const Navbar: React.FC = () => {
               placeholder="Search products or natural intent..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-full border border-[#E6E4DF] bg-white text-[#121110] placeholder-[#6E6B65] focus:outline-none focus:ring-1 focus:ring-[#121110]"
+              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-xl border border-[#E6E4DF] bg-white text-[#121110] placeholder-[#6E6B65] focus:outline-none focus:ring-1 focus:ring-[#121110]"
             />
           </div>
         </div>

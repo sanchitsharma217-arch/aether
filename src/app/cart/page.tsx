@@ -113,7 +113,7 @@ export default function CartPage() {
           <div className="pt-2">
             <Link
               href="/shop"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1C1917] text-[#F7F5F0] hover:bg-stone-800 text-xs font-semibold tracking-wider uppercase shadow-md transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#1C1917] text-[#F7F5F0] hover:bg-black text-xs font-medium tracking-wider uppercase btn-tactile transition-all cursor-pointer"
             >
               <span>Return to Archive</span>
               <ArrowRight className="h-4 w-4" />
@@ -122,7 +122,7 @@ export default function CartPage() {
         </div>
       ) : cartCount === 0 ? (
         <div className="bg-white rounded-3xl border border-[#E4DFD5] p-12 sm:p-20 text-center space-y-4 max-w-lg mx-auto my-12 shadow-2xs">
-          <div className="h-16 w-16 mx-auto rounded-full bg-[#F7F5F0] flex items-center justify-center text-stone-400">
+          <div className="h-16 w-16 mx-auto rounded-2xl bg-[#F7F5F0] flex items-center justify-center text-stone-400">
             <ShoppingBag className="h-8 w-8 stroke-[1.5]" />
           </div>
           <div className="space-y-1">
@@ -134,7 +134,7 @@ export default function CartPage() {
           <div className="pt-2">
             <Link
               href="/#rituals"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1C1917] text-[#F7F5F0] hover:bg-stone-800 text-xs font-semibold tracking-wider uppercase shadow-md transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#1C1917] text-[#F7F5F0] hover:bg-black text-xs font-medium tracking-wider uppercase btn-tactile transition-all cursor-pointer"
             >
               <span>Explore Living Rituals</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -223,7 +223,7 @@ export default function CartPage() {
 
                     <div className="flex items-center justify-between w-full sm:w-auto gap-6">
                       {/* Quantity Stepper */}
-                      <div className="flex items-center border border-[#E4DFD5] rounded-full bg-white px-2.5 py-1">
+                      <div className="flex items-center border border-[#E4DFD5] rounded-lg bg-white px-2.5 py-1">
                         <button
                           onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
                           className="text-stone-500 hover:text-stone-900 font-bold px-1.5 cursor-pointer"
@@ -283,7 +283,7 @@ export default function CartPage() {
                       <span className="font-semibold text-stone-900 font-serif">
                         Consolidated Linen Parcel
                       </span>
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#5E6857] text-white font-bold">
+                      <span className="text-[10px] px-2 py-0.5 rounded-md bg-[#5E6857] text-white font-medium">
                         -$5 Eco Credit
                       </span>
                     </div>
@@ -392,7 +392,7 @@ export default function CartPage() {
                 {/* Checkout Trigger */}
                 <button
                   onClick={handlePlaceOrder}
-                  className="w-full py-4 px-6 rounded-full bg-[#1C1917] hover:bg-stone-800 text-[#F7F5F0] font-semibold text-xs tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                  className="w-full py-3.5 px-6 rounded-xl bg-[#1C1917] hover:bg-black text-[#F7F5F0] font-medium text-xs tracking-wider uppercase btn-tactile transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>Authorize Order (${total.toFixed(2)})</span>
                   <ArrowRight className="h-4 w-4" />

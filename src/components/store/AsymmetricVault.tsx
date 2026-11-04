@@ -54,9 +54,9 @@ export const AsymmetricVault: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-4 border-b border-[#E5E5E9]">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#0A0A0C]">
-              THE CANONICAL VAULT // SCALE & ASYMMETRY
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
+            <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#0A0A0C]">
+              THE CANONICAL VAULT · SCALE & ASYMMETRY
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-sans font-black tracking-tight text-[#0A0A0C] uppercase">
@@ -87,10 +87,10 @@ export const AsymmetricVault: React.FC = () => {
           {/* Overlapping Floating Spec Tag breaking out at the top */}
           <div className="flex items-center justify-between gap-3 relative z-10">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="font-mono text-[10px] font-bold uppercase tracking-widest bg-[#0A0A0C] text-white px-3 py-1 rounded-full shadow-md">
-                MASTER BENCHMARK // 01
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-widest bg-[#0A0A0C] text-white px-2.5 py-1 rounded-md shadow-xs">
+                MASTER BENCHMARK · 01
               </span>
-              <span className="font-mono text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full flex items-center gap-1">
+              <span className="font-mono text-[10px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded-md flex items-center gap-1">
                 <ShieldCheck className="h-3 w-3 text-emerald-600" />
                 <span>9.8 / 10 Durability Index</span>
               </span>
@@ -178,8 +178,8 @@ export const AsymmetricVault: React.FC = () => {
             className="group relative rounded-3xl bg-white border border-[#E5E5E9] floating-card hover:border-[#0A0A0C] transition-all duration-500 p-5 sm:p-6 flex flex-col justify-between overflow-hidden cursor-pointer flex-1"
           >
             <div className="flex items-center justify-between text-xs font-mono pb-2">
-              <span className="text-[10px] font-bold text-[#EA580C] bg-orange-50 border border-orange-200 px-2.5 py-0.5 rounded-full uppercase">
-                Horology // 02
+              <span className="text-[10px] font-medium text-[#EA580C] bg-orange-50 border border-orange-200/80 px-2.5 py-0.5 rounded-md uppercase">
+                Horology · 02
               </span>
               <span className="text-[10px] text-[#64646E]">
                 Zurich, Switzerland
@@ -215,13 +215,13 @@ export const AsymmetricVault: React.FC = () => {
                     e.stopPropagation();
                     setActiveBuyBoxProduct(prodWatch);
                   }}
-                  className="flex-1 py-2 text-center rounded-xl border border-[#E5E5E9] hover:border-[#0A0A0C] text-xs font-semibold text-[#0A0A0C] transition-all bg-[#F9F9FB]"
+                  className="flex-1 py-2 text-center rounded-lg border border-[#E5E5E9] hover:border-[#0A0A0C] text-xs font-medium text-[#0A0A0C] transition-all bg-[#F9F9FB] btn-tactile-white cursor-pointer"
                 >
                   Inspect Offers
                 </button>
                 <button
                   onClick={handleAddWatch}
-                  className="p-2 rounded-xl bg-[#0D0D0D] text-white hover:bg-black transition-all shadow-xs"
+                  className="p-2 rounded-lg bg-[#0D0D0D] text-white hover:bg-black transition-all btn-tactile cursor-pointer"
                 >
                   {justAddedWatch ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <ShoppingBag className="h-3.5 w-3.5" />}
                 </button>
@@ -235,8 +235,8 @@ export const AsymmetricVault: React.FC = () => {
             className="group relative rounded-3xl bg-white border border-[#E5E5E9] floating-card hover:border-[#0A0A0C] transition-all duration-500 p-5 sm:p-6 flex flex-col justify-between overflow-hidden cursor-pointer flex-1"
           >
             <div className="flex items-center justify-between text-xs font-mono pb-2">
-              <span className="text-[10px] font-bold text-[#2563EB] bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-full uppercase">
-                Culinary // 03
+              <span className="text-[10px] font-medium text-[#2563EB] bg-blue-50 border border-blue-200/80 px-2.5 py-0.5 rounded-md uppercase">
+                Culinary · 03
               </span>
               <span className="text-[10px] text-[#64646E]">
                 {prodOven.primaryVendor.location}
@@ -272,13 +272,13 @@ export const AsymmetricVault: React.FC = () => {
                     e.stopPropagation();
                     setActiveBuyBoxProduct(prodOven);
                   }}
-                  className="flex-1 py-2 text-center rounded-xl border border-[#E5E5E9] hover:border-[#0A0A0C] text-xs font-semibold text-[#0A0A0C] transition-all bg-[#F9F9FB]"
+                  className="flex-1 py-2 text-center rounded-lg border border-[#E5E5E9] hover:border-[#0A0A0C] text-xs font-medium text-[#0A0A0C] transition-all bg-[#F9F9FB] btn-tactile-white cursor-pointer"
                 >
                   Inspect Offers
                 </button>
                 <button
                   onClick={handleAddOven}
-                  className="p-2 rounded-xl bg-[#0D0D0D] text-white hover:bg-black transition-all shadow-xs"
+                  className="p-2 rounded-lg bg-[#0D0D0D] text-white hover:bg-black transition-all btn-tactile cursor-pointer"
                 >
                   {justAddedOven ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <ShoppingBag className="h-3.5 w-3.5" />}
                 </button>
